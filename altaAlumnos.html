@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<title>Alta de Alumnos</title>
+		<link rel="stylesheet" href="login.css">
+	</head>
+	<body>
+			<div class="login">
+				<h1>Alta de Alumno</h1>
+				 <form action="backend.html" method="post">
+					D.N.I.:
+						<br>
+						<input type="number" name="dni" required placeholder="12.333.333">
+						<br>
+					Apellido y Nombre:
+						<br>
+						<input type="text" name="fullname" required>
+						<br>
+					Fecha de Nacimiento:
+						<br>
+						<input type="datetime" name="birthdate" required>
+						<br>
+					Sexo:
+						<br>
+						<input type="character" name="sex" required>
+						<br>
+					Apellido y Nombre del Tutor Legal:
+						<br>
+						<input type="text" name="fullnametutor" required>
+						<br>
+					Tipo de parentezco del tutor legal:
+						<br>
+						<input type="text" name="tutorkinship" required>
+						<br>
+					Apellido y Nombre del Padre:
+						<br>
+						<input type="text" name="fatherfullname" >
+						<br>
+					Apellido y Nombre de la Madre:
+						<br>
+						<input type="text" name="motherfullname">
+						<br>
+					Mail de contacto:
+						<br>
+						<input type="email" name="email" >
+						<br>
+					Telefono de Contacto:
+						<br>
+						<input type="text" name="phone" >
+						<br>
+					Direccion:
+						<br>
+						<input type="text" name="address" required>
+						<br>
+					Fecha de Alta en el Sistema:
+						<br>
+						<input type="datetime" name="creationDate" required>
+						<br>
+						<br>
+					<input type="submit" value="Enviar Datos">
+				</form> 
+			</div>
+	</body>
+</html>
