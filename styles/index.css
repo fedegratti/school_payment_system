@@ -508,7 +508,7 @@ a:hover {
 }
 #site-title {
 	margin-right: 270px;
-	padding: 3.65625em 0 0;
+	padding: 2.65625em 0 0;
 }
 #site-title a {
 	color: #111;
@@ -2676,4 +2676,17 @@ p.comment-form-comment {
 }
 #ie7 section.recent-posts {
 	margin-right: 7.6%;
+}
+
+a.loginButton {
+    float: right;
+    background-color: #8dcb18;
+    padding: 10px;
+    font-style: normal;
+    font-family: arial;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: white;
+    font-size: 1.2em;
 }

@@ -2,23 +2,16 @@
 <html>
 	<head> 
 		<title>Login page</title>
-		<link rel="stylesheet" href="login.css">
+		<link rel="stylesheet" href="styles/style.css">
 	</head>
 	<body>
-			<div class="login">
-				<h1>Login</h1>
-				 <form action="altaAlumnos.html" method="post">
-					User:
-						<br>
-						<input type="text" name="username" required>
-						<br>
-					Password:
-						<br>
-						<input type="password" name="password" required>
-						<br>
-						<br>
-					<input type="submit" value="Logear">
-				</form> 
-			</div>
+		<h1>Login</h1>
+		<div class="whiteBox loginBox">
+		 <form action="backend.html" method="post">
+			<input type="text" name="username" required placeholder="Usuario">
+			<input type="password" name="password" required placeholder="Contrase&ntilde;a">
+			<input type="submit" value="Iniciar sesi&oacute;n">
+		</form> 
+		</div>
 	</body>
 </html>

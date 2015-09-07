@@ -1,0 +1,123 @@
+body {
+    font-family: arial;
+    margin: 0;
+    background-color: #deebdf;
+}
+form {
+    margin: 0 auto;
+}
+h1 {
+    margin: 0 0 0.5em;
+    text-align: center;
+}
+input {
+    position: relative;
+    outline: none;
+    font-size: 1em;
+    font-weight: 400;
+    color: black;
+    padding: 15px 10px 15px 15px;
+    border: 1px solid #ccc;
+    width: 97%;
+    margin: 0em 0em 1.5em 0em;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-appearance: none;
+}
+.whiteBox {
+    box-shadow: 0 0 8px #686868;
+    border-radius: 3px;
+    width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fbfbfb;
+}
+input[type="submit"] {
+    color: #FFF;
+    background: #8dcb18;
+    border: none;
+    font-size: 1.2em;
+    width: 100%;
+    margin: 0;
+}
+
+div#menu {
+    width: 20%;
+    margin: 20px 10px 10px 20px;
+}
+
+ul.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+     background-color: transparent;
+}
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+.nav>li {
+    float: none;
+    position: relative;
+    display: block;
+}
+
+.nav>li:hover {
+   background-color:#bababa;
+}
+div#navbar {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #101010;
+    color: white;
+    font-size: 1.1em;
+    padding-top: 15px;
+    padding-bottom: 35px;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.whiteBox.loginBox {
+    width: 500px;
+}
+select {
+    position: relative;
+    outline: none;
+    font-size: 1em;
+    font-weight: 400;
+    color: black;
+    padding: 15px 10px 15px 15px;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0em 0em 1.5em 0em;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -webkit-appearance: none;
+}
+label {
+    font-weight: bold;
+}
+input[type="date"] {
+    font-size: 1.3em;
+}
