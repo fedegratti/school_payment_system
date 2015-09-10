@@ -121,3 +121,33 @@ label {
 input[type="date"] {
     font-size: 1.3em;
 }
+
+table
+{
+
+		background-color: white;
+		border-color : #8dcb18;
+		width:	700px;
+		margin: auto;
+		position : center;
+		border: 1px solid #98bf21;
+		border-collapse: collapse;
+		padding: 3px 7px 2px 7px;
+		
+}
+th
+{
+	
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+	
+	
+}
+tr
+{
+	border: 1px solid #98bf21;
+}
+
