@@ -2,14 +2,18 @@ body {
     font-family: arial;
     margin: 0;
     background-color: #deebdf;
+    min-width: 920px;
 }
-form {
-    margin: 0 auto;
-}
+
 h1 {
     margin: 0 0 0.5em;
     text-align: center;
 }
+
+form {
+    margin: 0 auto;
+}
+
 input {
     position: relative;
     outline: none;
@@ -26,14 +30,7 @@ input {
     -o-border-radius: 5px;
     -webkit-appearance: none;
 }
-.whiteBox {
-    box-shadow: 0 0 8px #686868;
-    border-radius: 3px;
-    width: 800px;
-    margin: 0 auto;
-    padding: 2em;
-    background-color: #fbfbfb;
-}
+
 input[type="submit"] {
     color: #FFF;
     background: #8dcb18;
@@ -43,16 +40,10 @@ input[type="submit"] {
     margin: 0;
 }
 
-div#menu {
-    width: 20%;
-    margin: 20px 10px 10px 20px;
+input[type="date"] {
+    font-size: 1.3em;
 }
 
-ul.nav {
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
-}
 ol, ul {
     margin-top: 0;
     margin-bottom: 10px;
@@ -63,42 +54,26 @@ a {
     text-decoration: none;
      background-color: transparent;
 }
-.nav>li>a {
-    position: relative;
-    display: block;
-    padding: 10px 15px;
-    border-radius: 4px;
+
+td,th {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    text-align: left;
 }
 
-.nav>li {
-    float: none;
-    position: relative;
-    display: block;
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
 }
 
-.nav>li:hover {
-   background-color:#bababa;
+ul.nav {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
 }
-div#navbar {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-    background-color: #101010;
-    color: white;
-    font-size: 1.1em;
-    padding-top: 15px;
-    padding-bottom: 35px;
-}
-.left {
-    float: left;
-}
-.right {
-    float: right;
-}
-.whiteBox.loginBox {
-    width: 500px;
-}
+
 select {
     position: relative;
     outline: none;
@@ -115,39 +90,113 @@ select {
     -o-border-radius: 5px;
     -webkit-appearance: none;
 }
+
 label {
     font-weight: bold;
 }
-input[type="date"] {
-    font-size: 1.3em;
+
+#navbar {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #101010;
+    color: white;
+    font-size: 1.1em;
+    padding-top: 15px;
+    padding-bottom: 35px;
 }
 
-table
-{
-
-		background-color: white;
-		border-color : #8dcb18;
-		width:	700px;
-		margin: auto;
-		position : center;
-		border: 1px solid #98bf21;
-		border-collapse: collapse;
-		padding: 3px 7px 2px 7px;
-		
-}
-th
-{
-	
-    text-align: left;
-    padding-top: 5px;
-    padding-bottom: 4px;
-    background-color: #A7C942;
-    color: #ffffff;
-	
-	
-}
-tr
-{
-	border: 1px solid #98bf21;
+#menu {
+    width: 300px;
+    margin: 20px 10px 10px 20px;
+    float: left;
 }
 
+#content {
+    width: 980px;
+    background-color: #696;
+    height: 600px;
+    margin: auto;
+}
+
+.whiteBox {
+    box-shadow: 0 0 8px #686868;
+    border-radius: 3px;
+    width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+    background-color: #fbfbfb;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+.nav>li {
+    float: none;
+    position: relative;
+    display: block;
+}
+
+.nav>li:hover {
+   background-color:#bababa;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+tr.even {
+    background-color: #f0f0f0;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 960px) {
+    .whiteBox {
+        width: 600px;
+    }
+    #content {
+         width: 300px;
+         float: none;
+    }
+    #menu {
+        width: 200px;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 1350px) {
+    .whiteBox {
+        width: 600px;
+    }
+    #content {
+         width: 500px;
+         float: left;
+    }
+}
+
+@media screen and (min-width: 1350px) and (max-width: 1550px) {
+    #content {
+         width: 550px;
+         float: none;
+    }
+}
+
+@media screen and (min-width: 1550px) and (max-width: 1850px) {
+    #content {
+         width: 750px;
+         float: none;
+    }
+}
