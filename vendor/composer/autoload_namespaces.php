@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
+    'PHPRouter' => array($vendorDir . '/dannyvankooten/php-router/src'),
 );

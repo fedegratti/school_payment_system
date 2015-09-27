@@ -1,5 +1,7 @@
 {
     "require": {
-        "twig/twig": "~1.0"
+        "twig/twig": "~1.0",
+        "dannyvankooten/php-router": "dev-master"
     }
+    
 }
