@@ -7,7 +7,7 @@
 	<body>
 		<div id="navbar">
 			<div class="left">Graduada</div>
-			<div class="right">Administrador | <a href="index.html">Cerrar sesi&oacute;n</a></div>
+			<div class="right">{{username}} | <a href="index.html">Cerrar sesi&oacute;n</a></div>
 		</div>
 		<div id="menu" class="whiteBox">
 			<h1>Men&uacute;</h1>
