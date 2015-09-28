@@ -4,51 +4,49 @@ class UserManager
 {
 	public static function AltaUsuarios()
 	{
-		
-		include ("altaUsuarios.html");
+		include("altaUsuariosView.html");
 	}
 	public static function AgregarUsuario()
 	{
-		echo "asd";
-		DBConnection::GetDBConnection();
-		//UserManager::UserAlreadyExists($_POST["username"]);
-/*		if( UserManager::UserAlreadyExists($_POST["username"]) == 0)
+
+		if( !UserManager::UserAlreadyExists($_POST["username"]))
 		{
 			$connection = DBConnection::GetDBConnection();
 			$query="INSERT INTO usuario (username,password,habilitado,rol)
-			VALUES (?,?,?,?)";
+			VALUES (:username,:password,:habilitado,:rol)";
 			$stmnt = $connection->prepare($query);
 			$habilitado = true;
 			
-			$stmnt -> bind_param("ssii", $_POST["username"],$_POST["password"], $habilitado,$_POST["rol"]);
+			$stmnt -> bindParam(":username", $_POST["username"]);
+            $stmnt -> bindParam(":password", $_POST["password"]);
+            $stmnt -> bindParam(":habilitado", $habilitado);
+            $stmnt -> bindParam("rol", $_POST["rol"]);
 			$stmnt -> execute();
-			mysqli_close($connection);
+            $connection = null;
+
 		}
-		else
-		{
-			echo "chau";
-		}
-*/
+
+
 	}
 
-	private static function UserAlreadyExists($username)
+	public static function UserAlreadyExists($username)
 	{
-		echo $username;
+
 		$connection = DBConnection::GetDBConnection();
-		$query="SELECT * FROM usuario";
+
+
+		$query="SELECT COUNT(*) FROM usuario WHERE username= :username";
 
 		$stmnt = $connection->prepare($query);
-		
-		//$stmnt -> bind_param("s", $username);
+		$stmnt ->bindParam(':username',$username);
 		$stmnt -> execute();
 
-		mysqli_close($connection);
-		echo ($stmnt->num_rows);
-		var_dump($stmnt);
-
-		return ($stmnt->num_rows) != 0;
+        $connection = null;
+        if ($stmnt->fetchColumn() > 0)
+        {
+            return true;
+        }
+        return false;
 	}
 }
-
-
 ?>

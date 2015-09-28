@@ -18,9 +18,14 @@
 	    'methods' => 'GET'
 	)));
 
-	$router = new Router($collection);
-	$router->setBasePath('/');
-	$route = $router->matchCurrentRequest();
+    $collection->attachRoute(new Route('/login/', array(
+        '_controller' => "include('login.html'",
+        'methods' => 'POST'
+    )));
 
-	//var_dump($route);
+	//$router = new Router($collection);
+	//$router->setBasePath('/');
+	//$route = $router->matchCurrentRequest();
+
+
 ?>

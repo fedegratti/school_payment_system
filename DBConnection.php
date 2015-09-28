@@ -13,11 +13,7 @@ class DBConnection
 		$user 	= static :: db_user;
 		$pass 	= static :: db_pass;
 		$dbName = static :: db_name;
-
-		$dbConnection = new PDO("mysql:dbname=$dbName;host=$host",$user,$pass);
-		$query = $dbConnection->prepare("SELECT * FROM usuario");
- 		$query->execute(array());
- 		echo ($query -> rowCount());
+        $dbConnection = new PDO("mysql:dbname=$dbName;host=$host",$user,$pass);
 
 		return $dbConnection;
 	}
