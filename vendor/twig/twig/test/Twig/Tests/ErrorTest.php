@@ -32,15 +32,15 @@ class Twig_Tests_ErrorTest extends PHPUnit_Framework_TestCase
         $loader = new Twig_Loader_Filesystem(dirname(__FILE__).'/Fixtures/errors');
         $twig = new Twig_Environment($loader, array('strict_variables' => true, 'debug' => true, 'cache' => false));
 
-        $template = $twig->loadTemplate('home.html');
+        $template = $twig->loadTemplate('home.html.twig');
         try {
             $template->render(array());
 
             $this->fail();
         } catch (Twig_Error_Runtime $e) {
-            $this->assertEquals('Variable "foo" does not exist in "home.html" at line 3', $e->getMessage());
+            $this->assertEquals('Variable "foo" does not exist in "home.html.twig" at line 3', $e->getMessage());
             $this->assertEquals(3, $e->getTemplateLine());
-            $this->assertEquals('home.html', $e->getTemplateFile());
+            $this->assertEquals('home.html.twig', $e->getTemplateFile());
         }
 
         try {
@@ -48,9 +48,9 @@ class Twig_Tests_ErrorTest extends PHPUnit_Framework_TestCase
 
             $this->fail();
         } catch (Twig_Error_Runtime $e) {
-            $this->assertEquals('An exception has been thrown during the rendering of a template ("Runtime error...") in "home.html" at line 3.', $e->getMessage());
+            $this->assertEquals('An exception has been thrown during the rendering of a template ("Runtime error...") in "home.html.twig" at line 3.', $e->getMessage());
             $this->assertEquals(3, $e->getTemplateLine());
-            $this->assertEquals('home.html', $e->getTemplateFile());
+            $this->assertEquals('home.html.twig', $e->getTemplateFile());
         }
     }
 
