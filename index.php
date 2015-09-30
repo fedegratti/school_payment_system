@@ -6,19 +6,9 @@
 	use PHPRouter\Router;
 	use PHPRouter\Route;
 
-    require_once('controller/UserController.php');
-    require_once('controller/HomeController.php');
-    require_once('controller/LoginController.php');
-    require_once('controller/BackendController.php');
-
-    require_once('model/PDORepository.php');
-    require_once('model/UserRepository.php');
-
-    require_once('view/TwigView.php');
-    require_once('view/BackendView.php');
-    require_once('view/AddUserView.php');
-    require_once('view/HomeView.php');
-    require_once('view/LoginView.php');
+    // Carga las cosas q esten en la carpeta model, view, controller.
+    // El resto lo van a tener q declarar abajo de esto.
+    require_once('/Autoload.php');
 
 	$collection = new RouteCollection();
 
