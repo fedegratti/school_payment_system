@@ -1,0 +1,50 @@
+x<!DOCTYPE html>
+<html>
+	<head> 
+		<title>Alta de Alumnos</title>
+		<link rel="stylesheet" href="../styles/style.css">
+	</head>
+	<body>
+		<h1>Alta de Alumno</h1>
+		<div class="whiteBox">
+		 <form action="backend" method="post">
+		 	<label>Tipo de Responsable</label>
+			<select name="responsibleType">
+				  <option value="mother">Madre</option>
+				  <option value="father">Padre</option>
+				  <option value="tutor">tutor</option>
+			</select>
+
+			<label>Nombre:</label>
+			<input type="text" name="firstName" required >
+
+			<label>Apellido:</label>
+			<input type="text" name="lastName" required >
+
+			<label>Fecha de Nacimiento:</label>
+			<input type="date" name="birthDate" required >
+	
+			<label>Sexo:</label>
+			
+			<select name="sex">
+				  <option value="m">Masculino</option>
+				  <option value="f">Femenino</option>
+			</select>
+	
+			<label>Mail de contacto:</label>
+			<input type="email" name="email">
+		
+			<label>Direcci&oacute;n:</label>
+			<input type="text" name="address" required>
+			
+
+			<label>Telefono:</label>
+			<input type="text" name="telefono" required>
+			
+			<input type="submit" value="Enviar Datos">
+		</form>
+
+
+		</div>
+	</body>
+</html>

@@ -2,9 +2,9 @@
 
 class BackendView extends TwigView {
 
-    public function show($resourceArray) {
+    public function show($username) {
 
-        echo self::getTwig()->render('backend.html.twig', array('username' => $resourceArray));
+        self::getTwig()->display('backend.html.twig', array('username' => $username));
 
     }
 

@@ -28,17 +28,25 @@
         'methods' => 'POST'
     )));
 
-	$collection->attachRoute(new Route('/AddUser/', array(
+	$collection->attachRoute(new Route('/AddUserView/', array(
 		'_controller' => 'UserController::addUserView',
 		'methods' => 'GET'
 	)));
 
-	$collection->attachRoute(new Route('/createUser/', array(
-	    '_controller' => 'UserController::createUser',
+	$collection->attachRoute(new Route('/AddUserAction/', array(
+	    '_controller' => 'UserController::addUserAction',
 	    'methods' => 'POST'
 	)));
 
-
+	$collection->attachRoute(new Route('/AddStudentView/', array(
+        '_controller' => 'StudentController::addStudentView',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/AddStudentAction/', array(
+        '_controller' => 'StudentController::addStudentAction',
+        'methods' => 'POST'
+    )));
+    
 	$router = new Router($collection);
 	$router->setBasePath('/');
 	$route = $router->matchCurrentRequest();

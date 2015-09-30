@@ -4,7 +4,7 @@ class HomeView extends TwigView {
 
     public function show() {
 
-        echo self::getTwig()->render('home.html.twig');
+        self::getTwig()->display('home.html.twig');
 
     }
 

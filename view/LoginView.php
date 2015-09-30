@@ -4,7 +4,7 @@ class LoginView extends TwigView {
 
     public function show() {
 
-        echo self::getTwig()->render('login.html.twig');
+        self::getTwig()->display('login.html.twig');
     }
 
 }

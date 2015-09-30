@@ -16,7 +16,6 @@ class UserRepository extends PDORepository
 	{
 		if( !$this->UserAlreadyExists($_POST["username"]))
 		{
-            //TODO:if isset username,pass,rol
 			$query="INSERT INTO usuario (username,password,habilitado,rol) VALUES (?,?,?,?)";
 
             $enabled = true;

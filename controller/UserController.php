@@ -2,19 +2,19 @@
 
 class UserController
 {
+    
     public static function addUserView()
     {
         $view = new AddUserView();
         $view->show();
     }
 
-    public static function createUser ()
+    public static function addUserAction ()
     {
-//        $result = UserRepository::getInstance()->createUser();
-        header('Location: /backend?message=hola');
+        $result = UserRepository::getInstance()->createUser();
         if ($result == "SUCCESS")
         {
-            BackendController::showView();
+            header('Location: /backend?message=hola');
         }
     }
 }

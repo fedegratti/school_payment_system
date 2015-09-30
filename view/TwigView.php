@@ -16,5 +16,4 @@ abstract class TwigView {
         }
         return self::$twig;
     }
-
 }
