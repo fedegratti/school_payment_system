@@ -46,6 +46,11 @@
         '_controller' => 'StudentController::addStudentAction',
         'methods' => 'POST'
     )));
+
+    $collection->attachRoute(new Route('/AddResponsibleAction/', array(
+        '_controller' => 'ResponsibleController::addResponsibleAction',
+        'methods' => 'POST'
+    )));
     
 	$router = new Router($collection);
 	$router->setBasePath('/');

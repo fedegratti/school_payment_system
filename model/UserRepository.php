@@ -2,25 +2,16 @@
 
 class UserRepository extends PDORepository
 {
-	private static $instance;
 
-	public static function getInstance() {
-
-		if (!isset(self::$instance)) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
-	public function createUser()
+	public function createUser($userData)
 	{
-		if( !$this->UserAlreadyExists($_POST["username"]))
+		if( !$this->UserAlreadyExists($userData["username"]))
 		{
 			$query="INSERT INTO usuario (username,password,habilitado,rol) VALUES (?,?,?,?)";
 
             $enabled = true;
 
-            $stmnt = $this->executeQuery($query,array($_POST["username"],$_POST["password"],$enabled,  $_POST["rol"]));
+            $stmnt = $this->executeQuery($query,array($userData["username"],$userData["password"],$enabled,  $userData["rol"]));
 
 			return "SUCCESS";
 		}

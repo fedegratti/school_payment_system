@@ -1,11 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 abstract class PDORepository {
 
     const db_host ="localhost";
@@ -29,6 +22,7 @@ abstract class PDORepository {
         $connection = $this->getConnection();
         $stmt = $connection->prepare($query);
         $stmt->execute($args);
+        //$connection = null;
         return $stmt;
     }
     
@@ -39,6 +33,11 @@ abstract class PDORepository {
             $list[] = $mapper($element);
         }
         return $list;
+    }
+
+    protected function getLastInsertedID()
+    {
+        return $this->getConnection()->lastInsertId();
     }
     
 }

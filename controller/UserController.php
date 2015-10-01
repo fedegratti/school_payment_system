@@ -11,10 +11,11 @@ class UserController
 
     public static function addUserAction ()
     {
-        $result = UserRepository::getInstance()->createUser();
+        $result = (new UserRepository()) ->createUser($_POST);
         if ($result == "SUCCESS")
         {
-            header('Location: /backend?message=hola');
+            header('Location: /backend');
+            //header('Location: /backend?message=hola');
         }
     }
 }
