@@ -51,6 +51,11 @@
         '_controller' => 'ResponsibleController::addResponsibleAction',
         'methods' => 'POST'
     )));
+
+    $collection->attachRoute(new Route('/AddCuotaView/', array(
+        '_controller' => 'CuotaController::showView',
+        'methods' => 'GET'
+    )));
     
 	$router = new Router($collection);
 	$router->setBasePath('/');
