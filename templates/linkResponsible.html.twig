@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>Asociar responsable</title>
+    <link rel="stylesheet" href="../styles/style.css">
+  </head>
+  <body>
+    <h1>Asociar responsable</h1>
+    <div class="whiteBox">
+      {% if responsibles|length > 0 %}
+      <table class="table">
+        <tbody>
+          <tr class="even">
+            <th>Nombre y Apellido</th>
+            <th>Acci&oacute;n</th>
+          </tr>
+          {% for responsible in responsibles %}
+          <tr class="odd">
+            <td>{{ responsible[0] }}</td>
+            <td><a href="#.html">Seleccionar</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+  </body>
+</html>

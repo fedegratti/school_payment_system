@@ -18,4 +18,11 @@ class ResponsibleController
         (new ResponsibleOfStudentRepository())->asociateStudentWithResponsible($studentID,$responsibleID);
         header('Location: /backend');
     }
+
+    public static function getResponsibleListView()
+    {
+
+       $view = new GetResponsibleListView();
+       $view->show(array(array("asd","1"),array("x","2")));
+    }
 }

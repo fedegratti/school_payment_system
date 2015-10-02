@@ -52,8 +52,13 @@
         'methods' => 'POST'
     )));
 
+
     $collection->attachRoute(new Route('/AddCuotaView/', array(
         '_controller' => 'CuotaController::showView',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/GetResponsibleListView/', array(
+        '_controller' => 'ResponsibleController::getResponsibleListView',
         'methods' => 'GET'
     )));
     
