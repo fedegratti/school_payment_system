@@ -2,27 +2,33 @@
 
 class ResponsibleController
 {
-	private static $studentData;
-    public static function addResponsibleView($studentData)
+
+    public static function addResponsibleView($studentID)
     {
-        // esto con un poquito de concurrencia explota xD
-    	static::$studentData = $studentData;
+
         $view = new AddResponsibleView();
-        $view->show();
+        $view->show($studentID);
     }
     public static function addResponsibleAction()
     {
         $responsibleID = (new ResponsibleRepository())->createResponsible($_POST);
-        $studentID = (new StudentRepository())->createStudent(static :: $studentData);
 
-        (new ResponsibleOfStudentRepository())->asociateStudentWithResponsible($studentID,$responsibleID);
+        (new ResponsibleOfStudentRepository())->asociateStudentWithResponsible($_POST["studentID"],$responsibleID);
         header('Location: /backend');
     }
 
-    public static function getResponsibleListView()
+    public static function getResponsibleListView($alumnoID)
     {
+        $responsibleRepository=new ResponsibleRepository();
+        $responsibles = $responsibleRepository->getResponsibleList();
 
        $view = new GetResponsibleListView();
-       $view->show(array(array("asd","1"),array("x","2")));
+       $view->show($responsibles, $alumnoID);
+    }
+
+    public static function asociateResponsibleAction($responsibleID, $studentID)
+    {
+        (new ResponsibleOfStudentRepository())->asociateStudentWithResponsible($studentID,$responsibleID);
+        header('Location: /login');
     }
 }

@@ -164,6 +164,10 @@ tr.even {
     margin-bottom: 20px;
 }
 
+#numeroCuota {
+    display: none;
+}
+
 @media screen and (min-width: 0px) and (max-width: 960px) {
     .whiteBox {
         width: 600px;

@@ -13,7 +13,7 @@
 			<select name="responsibleType">
 				  <option value="mother">Madre</option>
 				  <option value="father">Padre</option>
-				  <option value="tutor">tutor</option>
+				  <option value="tutor">Tutor</option>
 			</select>
 
 			<label>Nombre:</label>
@@ -36,13 +36,15 @@
 			<input type="email" name="email">
 		
 			<label>Direcci&oacute;n:</label>
-			<input type="text" name="address" required>
+			<input type="text" name="adress" required>
 			
 
 			<label>Telefono:</label>
 			<input type="text" name="telefono" required>
 			
 			<input type="submit" value="Enviar Datos">
+
+			<input type="hidden" name="studentID" value="{{studentID}}" >
 		</form>
 
 

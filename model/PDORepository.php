@@ -5,8 +5,9 @@ abstract class PDORepository {
     const db_user ="grupo_2";
     const db_pass ="Bz8Kdq4fvyywStdc";
     const db_name ="grupo_2";
-    
-    
+
+    protected static $lastInsertedID;
+
     private function getConnection(){
         $host 	= static :: db_host;
         $user 	= static :: db_user;
@@ -23,12 +24,15 @@ abstract class PDORepository {
         $stmt = $connection->prepare($query);
         $stmt->execute($args);
         //$connection = null;
+
+        self :: $lastInsertedID = $connection ->lastInsertId();
         return $stmt;
     }
     
     protected function queryList($query, $args, $mapper){
         $stmt = $this->executeQuery($query,$args);
         $list = [];
+
         while($element = $stmt->fetch()){
             $list[] = $mapper($element);
         }
@@ -37,7 +41,7 @@ abstract class PDORepository {
 
     protected function getLastInsertedID()
     {
-        return $this->getConnection()->lastInsertId();
+        return static ::$lastInsertedID;
     }
     
 }

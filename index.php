@@ -61,7 +61,11 @@
         '_controller' => 'ResponsibleController::getResponsibleListView',
         'methods' => 'GET'
     )));
-    
+
+    $collection->attachRoute(new Route('/asociateResponsibleAction/:responsibleID/:studentID', array(
+        '_controller' => 'ResponsibleController::asociateResponsibleAction',
+        'methods' => 'GET'
+    )));
 	$router = new Router($collection);
 	$router->setBasePath('/');
 	$route = $router->matchCurrentRequest();

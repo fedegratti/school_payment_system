@@ -12,7 +12,7 @@ class ResponsibleRepository extends PDORepository
     public  function createResponsible($responsibleData)
     {
         $query="INSERT INTO responsable (tipo,apellido,nombre,fechaNacimiento,sexo,
-                                      mail,telefono, direcciona)
+                                      mail,telefono, direccion)
                         VALUES (?,?,?,?,?,?,?,? )";
 
 
@@ -23,5 +23,12 @@ class ResponsibleRepository extends PDORepository
 
         return $this->getLastInsertedID();
 
+    }
+
+    public function getResponsibleList ($name=null)
+    {
+        $query="SELECT id, nombre FROM responsable";
+        $stmt = $this->executeQuery($query, array());
+        return $stmt ->fetchAll();
     }
 }

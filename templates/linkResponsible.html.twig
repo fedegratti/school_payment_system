@@ -16,8 +16,8 @@
           </tr>
           {% for responsible in responsibles %}
           <tr class="odd">
-            <td>{{ responsible[0] }}</td>
-            <td><a href="#.html">Seleccionar</a></td>
+            <td>{{ responsible[1] }}</td>
+            <td><a href="asociateResponsibleAction/{{ responsible[0] }}/{{ studentID }}">Seleccionar</a></td>
           </tr>
           {% endfor %}
         </tbody>
