@@ -51,6 +51,11 @@
         '_controller' => 'ResponsibleController::addResponsibleAction',
         'methods' => 'POST'
     )));
+
+    $collection->attachRoute(new Route('/GetResponsibleListView/', array(
+        '_controller' => 'ResponsibleController::getResponsibleListView',
+        'methods' => 'GET'
+    )));
     
 	$router = new Router($collection);
 	$router->setBasePath('/');
