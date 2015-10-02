@@ -4,7 +4,6 @@ class AddUserView extends TwigView
 {
     public function show() {
 
-        self::getTwig()->display('addUser.html.twig');
-
+        self::getTwig()->display('user.html.twig',array('action' => 'AddUserAction'));
     }
 }

@@ -18,6 +18,19 @@ class UserRepository extends PDORepository
 		return "ERROR";
 	}
 
+	public function updateUser($userData)
+	{
+		if($this->UserAlreadyExists($userData["username"]))
+		{
+			$query="UPDATE usuario SET username=?,email=?,habilitado=?,rol=? WHERE id=?";
+
+			$stmnt = $this->executeQuery($query,array($userData["username"],$userData["email"],$userData["habilitado"],$userData["rol"],$userData["id"]));
+
+			return "SUCCESS";
+		}
+		return "ERROR";
+	}
+
 	public function UserAlreadyExists($username)
 	{
 		$query="SELECT COUNT(*) FROM usuario WHERE username= ?";
@@ -29,5 +42,16 @@ class UserRepository extends PDORepository
             return true;
         }
         return false;
+	}
+
+	public function listUser ($id)
+	{
+		$query="SELECT id,username,email,habilitado,rol FROM usuario WHERE id = ?";
+
+		$stmnt = $this->executeQuery($query,array($id));
+
+		$user = $stmnt->fetch();
+
+		return $user;
 	}
 }

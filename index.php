@@ -28,7 +28,7 @@
         'methods' => 'POST'
     )));
 
-	$collection->attachRoute(new Route('/AddUserView/', array(
+	$collection->attachRoute(new Route('/AddUser/', array(
 		'_controller' => 'UserController::addUserView',
 		'methods' => 'GET'
 	)));
@@ -38,7 +38,17 @@
 	    'methods' => 'POST'
 	)));
 
-	$collection->attachRoute(new Route('/AddStudentView/', array(
+    $collection->attachRoute(new Route('/UpdateUser/:id', array(
+        '_controller' => 'UserController::updateUserView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/UpdateUserAction/', array(
+        '_controller' => 'UserController::updateUserAction',
+        'methods' => 'POST'
+    )));
+
+	$collection->attachRoute(new Route('/AddStudent/', array(
         '_controller' => 'StudentController::addStudentView',
         'methods' => 'GET'
     )));
@@ -53,11 +63,11 @@
     )));
 
 
-    $collection->attachRoute(new Route('/AddCuotaView/', array(
+    $collection->attachRoute(new Route('/AddCuota/', array(
         '_controller' => 'CuotaController::showView',
         'methods' => 'GET'
     )));
-    $collection->attachRoute(new Route('/GetResponsibleListView/', array(
+    $collection->attachRoute(new Route('/GetResponsibleList/', array(
         '_controller' => 'ResponsibleController::getResponsibleListView',
         'methods' => 'GET'
     )));

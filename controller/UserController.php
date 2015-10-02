@@ -2,7 +2,6 @@
 
 class UserController
 {
-    
     public static function addUserView()
     {
         $view = new AddUserView();
@@ -15,7 +14,23 @@ class UserController
         if ($result == "SUCCESS")
         {
             header('Location: /backend');
-            //header('Location: /backend?message=hola');
+        }
+    }
+
+    public static function updateUserView($id)
+    {
+        $result = (new UserRepository()) ->listUser($id);
+
+        $view = new UpdateUserView();
+        $view->show($result);
+    }
+
+    public static function updateUserAction ()
+    {
+        $result = (new UserRepository()) ->updateUser($_POST);
+        if ($result == "SUCCESS")
+        {
+            header('Location: /backend');
         }
     }
 }
