@@ -62,7 +62,6 @@
         'methods' => 'POST'
     )));
 
-
     $collection->attachRoute(new Route('/AddCuota/', array(
         '_controller' => 'CuotaController::showView',
         'methods' => 'GET'

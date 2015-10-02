@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alta de usuarios{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    {#<script src="/js/UpdateUser.js"></script>#}
+    <link rel="stylesheet" href="/css/AltaUsuario.css">
+    <script type="application/javascript">
+        $(document).ready (function()
+        {
+            $('#rol').val({{ user.rol }});
+            if ({{ user.habilitado }} == 1) $('#habilitado').attr("checked","");
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="sub-header">Users</h2>
+
+</div> <!-- /container -->
+
+    <div class="container">
+
+		<h2 class="sub-header">Users</h2>
+
+		{% if users.size == 0 %}
+            <p>No hay usuarios.</p>
+        {% endif %}
+        {% if users.size > 0 %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr class="even">
+                        <th>Nombre de usuario</th>
+                        <th>Email</th>
+                        <th>Habilitado</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for user in users %}
+                        <li>{{ user.username|e }}</li>
+                        <tr class="{% if users.odd == true  %}">odd{% endif %}{% else %}even{% endif %}">
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.habilitado }}</td>
+                            <td><a href="/editUser/user.id">Edit</a>
+                            </td>
+                            <td><a href="/deleteUser/user.id">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+
+		<a href="/addUser" cssClass="btn btn-lg btn-success pull-right">Add</a>
+	</div>
+{% endblock %}
