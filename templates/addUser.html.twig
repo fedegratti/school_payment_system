@@ -10,6 +10,7 @@
         $(document).ready (function()
         {
             $('#rol').val({{ user.rol }});
+            if ({{ user.habilitado }} == 1) $('#habilitado').attr("checked","");
         });
     </script>
 {% endblock %}
@@ -30,7 +31,7 @@
 
          <div class="checkbox">
              <label>
-                 <input type="checkbox" value="habilitado"> Habilitado
+                 <input type="checkbox" id="habilitado" name="habilitado" value="1"> Habilitado
              </label>
          </div>
 
