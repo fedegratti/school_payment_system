@@ -24,4 +24,28 @@ class StudentRepository extends PDORepository
         return $this->getLastInsertedID();
 
     }
+
+    public  function updateStudent($studentData)
+    {
+        $query="INSERT INTO alumno (tipoDocumento,numeroDocumento,apellido,nombre,fechaNacimiento,sexo,
+                                      mail,direccion,fechaIngreso,fechaEgreso,fechaAlta)
+                        VALUES (?,?,?,?,?,?,?,?,?,?, CURRENT_DATE )";
+
+
+        $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
+            $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
+            $studentData["email"],$studentData["adress"],$studentData["ingresoEscuela"], null));
+
+
+    }
+
+
+    public function getStudent ($studentID)
+    {
+        $query= "SELECT * FROM alumno WHERE id=?";
+        $result= $this->executeQuery($query, array($studentID));
+
+        return $result->fetch();
+    }
+
 }

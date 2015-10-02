@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<title>Modificacion de Alumnos</title>
+		<link rel="stylesheet" href="../styles/style.css">
+
+		<script type="application/javascript">
+			$(document).ready (function()
+			{
+				$('#sex').val({{ studentData.sex }});
+				$('#documentType').val({{ studentData.tipoDocumento }});
+			});
+		</script>
+	</head>
+	<body>
+		<h1>Modificaci&oacute;n de Alumno</h1>
+		<div class="whiteBox">
+		 <form action="/UpdateStudentAction" method="post">
+		 	<label>Tipo de documento</label>
+			<select name="documentType">
+				  <option value="libretaDeEnrolamiento">L.E.</option>
+				  <option value="dni">D.N.I.</option>
+			</select>
+
+			<label>N&uacute;mero de Documento</label>
+			<input type="number" value="{{ studentData.numeroDocumento }}" name="documentNumber" required >
+
+			<label>Nombre:</label>
+			<input type="text" value="{{ studentData.nombre }}" name="firstName" required >
+			 <label>Apellido:</label>
+			 <input type="text" value="{{ studentData.apellido }}" name="lastName" required >
+
+			<label>Fecha de Nacimiento:</label>
+			<input type="date" value="{{ studentData.fechaNacimiento }}" name="birthDate" required >
+	
+			<label>Sexo:</label>
+			
+			<select id=sex name="sex">
+				  <option value="m">Masculino</option>
+				  <option value="f">Femenino</option>
+			</select>
+	
+			<label>Mail de contacto:</label>
+			<input type="email" value="{{ studentData.mail }}"name="email">
+		
+			<label>Direcci&oacute;n:</label>
+			<input type="text" value="{{ studentData.direccion }}"name="adress" required>
+		
+			<label>Fecha de ingreso a la escuela:</label>
+			<input type="date" value="{{ studentData.fechaIngreso }}"name="ingresoEscuela" required>
+
+			 <label>Fecha de egreso de la escuela:</label>
+			 <input type="date" value="{{ studentData.fechaEgreso }}"name="egresoEscuela" required>
+			 <br>
+			 <br>
+			 <br>
+
+
+
+			<input type="submit" value=" Continuar">
+		</form>
+
+
+		</div>
+	</body>
+</html>

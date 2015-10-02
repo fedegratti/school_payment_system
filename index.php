@@ -76,6 +76,17 @@
         '_controller' => 'ResponsibleController::asociateResponsibleAction',
         'methods' => 'GET'
     )));
+
+    $collection->attachRoute(new Route('/UpdateStudent', array(
+        '_controller' => 'StudentController::updateStudentView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/UpdateStudentAction', array(
+        '_controller' => 'StudentController::updateStudentAction',
+        'methods' => 'POST'
+    )));
+
 	$router = new Router($collection);
 	$router->setBasePath('/');
 	$route = $router->matchCurrentRequest();

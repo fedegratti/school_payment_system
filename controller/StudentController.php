@@ -7,6 +7,13 @@ class StudentController
         $view = new AddStudentView();
         $view->show();
     }
+
+    public static function updateStudentView()
+    {
+        $view = new UpdateStudentView();
+        $studentData = (new StudentRepository())->getStudent(5);
+        $view->show($studentData);
+    }
     public static function addStudentAction()
     {
         $studentRepository = new StudentRepository();
@@ -21,5 +28,18 @@ class StudentController
        	{
             ResponsibleController::getResponsibleListView($studentID);
        	}
+    }
+
+    public static function updateStudent ($studentID)
+    {
+        $studentRepository = new StudentRepository();
+        $student=$studentRepository->getStudent($studentID);
+    }
+
+    public static function updateStudentAction ()
+    {
+        $studentRepository = new StudentRepository();
+        $studentRepository->updateStudent($_POST);
+        header("Location: /login");
     }
 }
