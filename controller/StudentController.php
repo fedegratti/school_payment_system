@@ -9,14 +9,17 @@ class StudentController
     }
     public static function addStudentAction()
     {
+        $studentRepository = new StudentRepository();
+        $studentID = $studentRepository->createStudent($_POST);
 
        	if($_POST['responsibleType'] == 'createResponsible')
        	{
-    		ResponsibleController::addResponsibleView($_POST);
+
+    		ResponsibleController::addResponsibleView($studentID);
        	}
        	else
        	{
-
+            ResponsibleController::getResponsibleListView($studentID);
        	}
     }
 }
