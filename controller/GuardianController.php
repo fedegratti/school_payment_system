@@ -16,10 +16,12 @@ class GuardianController
         header('Location: /backend');
     }
 
-    public static function listGuardiansView($studentID)
+    public static function listGuardiansView($studentID = null)
     {
-        $guardianRepository=new GuardianModel();
-        $guardians = $guardianRepository->listGuardians();
+        $guardianModel=new GuardianModel();
+       // $guardianModel->cargarDB();
+
+        $guardians = $guardianModel->listGuardians();
 
        $view = new listGuardiansView();
        $view->show($guardians, $studentID);

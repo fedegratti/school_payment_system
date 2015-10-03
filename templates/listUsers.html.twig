@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'common/base.html.twig' %}
 
 {% block title %}Listado de usuarios{% endblock %}
 
@@ -13,7 +13,7 @@
 
     <div class="container">
 
-		<h2 class="sub-header">Users</h2>
+		<h2 class="sub-header">Usuarios</h2>
 
 		{% if users|length  == 0 %}
             <p>No hay usuarios.</p>
@@ -43,6 +43,6 @@
             </div>
         {% endif %}
 
-		<a href="/addUser" cssClass="btn btn-lg btn-success pull-right">Add</a>
+		<a href="/addUser" class="btn btn-lg btn-success pull-right">Add</a>
 	</div>
 {% endblock %}

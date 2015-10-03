@@ -111,7 +111,7 @@
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/DeleteUser', array(
+    $collection->attachRoute(new Route('/DeleteUser/:id', array(
         '_controller' => 'UserController::deleteUserView',
         'methods' => 'GET'
     )));
