@@ -10,8 +10,8 @@
 		 <form action="/AddStudentAction" method="post">
 		 	<label>Tipo de documento</label>
 			<select name="documentType">
-				  <option value="libretaDeEnrolamiento">L.E.</option>
-				  <option value="dni">D.N.I.</option>
+				<option value="0">D.N.I.</option>
+				<option value="1">L.E.</option>
 			</select>
 
 			<label>N&uacute;mero de Documento</label>
@@ -36,10 +36,10 @@
 			<input type="email" name="email">
 		
 			<label>Direcci&oacute;n:</label>
-			<input type="text" name="adress" required>
+			<input type="text" name="address" required>
 		
 			<label>Fecha de ingreso a la escuela:</label>
-			<input type="date" name="ingresoEscuela" required>
+			<input type="date" name="admissionDate" required>
 			 <br>
 			 <br>
 			 <br>

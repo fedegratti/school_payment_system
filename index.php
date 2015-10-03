@@ -72,7 +72,6 @@
         'methods' => 'GET'
     )));
 
-
     $collection->attachRoute(new Route('/AddResponsibleAction/', array(
         '_controller' => 'ResponsibleController::addResponsibleAction',
         'methods' => 'POST'
