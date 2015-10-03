@@ -8,7 +8,7 @@
 
     // Carga las cosas q esten en la carpeta model, view, controller.
     // El resto lo van a tener q declarar abajo de esto.
-    require_once('/autoload.php');
+    require_once __DIR__.'/autoload.php';
 
 	$collection = new RouteCollection();
 
