@@ -1,28 +1,56 @@
-<!DOCTYPE html>
-<html>
-  <head> 
-    <title>Asociar responsable</title>
-    <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <h1>Asociar responsable</h1>
-    <div class="whiteBox">
-      {% if guardians|length > 0 %}
-      <table class="table">
-        <tbody>
+{% set kind = {0: "Madre",1: "Padre",2: "Tutor"} %}
+{% set sex = {0: "Hombre",1: "Mujer"} %}
+
+{% extends 'common/base.html.twig' %}
+
+{% block title %}Listado de responsables{% endblock %}
+
+{% block head %}
+  {{ parent() }}
+  <link rel="stylesheet" href="/css/AltaUsuario.css">
+
+{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+
+    <h2 class="sub-header">Responsables</h2>
+
+    {% if guardians|length  == 0 %}
+      <p>No hay responsables.</p>
+    {% endif %}
+    {% if guardians|length  > 0 %}
+      <div class="table-responsive">
+        <table class="table table-striped">
           <tr class="even">
-            <th>Nombre y Apellido</th>
-            <th>Acci&oacute;n</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Tipo</th>
+            <th>Sexo</th>
+            <th>Seleccionar</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
           {% for guardian in guardians %}
-          <tr class="odd">
-            <td>{{ guardian[1] }}</td>
-            <td><a href="asociateGuardianAction/{{ guardian[0] }}/{{ studentID }}">Seleccionar</a></td>
-          </tr>
+            <tr class="{% if guardians.odd == true  %}">odd{% else %}even{% endif %}">
+              <td>{{ guardian.firstName }}</td>
+              <td>{{ guardian.lastName }}</td>
+              <td>{{ guardian.email }}</td>
+              <td>{{kind[guardian.kind]}}</td>
+              <td>{{ sex[guardian.sex]}}</td>
+              <td><a href="/associateGuardianAction/{{ guardian[0] }}/{{ studentID }}">Seleccionar</a></td>
+              <td><a href="/updateGuardian/{{ guardian.id }}">Edit</a>
+              </td>
+              <td><a href="/deleteGuardian/{{ guardian.id }}">Delete</a>
+              </td>
+            </tr>
           {% endfor %}
-        </tbody>
-      </table>
-      {% endif %}
-    </div>
-  </body>
-</html>
+        </table>
+      </div>
+    {% endif %}
+
+    <a href="/addGuardian" class="btn btn-lg btn-success pull-right">Add</a>
+  </div>
+{% endblock %}

@@ -30,11 +30,11 @@ class UserModel extends PDORepository
 		return "ERROR";
 	}
 
-	public function UserAlreadyExists($username)
+	public function UserAlreadyExists($id)
 	{
-		$query="SELECT COUNT(*) FROM user WHERE username= ?";
+		$query="SELECT COUNT(*) FROM user WHERE id= ?";
 
-        $stmnt = $this->executeQuery($query, array($username));
+        $stmnt = $this->executeQuery($query, array($id));
 
         if ($stmnt->fetchColumn() > 0)
         {
@@ -65,13 +65,13 @@ class UserModel extends PDORepository
 		return $user;
 	}
 
-    public  function deleteUser($username)
+    public  function deleteUser($id)
     {
-        if($this->UserAlreadyExists($username))
+        if($this->UserAlreadyExists($id))
         {
-            $query= "UPDATE user set deleted=true where username=?";
+            $query= "UPDATE user set deleted=true where id=?";
 
-            $stmnt = $this->executeQuery($query,array($username));
+            $stmnt = $this->executeQuery($query,array($id));
             return "SUCCESS";
         }
         return "ERROR";
