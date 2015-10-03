@@ -9,11 +9,11 @@ function __autoload($classname)
     {
         require_once("controller/". $fileName);
     }
-    elseif(file_exists( "view/". $fileName))
+    if(file_exists( "view/". $fileName))
     {
         require_once("view/". $fileName);
     }
-    elseif(file_exists( "model/". $fileName))
+    if(file_exists( "model/". $fileName))
     {
         require_once("model/". $fileName);
     }
