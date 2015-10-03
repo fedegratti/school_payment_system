@@ -5,29 +5,32 @@
 	use PHPRouter\RouteCollection;
 	use PHPRouter\Router;
 	use PHPRouter\Route;
+<<<<<<< HEAD
 
     // Carga las cosas q esten en la carpeta model, view, controller.
     // El resto lo van a tener q declarar abajo de esto.
     require_once('/Autoload.php');
+=======
+	include ("./UserManager.php");
+>>>>>>> parent of bc7bf03... Proyecto implementado con mvc
 
 	$collection = new RouteCollection();
+	$collection->attachRoute(new Route('/AgregarUsuario/', array(
+	    '_controller' => 'UserManager::AgregarUsuario',
+	    'methods' => 'POST'
+	)));
 
-
-    $collection->attachRoute(new Route('/', array(
-        '_controller' => 'HomeController::showView',
-        'methods' => 'GET'
-    )));
+		$collection->attachRoute(new Route('/AltaUsuario/', array(
+	    '_controller' => 'UserManager::AltaUsuarios',
+	    'methods' => 'GET'
+	)));
 
     $collection->attachRoute(new Route('/login/', array(
-        '_controller' => 'LoginController::showView',
-        'methods' => 'GET'
-    )));
-
-    $collection->attachRoute(new Route('/backend/', array(
-        '_controller' => 'BackendController::showView',
+        '_controller' => "include('login.html'",
         'methods' => 'POST'
     )));
 
+<<<<<<< HEAD
 	$collection->attachRoute(new Route('/AddUser/', array(
 		'_controller' => 'UserController::addUserView',
 		'methods' => 'GET'
@@ -128,8 +131,11 @@
         '_controller' => 'StudentController::deleteStudentAction',
         'methods' => 'POST'
     )));
+=======
+	//$router = new Router($collection);
+	//$router->setBasePath('/');
+	//$route = $router->matchCurrentRequest();
+>>>>>>> parent of bc7bf03... Proyecto implementado con mvc
 
-	$router = new Router($collection);
-	$router->setBasePath('/');
-	$route = $router->matchCurrentRequest();
 
+?>
