@@ -86,6 +86,24 @@
         'methods' => 'POST'
     )));
 
+    $collection->attachRoute(new Route('/DeleteUser', array(
+        '_controller' => 'UserController::deleteUserView',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/DeleteUserAction', array(
+        '_controller' => 'UserController::deleteUserAction',
+        'methods' => 'POST'
+    )));
+
+    $collection->attachRoute(new Route('/DeleteStudent', array(
+        '_controller' => 'StudentController::deleteStudentView',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/DeleteUserAction', array(
+        '_controller' => 'StudentController::deleteStudentAction',
+        'methods' => 'POST'
+    )));
+
 	$router = new Router($collection);
 	$router->setBasePath('/');
 	$route = $router->matchCurrentRequest();

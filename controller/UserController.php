@@ -11,9 +11,10 @@ class UserController
     public static function addUserAction ()
     {
         $result = (new UserRepository()) ->createUser($_POST);
+
         if ($result == "SUCCESS")
         {
-            header('Location: /backend');
+            header('Location: /login');
         }
     }
 
@@ -32,5 +33,23 @@ class UserController
         {
             header('Location: /backend');
         }
+    }
+
+    public static function deleteUserView()
+    {
+        echo "falta implementar vista";
+    }
+    public static function deleteUserAction($username)
+    {
+        $result = (new UserRepository()) ->deleteUser($username);
+        if($result == "SUCCESS")
+        {
+            echo "delete exitoso";
+        }
+        else
+        {
+            echo "fallo el delete, usuario no existe para borrar";
+        }
+
     }
 }

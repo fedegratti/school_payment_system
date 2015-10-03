@@ -54,4 +54,16 @@ class UserRepository extends PDORepository
 
 		return $user;
 	}
+
+    public  function deleteUser($username)
+    {
+        if($this->UserAlreadyExists($username))
+        {
+            $query= "UPDATE usuario set borrado=true where username=?";
+
+            $stmnt = $this->executeQuery($query,array($username));
+            return "SUCCESS";
+        }
+        return "ERROR";
+    }
 }

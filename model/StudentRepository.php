@@ -48,4 +48,11 @@ class StudentRepository extends PDORepository
         return $result->fetch();
     }
 
+    public  function deleteStudent($studentID)
+    {
+        $query= "UPDATE alumno set borrado=true where id=?";
+
+        $stmnt = $this->executeQuery($query,array($studentID));
+
+    }
 }

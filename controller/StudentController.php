@@ -8,12 +8,7 @@ class StudentController
         $view->show();
     }
 
-    public static function updateStudentView()
-    {
-        $view = new UpdateStudentView();
-        $studentData = (new StudentRepository())->getStudent(5);
-        $view->show($studentData);
-    }
+
     public static function addStudentAction()
     {
         $studentRepository = new StudentRepository();
@@ -30,16 +25,26 @@ class StudentController
        	}
     }
 
-    public static function updateStudent ($studentID)
+    public static function updateStudentView()
     {
-        $studentRepository = new StudentRepository();
-        $student=$studentRepository->getStudent($studentID);
+        $view = new UpdateStudentView();
+        $studentData = (new StudentRepository())->getStudent(5);
+        $view->show($studentData);
     }
 
     public static function updateStudentAction ()
     {
         $studentRepository = new StudentRepository();
         $studentRepository->updateStudent($_POST);
-        header("Location: /login");
+        echo "alumno actualizado";
+    }
+    public static function deleteStudentView()
+    {
+        echo "falta implementar vista";
+    }
+    public  static function deleteStudentAction($studentID)
+    {
+        (new StudentRepository())->deleteStudent($studentID);
+        echo "alumno eliminado";
     }
 }
