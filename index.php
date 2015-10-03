@@ -57,14 +57,34 @@
         'methods' => 'POST'
     )));
 
+    $collection->attachRoute(new Route('/ListStudents/', array(
+        '_controller' => 'StudentController::listStudentsView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/ListStudents/', array(
+        '_controller' => 'StudentController::listStudentsView',
+        'methods' => 'POST'
+    )));
+
+    $collection->attachRoute(new Route('/ListStudents/:studentName', array(
+        '_controller' => 'StudentController::listStudentsWithNameView',
+        'methods' => 'GET'
+    )));
+
+
     $collection->attachRoute(new Route('/AddResponsibleAction/', array(
         '_controller' => 'ResponsibleController::addResponsibleAction',
         'methods' => 'POST'
     )));
 
     $collection->attachRoute(new Route('/AddCuota/', array(
-        '_controller' => 'CuotaController::showView',
+        '_controller' => 'CuotaController::addCuotaView',
         'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/AddCuotaAction/', array(
+        '_controller' => 'CuotaController::addCuotaAction',
+        'methods' => 'POST'
     )));
     $collection->attachRoute(new Route('/GetResponsibleList/', array(
         '_controller' => 'ResponsibleController::getResponsibleListView',
@@ -76,7 +96,7 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateStudent', array(
+    $collection->attachRoute(new Route('/UpdateStudent/:id', array(
         '_controller' => 'StudentController::updateStudentView',
         'methods' => 'GET'
     )));
@@ -95,8 +115,8 @@
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/DeleteStudent', array(
-        '_controller' => 'StudentController::deleteStudentView',
+    $collection->attachRoute(new Route('/DeleteStudentAction/:studentID', array(
+        '_controller' => 'StudentController::deleteStudentAction',
         'methods' => 'GET'
     )));
     $collection->attachRoute(new Route('/DeleteUserAction', array(

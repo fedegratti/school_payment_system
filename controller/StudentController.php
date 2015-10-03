@@ -25,10 +25,29 @@ class StudentController
        	}
     }
 
-    public static function updateStudentView()
+    public  static function listStudentsView()
+    {
+        if(isset($_POST["studentName"]))
+        {
+            StudentController::listStudentsWithNameView($_POST["studentName"]);
+        }
+        else
+        {
+            $view = new ListStudentsView();
+            $view ->show();
+        }
+
+    }
+    public  static function listStudentsWithNameView($studentName)
+    {
+        $view = new ListStudentsView();
+        $studentData = (new StudentRepository())->getStudentsByName($studentName);
+        $view ->show($studentData);
+    }
+    public static function updateStudentView($studentID)
     {
         $view = new UpdateStudentView();
-        $studentData = (new StudentRepository())->getStudent(5);
+        $studentData = (new StudentRepository())->getStudent($studentID);
         $view->show($studentData);
     }
 
@@ -38,13 +57,10 @@ class StudentController
         $studentRepository->updateStudent($_POST);
         echo "alumno actualizado";
     }
-    public static function deleteStudentView()
-    {
-        echo "falta implementar vista";
-    }
+
     public  static function deleteStudentAction($studentID)
     {
-        (new StudentRepository())->deleteStudent($studentID);
+        //(new StudentRepository())->deleteStudent($studentID);
         echo "alumno eliminado";
     }
 }

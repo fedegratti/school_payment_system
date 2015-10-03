@@ -6,31 +6,28 @@
   </head>
   <body>
     <h1>Listado de Alumnos</h1>
+
+    <form action="/ListStudents" method="POST">
+      <input type="text" name="studentName">
+      <input type="submit" value=" Buscar">
+    </form>
     <div class="whiteBox">
-      <table class="table">
-        <tbody>
+      {% if alumnos|length > 0 %}
+        <table class="table">
+          <tbody>
           <tr class="even">
-            <th>D.N.I.</th>
-            <th>Nombre y Apellido</th> 
-            <th>Fecha de Nacimiento</th>
+            <th>Nombre y Apellido</th>
+            <th>Acci&oacute;n</th>
           </tr>
-          <tr class="odd">
-            <td>34888000</td>
-            <td>Julieta Rodr&iacute;guez Vuan</td> 
-            <td>14 de Febrero 1990</td>
-          </tr>
-          <tr class="even">
-            <td>35888000</td>
-            <td>Ramiro Fages de la Canal</td> 
-            <td>12 de Septiembre de 1991</td>
-          </tr>
-          <tr class="odd">
-            <td>35610136</td>
-            <td>Federico Gabriel Gratti</td> 
-            <td>20 de Septiembre de 1990</td>
-          </tr>
-        </tbody>
-      </table>
+          {% for alumno in alumnos %}
+            <tr class="odd">
+              <td>{{ alumno.nombre ~" " ~ alumno.apellido}}</td>
+              <td><a href="UpdateStudent/{{ alumno.id }}">Modificar</a> / <a href="DeleteStudentAction/{{ alumno.id }}">Eliminar</a> </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
     </div>
   </body>
 </html>

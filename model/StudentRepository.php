@@ -39,6 +39,12 @@ class StudentRepository extends PDORepository
 
     }
 
+    public  function  getStudentsByName($studentName)
+    {
+        $query= "SELECT id,nombre,apellido FROM alumno WHERE nombre like ? or apellido like ?";
+        $result= $this->executeQuery($query, array("%".$studentName."%", "%".$studentName."%"));
+        return $result->fetchAll();
+    }
 
     public function getStudent ($studentID)
     {
