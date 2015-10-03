@@ -47,6 +47,30 @@ class StudentModel extends PDORepository
         return $result->fetch();
     }
 
+    public function getStudentsWithPayedEnrolment($studentID,$fromIndex)
+    {
+        $query= "SELECT s.firstName, s.lastName FROM student as s
+                                inner join payment as p on (s.id = p.idStudent)
+                                inner join fee as f on (p.idFee = f.id)
+                                where f.kind=1
+                                limit ?,20";
+
+        return $this->executeQuery($query,$studentID,$fromIndex)->fetchAll();
+
+    }
+
+    public function getPaymentsOfStudent($studentID)
+    {
+        $query= "SELECT s.firstName, s.lastName, f.year, f.month
+                 FROM student as s
+                         inner join payment as p on (s.id = p.idStudent)
+                         inner join fee as f on (p.idFee = f.id)
+                  WHERE s.id = ?
+                  order by f.year, f.month";
+
+        return $this->executeQuery($query,$studentID)->fetchAll();
+    }
+
     public  function deleteStudent($studentID)
     {
         $query= "UPDATE student set deleted=true where id=?";
