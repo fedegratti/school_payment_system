@@ -49,6 +49,23 @@
           {% endfor %}
         </table>
       </div>
+        <nav>
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% for guardian in guardians %}
+                    <li><a href="#">1</a></li>
+                {% endfor %}
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     {% endif %}
 
     <a href="/addGuardian" class="btn btn-lg btn-success pull-right">Add</a>

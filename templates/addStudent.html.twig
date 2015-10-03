@@ -1,58 +1,76 @@
-<!DOCTYPE html>
-<html>
-	<head> 
-		<title>Alta de Alumnos</title>
-		<link rel="stylesheet" href="../css/style.css">
-	</head>
-	<body>
-		<h1>Alta de Alumno</h1>
-		<div class="whiteBox">
-		 <form action="/AddStudentAction" method="post">
-		 	<label>Tipo de documento</label>
-			<select name="documentType">
-				<option value="0">D.N.I.</option>
-				<option value="1">L.E.</option>
-			</select>
+{% extends 'common/base.html.twig' %}
 
-			<label>N&uacute;mero de Documento</label>
-			<input type="number" name="documentNumber" required >
+{% block title %}Alta de alumnos{% endblock %}
 
-			<label>Nombre:</label>
-			<input type="text" name="firstName" required >
-			 <label>Apellido:</label>
-			 <input type="text" name="lastName" required >
+{% block head %}
+	{{ parent() }}
+	<link rel="stylesheet" href="/css/AltaUsuario.css">
+	<script type="application/javascript">
+		$(document).ready (function()
+		{
+			$('#documentType').val({{ student.studentType }});
 
-			<label>Fecha de Nacimiento:</label>
-			<input type="date" name="birthDate" required >
-	
-			<label>Sexo:</label>
-			
-			<select name="sex">
-				  <option value="m">Masculino</option>
-				  <option value="f">Femenino</option>
-			</select>
-	
-			<label>Mail de contacto:</label>
-			<input type="email" name="email">
-		
-			<label>Direcci&oacute;n:</label>
-			<input type="text" name="address" required>
-		
-			<label>Fecha de ingreso a la escuela:</label>
-			<input type="date" name="admissionDate" required>
-			 <br>
-			 <br>
-			 <br>
-			<label>Acci&oacute;n del responsable:</label>
-			<select name="guardianType">
-				  <option value="createGuardian">Crear Responsable</option>
-				  <option value="chooseGuardian">Elegir Responsable </option>
-			</select>
+		});
+	</script>
+{% endblock %}
 
-			<input type="submit" value=" Continuar">
-		</form>
+{% block body %}
+	<div class="container">
+		<h2 class="page-header">
+			{% if student.name==null or student.name=='' %}
+				Agregar usuario
+			{% else %}
+				Editar usuario
+			{% endif %}
+		</h2>
+		<div class="col-md-6 col-md-offset-3">
+			<form action="/{{ action }}" method="post" class="form-horizontal">
 
+                <label>Tipo de documento:</label>
+                <select name="documentType" class="form-control">
+                    <option value="0">D.N.I.</option>
+                    <option value="1">L.E.</option>
+                </select>
 
+                <label>N&uacute;mero de Documento:</label>
+                <input type="number" name="documentNumber" class="form-control" value="{{ student.documentNumber }}" required >
+
+				<label for="firstName">Nombre:</label>
+				<input type="text" name="firstName" class="form-control" value="{{student.firstName}}" required >
+
+                <label for="lastName">Apellido:</label>
+                <input type="text" name="lastName" class="form-control" value="{{student.lastName}}" required >
+
+                <label for="date">Fecha de Nacimiento:</label>
+                <input type="date" name="birthDate" class="form-control" required >
+
+                <label for="sex">Sexo:</label>
+                <select name="sex" class="form-control">
+                    <option value="m">Masculino</option>
+                    <option value="f">Femenino</option>
+                </select>
+
+                <label for="email">Correo electr&oacute;nico:</label>
+                <input type="email" name="email" class="form-control" value="{{ student.email }}" required >
+
+                <label>Direcci&oacute;n:</label>
+                <input type="text" name="address" class="form-control" value="{{ student.address }}" required>
+
+                <label>Fecha de ingreso a la escuela:</label>
+                <input type="date" name="admissionDate" class="form-control" value="{{ student.admissionDate }}" required>
+
+                <label>Acci&oacute;n del responsable:</label>
+                <select name="guardianType" class="form-control">
+                    <option value="createGuardian">Crear Responsable</option>
+                    <option value="chooseGuardian">Elegir Responsable </option>
+                </select>
+
+				<input type="hidden" name="id" value="{{ student.id }}">
+
+                <br>
+                <br>
+				<a class="btn btn-lg btn-success pull-right" type="submit">Continuar</a>
+			</form>
 		</div>
-	</body>
-</html>
+	</div> <!-- /container -->
+{% endblock %}
