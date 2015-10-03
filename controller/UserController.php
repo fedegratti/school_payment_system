@@ -4,12 +4,14 @@ class UserController
 {
     public static function addUserView()
     {
+        AuthController::checkPermission();
         $view = new AddUserView();
         $view->show();
     }
 
     public static function addUserAction ()
     {
+        AuthController::checkPermission();
         $result = (new UserModel()) ->createUser($_POST);
 
         if ($result == "SUCCESS")
@@ -20,6 +22,7 @@ class UserController
 
     public static function listUsersView()
     {
+        AuthController::checkPermission();
         $result = (new UserModel()) ->listUsers();
 
         $view = new ListUsersView();
@@ -28,6 +31,7 @@ class UserController
 
     public static function updateUserView($id)
     {
+        AuthController::checkPermission();
         $result = (new UserModel()) ->listUser($id);
 
         $view = new UpdateUserView();
@@ -36,6 +40,7 @@ class UserController
 
     public static function updateUserAction ()
     {
+        AuthController::checkPermission();
         $result = (new UserModel()) ->updateUser($_POST);
         if ($result == "SUCCESS")
         {
@@ -45,10 +50,12 @@ class UserController
 
     public static function deleteUserView()
     {
+        AuthController::checkPermission();
         echo "falta implementar vista";
     }
     public static function deleteUserAction($id)
     {
+        AuthController::checkPermission();
         $result = (new UserModel()) ->deleteUser($id);
         if($result == "SUCCESS")
         {
