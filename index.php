@@ -91,7 +91,7 @@
         '_controller' => 'FeeController::addFeeAction',
         'methods' => 'POST'
     )));
-    $collection->attachRoute(new Route('/ListGuardians/', array(
+    $collection->attachRoute(new Route('/ListGuardians/:id', array(
         '_controller' => 'GuardianController::listGuardiansView',
         'methods' => 'GET'
     )));
@@ -115,9 +115,9 @@
         '_controller' => 'UserController::deleteUserView',
         'methods' => 'GET'
     )));
-    $collection->attachRoute(new Route('/DeleteUserAction', array(
+    $collection->attachRoute(new Route('/DeleteUserAction/:id', array(
         '_controller' => 'UserController::deleteUserAction',
-        'methods' => 'POST'
+        'methods' => 'GET'
     )));
 
     $collection->attachRoute(new Route('/DeleteStudentAction/:studentID', array(

@@ -47,9 +47,9 @@ class UserController
     {
         echo "falta implementar vista";
     }
-    public static function deleteUserAction($username)
+    public static function deleteUserAction($id)
     {
-        $result = (new UserModel()) ->deleteUser($username);
+        $result = (new UserModel()) ->deleteUser($id);
         if($result == "SUCCESS")
         {
             echo "delete exitoso";
