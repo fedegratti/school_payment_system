@@ -13,16 +13,20 @@
 		 <form action="/AddCuotaAction" method="post">
 
 			<label>Tipo:</label>
-			<select id='tipo'>
+			<select id='tipo' name="tipoCuota">
 				  <option value="matricula">Matricula</option>
 				  <option value="mensual">Mensual</option>
 			</select>
+
+
+			 <label>A&#241;o</label>
+			 <input type="year" name="year">
 
 		 	<label>Mes</label>
 			<input type="month" name="month">
 
 			<label>N&uacute;mero de cuota:</label>
-			<select id='numeroCuota'name="sex">
+			<select id='numeroCuota'name="numeroCuota">
 				  <option value="primerCuota">1</option>
 				  <option value="segundaCuota">2</option>
 				  <option value="terceraCuota">3</option>

@@ -10,7 +10,8 @@ class CuotaController
 
     public static function addCuotaAction()
     {
-        $view = new AddCuotaView();
-        $view->show();
+        $cuotaRepository = new CuotaRepository();
+        $cuotaRepository ->createCuota($_POST);
+        echo "cuota agregada";
     }
 }
