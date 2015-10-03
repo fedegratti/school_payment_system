@@ -3,12 +3,12 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2015 at 10:52 PM
+-- Generation Time: Oct 03, 2015 at 07:08 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "-03:00";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -23,158 +23,190 @@ SET time_zone = "-03:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alumno`
+-- Table structure for table `configuration`
 --
 
-CREATE TABLE IF NOT EXISTS `alumno` (
-  `id` int(11) NOT NULL,
-  `tipoDocumento` int(2) NOT NULL,
-  `numeroDocumento` int(10) NOT NULL,
-  `apellido` text COLLATE utf8_unicode_ci NOT NULL,
-  `nombre` text COLLATE utf8_unicode_ci NOT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
-  `sexo` int(1) DEFAULT NULL,
-  `mail` text COLLATE utf8_unicode_ci,
-  `direccion` text COLLATE utf8_unicode_ci,
-  `fechaIngreso` date DEFAULT NULL,
-  `fechaEgreso` date DEFAULT NULL,
-  `fechaAlta` date NOT NULL
+CREATE TABLE IF NOT EXISTS `configuration` (
+  `keyValue` int(11) NOT NULL,
+  `numberValue` int(50) DEFAULT NULL,
+  `textValue` mediumtext COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `configuracion`
+-- Table structure for table `fee`
 --
 
-CREATE TABLE IF NOT EXISTS `configuracion` (
-  `clave` int(11) NOT NULL,
-  `valorNumerico` int(50) DEFAULT NULL,
-  `valorTextual` mediumtext COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cuota`
---
-
-CREATE TABLE IF NOT EXISTS `cuota` (
+CREATE TABLE IF NOT EXISTS `fee` (
   `id` int(11) NOT NULL,
-  `anio` int(11) NOT NULL,
-  `mes` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `monto` decimal(10,0) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `comisionCobrador` decimal(10,0) NOT NULL,
-  `fechaAlta` date DEFAULT NULL
+  `year` int(11) NOT NULL,
+  `month` int(11) NOT NULL,
+  `number` int(11) NOT NULL,
+  `amount` decimal(10,0) NOT NULL,
+  `kind` int(11) NOT NULL,
+  `collectorPayment` decimal(10,0) NOT NULL,
+  `createDate` date DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pago`
+-- Table structure for table `guardian`
 --
 
-CREATE TABLE IF NOT EXISTS `pago` (
+CREATE TABLE IF NOT EXISTS `guardian` (
   `id` int(11) NOT NULL,
-  `idAlumno` int(11) NOT NULL,
-  `idCuota` int(11) NOT NULL,
-  `fecha` date NOT NULL,
-  `becado` tinyint(1) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `kind` int(1) NOT NULL,
+  `lastName` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `firstName` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `birthDate` date DEFAULT NULL,
+  `sex` int(1) DEFAULT NULL,
+  `email` mediumtext COLLATE utf8_unicode_ci,
+  `phone` int(20) DEFAULT NULL,
+  `address` mediumtext COLLATE utf8_unicode_ci,
+  `deleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guardian_student_relationship`
+--
+
+CREATE TABLE IF NOT EXISTS `guardian_student_relationship` (
+  `id` int(11) NOT NULL,
+  `studentId` int(11) NOT NULL,
+  `guardianId` int(11) NOT NULL,
+  `deleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE IF NOT EXISTS `payment` (
+  `id` int(11) NOT NULL,
+  `idStudent` int(11) NOT NULL,
+  `idFee` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `grantholding` tinyint(1) NOT NULL,
   `fechaAlta` date NOT NULL,
-  `fechaActualizado` date DEFAULT NULL
+  `fechaActualizado` date DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `responsable`
+-- Table structure for table `student`
 --
 
-CREATE TABLE IF NOT EXISTS `responsable` (
+CREATE TABLE IF NOT EXISTS `student` (
   `id` int(11) NOT NULL,
-  `idUsuario` int(11) NOT NULL,
-  `tipo` int(1) NOT NULL,
-  `apellido` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `nombre` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
-  `sexo` int(1) DEFAULT NULL,
-  `mail` mediumtext COLLATE utf8_unicode_ci,
-  `telefono` int(20) DEFAULT NULL,
-  `direccion` mediumtext COLLATE utf8_unicode_ci
+  `documentType` int(2) NOT NULL,
+  `documentNumber` int(10) NOT NULL,
+  `lastName` text COLLATE utf8_unicode_ci NOT NULL,
+  `fisrtName` text COLLATE utf8_unicode_ci NOT NULL,
+  `birthDate` date DEFAULT NULL,
+  `sex` int(1) DEFAULT NULL,
+  `email` text COLLATE utf8_unicode_ci,
+  `address` text COLLATE utf8_unicode_ci,
+  `admissionDate` date DEFAULT NULL,
+  `graduationDate` date DEFAULT NULL,
+  `createDate` date NOT NULL,
+  `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `responsable_de_alumno`
+-- Dumping data for table `student`
 --
 
-CREATE TABLE IF NOT EXISTS `responsable_de_alumno` (
-  `id` int(11) NOT NULL,
-  `idAlumno` int(11) NOT NULL,
-  `idResponsable` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `fisrtName`, `birthDate`, `sex`, `email`, `address`, `admissionDate`, `graduationDate`, `createDate`, `deleted`) VALUES
+(1, 0, 1123, 'sad', 'asd', '2015-10-06', 0, 'asd@asd', '13 55 y 56 1139', '2015-10-13', NULL, '2015-10-03', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `usuario` (
+CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `username` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `email` text COLLATE utf8_unicode_ci,
   `password` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `habilitado` tinyint(1) NOT NULL,
-  `rol` int(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `enabled` tinyint(1) NOT NULL,
+  `role` int(1) NOT NULL,
+  `deleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `role`, `deleted`) VALUES
+(1, 'HOLIS', 'AQWEQWE@asd.com', 'asd', 1, 1, 0),
+(2, 'hola rama ah re', 'rama@gay', 'asd', 1, 0, 0),
+(3, 'asds', NULL, 'asd', 1, 0, 0),
+(4, 'asdasd', NULL, 'asd', 1, 0, 0),
+(5, 'zxc', NULL, 'zxc', 1, 0, 0),
+(6, 'zxczxcasd', NULL, 'asd', 1, 0, 0),
+(7, 'a', NULL, 'a', 1, 0, 0),
+(8, 'b', NULL, 'b', 1, 0, 0),
+(9, 'qweqwe', NULL, 'qwe', 1, 0, 0),
+(10, 'asdasdsaasdasdasd', NULL, 'asd', 1, 0, 0),
+(11, 'ffdd', NULL, 'dff', 1, 0, 0),
+(12, 'andaaaa', NULL, 'asdasd', 1, 2, 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `alumno`
+-- Indexes for table `configuration`
 --
-ALTER TABLE `alumno`
+ALTER TABLE `configuration`
+  ADD PRIMARY KEY (`keyValue`);
+
+--
+-- Indexes for table `fee`
+--
+ALTER TABLE `fee`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `configuracion`
+-- Indexes for table `guardian`
 --
-ALTER TABLE `configuracion`
-  ADD PRIMARY KEY (`clave`);
-
---
--- Indexes for table `cuota`
---
-ALTER TABLE `cuota`
+ALTER TABLE `guardian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pago`
+-- Indexes for table `guardian_student_relationship`
 --
-ALTER TABLE `pago`
+ALTER TABLE `guardian_student_relationship`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `responsable`
+-- Indexes for table `payment`
 --
-ALTER TABLE `responsable`
+ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `responsable_de_alumno`
+-- Indexes for table `student`
 --
-ALTER TABLE `responsable_de_alumno`
+ALTER TABLE `student`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usuario`
+-- Indexes for table `user`
 --
-ALTER TABLE `usuario`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -182,40 +214,40 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT for table `alumno`
+-- AUTO_INCREMENT for table `configuration`
 --
-ALTER TABLE `alumno`
+ALTER TABLE `configuration`
+  MODIFY `keyValue` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `fee`
+--
+ALTER TABLE `fee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `configuracion`
+-- AUTO_INCREMENT for table `guardian`
 --
-ALTER TABLE `configuracion`
-  MODIFY `clave` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `cuota`
---
-ALTER TABLE `cuota`
+ALTER TABLE `guardian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pago`
+-- AUTO_INCREMENT for table `guardian_student_relationship`
 --
-ALTER TABLE `pago`
+ALTER TABLE `guardian_student_relationship`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `responsable`
+-- AUTO_INCREMENT for table `payment`
 --
-ALTER TABLE `responsable`
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `responsable_de_alumno`
+-- AUTO_INCREMENT for table `user`
 --
-ALTER TABLE `responsable_de_alumno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
