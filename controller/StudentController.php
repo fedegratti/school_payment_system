@@ -8,19 +8,20 @@ class StudentController
         $view->show();
     }
 
+
     public static function addStudentAction()
     {
-        $studentRepository = new StudentModel();
+        $studentRepository = new StudentRepository();
         $studentID = $studentRepository->createStudent($_POST);
 
-       	if($_POST['guardianType'] == 'createGuardian')
+       	if($_POST['responsibleType'] == 'createResponsible')
        	{
 
-    		GuardianController::addGuardianView($studentID);
+    		ResponsibleController::addResponsibleView($studentID);
        	}
        	else
        	{
-            GuardianController::listGuardiansView($studentID);
+            ResponsibleController::getResponsibleListView($studentID);
        	}
     }
 
@@ -40,19 +41,19 @@ class StudentController
     public  static function listStudentsWithNameView($studentName)
     {
         $view = new ListStudentsView();
-        $studentData = (new StudentModel())->getStudentsByName($studentName);
+        $studentData = (new StudentRepository())->getStudentsByName($studentName);
         $view ->show($studentData);
     }
     public static function updateStudentView($studentID)
     {
         $view = new UpdateStudentView();
-        $studentData = (new StudentModel())->getStudent($studentID);
+        $studentData = (new StudentRepository())->getStudent($studentID);
         $view->show($studentData);
     }
 
     public static function updateStudentAction ()
     {
-        $studentRepository = new StudentModel();
+        $studentRepository = new StudentRepository();
         $studentRepository->updateStudent($_POST);
         echo "alumno actualizado";
     }

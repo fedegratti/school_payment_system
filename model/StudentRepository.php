@@ -1,17 +1,24 @@
 <?php
 
-class StudentModel extends PDORepository
+/**
+ * Created by PhpStorm.
+ * User: Skeith
+ * Date: 30/09/2015
+ * Time: 22:12
+ */
+class StudentRepository extends PDORepository
 {
+
     public  function createStudent($studentData)
     {
-        $query="INSERT INTO student (documentType,documentNumber,lastName,firstName,birthDate,sex,
-                                      email,address,admissionDate,graduationDate,createDate)
+        $query="INSERT INTO alumno (tipoDocumento,numeroDocumento,apellido,nombre,fechaNacimiento,sexo,
+                                      mail,direccion,fechaIngreso,fechaEgreso,fechaAlta)
                         VALUES (?,?,?,?,?,?,?,?,?,?, CURRENT_DATE )";
 
 
         $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
             $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
-            $studentData["email"],$studentData["address"],$studentData["admissionDate"], null));
+            $studentData["email"],$studentData["adress"],$studentData["ingresoEscuela"], null));
 
 
         return $this->getLastInsertedID();
@@ -20,28 +27,28 @@ class StudentModel extends PDORepository
 
     public  function updateStudent($studentData)
     {
-        $query="INSERT INTO student (documentType,documentNumber,lastName,firstName,birthDate,sex,
-                                      email,address,admissionDate,graduationDate,createDate)
+        $query="INSERT INTO alumno (tipoDocumento,numeroDocumento,apellido,nombre,fechaNacimiento,sexo,
+                                      mail,direccion,fechaIngreso,fechaEgreso,fechaAlta)
                         VALUES (?,?,?,?,?,?,?,?,?,?, CURRENT_DATE )";
 
 
         $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
             $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
-            $studentData["email"],$studentData["address"],$studentData["admissionDate"], null));
+            $studentData["email"],$studentData["adress"],$studentData["ingresoEscuela"], null));
 
 
     }
 
     public  function  getStudentsByName($studentName)
     {
-        $query= "SELECT id,firstName,lastName FROM student WHERE firstName like ? or lastName like ?";
+        $query= "SELECT id,nombre,apellido FROM alumno WHERE nombre like ? or apellido like ?";
         $result= $this->executeQuery($query, array("%".$studentName."%", "%".$studentName."%"));
         return $result->fetchAll();
     }
 
     public function getStudent ($studentID)
     {
-        $query= "SELECT * FROM student WHERE id=?";
+        $query= "SELECT * FROM alumno WHERE id=?";
         $result= $this->executeQuery($query, array($studentID));
 
         return $result->fetch();
@@ -49,7 +56,7 @@ class StudentModel extends PDORepository
 
     public  function deleteStudent($studentID)
     {
-        $query= "UPDATE student set deleted=true where id=?";
+        $query= "UPDATE alumno set borrado=true where id=?";
 
         $stmnt = $this->executeQuery($query,array($studentID));
 

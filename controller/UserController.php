@@ -10,7 +10,7 @@ class UserController
 
     public static function addUserAction ()
     {
-        $result = (new UserModel()) ->createUser($_POST);
+        $result = (new UserRepository()) ->createUser($_POST);
 
         if ($result == "SUCCESS")
         {
@@ -18,17 +18,9 @@ class UserController
         }
     }
 
-    public static function listUsersView()
-    {
-        $result = (new UserModel()) ->listUsers();
-
-        $view = new ListUsersView();
-        $view ->show($result);
-    }
-
     public static function updateUserView($id)
     {
-        $result = (new UserModel()) ->listUser($id);
+        $result = (new UserRepository()) ->listUser($id);
 
         $view = new UpdateUserView();
         $view->show($result);
@@ -36,10 +28,10 @@ class UserController
 
     public static function updateUserAction ()
     {
-        $result = (new UserModel()) ->updateUser($_POST);
+        $result = (new UserRepository()) ->updateUser($_POST);
         if ($result == "SUCCESS")
         {
-            header('Location: /ListUsers');
+            header('Location: /backend');
         }
     }
 
@@ -49,7 +41,7 @@ class UserController
     }
     public static function deleteUserAction($username)
     {
-        $result = (new UserModel()) ->deleteUser($username);
+        $result = (new UserRepository()) ->deleteUser($username);
         if($result == "SUCCESS")
         {
             echo "delete exitoso";

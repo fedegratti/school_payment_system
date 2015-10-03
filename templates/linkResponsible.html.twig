@@ -2,22 +2,22 @@
 <html>
   <head> 
     <title>Asociar responsable</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
   </head>
   <body>
     <h1>Asociar responsable</h1>
     <div class="whiteBox">
-      {% if guardians|length > 0 %}
+      {% if responsibles|length > 0 %}
       <table class="table">
         <tbody>
           <tr class="even">
             <th>Nombre y Apellido</th>
             <th>Acci&oacute;n</th>
           </tr>
-          {% for guardian in guardians %}
+          {% for responsible in responsibles %}
           <tr class="odd">
-            <td>{{ guardian[1] }}</td>
-            <td><a href="asociateGuardianAction/{{ guardian[0] }}/{{ studentID }}">Seleccionar</a></td>
+            <td>{{ responsible[1] }}</td>
+            <td><a href="asociateResponsibleAction/{{ responsible[0] }}/{{ studentID }}">Seleccionar</a></td>
           </tr>
           {% endfor %}
         </tbody>
