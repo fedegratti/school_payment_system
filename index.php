@@ -38,6 +38,11 @@
 	    'methods' => 'POST'
 	)));
 
+    $collection->attachRoute(new Route('/ListUsers/', array(
+        '_controller' => 'UserController::listUsersView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/UpdateUser/:id', array(
         '_controller' => 'UserController::updateUserView',
         'methods' => 'GET'
@@ -73,26 +78,26 @@
     )));
 
 
-    $collection->attachRoute(new Route('/AddResponsibleAction/', array(
-        '_controller' => 'ResponsibleController::addResponsibleAction',
+    $collection->attachRoute(new Route('/AddGuardianAction/', array(
+        '_controller' => 'GuardianController::addGuardianAction',
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/AddCuota/', array(
-        '_controller' => 'CuotaController::addCuotaView',
+    $collection->attachRoute(new Route('/AddFee/', array(
+        '_controller' => 'FeeController::addFeeView',
         'methods' => 'GET'
     )));
-    $collection->attachRoute(new Route('/AddCuotaAction/', array(
-        '_controller' => 'CuotaController::addCuotaAction',
+    $collection->attachRoute(new Route('/AddFeeAction/', array(
+        '_controller' => 'FeeController::addFeeAction',
         'methods' => 'POST'
     )));
-    $collection->attachRoute(new Route('/GetResponsibleList/', array(
-        '_controller' => 'ResponsibleController::getResponsibleListView',
+    $collection->attachRoute(new Route('/ListGuardians/', array(
+        '_controller' => 'GuardianController::listGuardiansView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/asociateResponsibleAction/:responsibleID/:studentID', array(
-        '_controller' => 'ResponsibleController::asociateResponsibleAction',
+    $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studentID', array(
+        '_controller' => 'GuardianController::associateGuardianAction',
         'methods' => 'GET'
     )));
 

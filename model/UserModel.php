@@ -1,17 +1,16 @@
 <?php 
 
-class UserRepository extends PDORepository
+class UserModel extends PDORepository
 {
-
 	public function createUser($userData)
 	{
 		if( !$this->UserAlreadyExists($userData["username"]))
 		{
-			$query="INSERT INTO usuario (username,password,habilitado,rol) VALUES (?,?,?,?)";
+			$query="INSERT INTO user (username,password,enabled,role) VALUES (?,?,?,?)";
 
             $enabled = true;
 
-            $stmnt = $this->executeQuery($query,array($userData["username"],$userData["password"],$enabled,  $userData["rol"]));
+            $stmnt = $this->executeQuery($query,array($userData["username"],$userData["password"],$enabled,$userData["role"]));
 
 			return "SUCCESS";
 		}
@@ -22,9 +21,9 @@ class UserRepository extends PDORepository
 	{
 		if($this->UserAlreadyExists($userData["username"]))
 		{
-			$query="UPDATE usuario SET username=?,email=?,habilitado=?,rol=? WHERE id=?";
+			$query="UPDATE user SET username=?,email=?,enabled=?,role=? WHERE id=?";
 
-			$stmnt = $this->executeQuery($query,array($userData["username"],$userData["email"],$userData["habilitado"],$userData["rol"],$userData["id"]));
+			$stmnt = $this->executeQuery($query,array($userData["username"],$userData["email"],$userData["enabled"],$userData["role"],$userData["id"]));
 
 			return "SUCCESS";
 		}
@@ -33,7 +32,7 @@ class UserRepository extends PDORepository
 
 	public function UserAlreadyExists($username)
 	{
-		$query="SELECT COUNT(*) FROM usuario WHERE username= ?";
+		$query="SELECT COUNT(*) FROM user WHERE username= ?";
 
         $stmnt = $this->executeQuery($query, array($username));
 
@@ -46,7 +45,7 @@ class UserRepository extends PDORepository
 
 	public function listUser ($id)
 	{
-		$query="SELECT id,username,email,habilitado,rol FROM usuario WHERE id = ?";
+		$query="SELECT id,username,email,enabled,role FROM user WHERE id = ?";
 
 		$stmnt = $this->executeQuery($query,array($id));
 
@@ -55,11 +54,22 @@ class UserRepository extends PDORepository
 		return $user;
 	}
 
+	public function listUsers ()
+	{
+		$query="SELECT id,username,email,enabled,role FROM user";
+
+		$stmnt = $this->executeQuery($query,array());
+
+		$user = $stmnt->fetchAll();
+
+		return $user;
+	}
+
     public  function deleteUser($username)
     {
         if($this->UserAlreadyExists($username))
         {
-            $query= "UPDATE usuario set borrado=true where username=?";
+            $query= "UPDATE user set deleted=true where username=?";
 
             $stmnt = $this->executeQuery($query,array($username));
             return "SUCCESS";
