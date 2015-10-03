@@ -4,7 +4,6 @@ class GuardianController
 {
     public static function addGuardianView($studentID)
     {
-
         $view = new AddGuardianView();
         $view->show($studentID);
     }

@@ -4,6 +4,7 @@ class StudentController
 {
     public static function addStudentView()
     {
+        AuthController::checkPermission('addStudentView');
         $view = new AddStudentView();
         $view->show();
     }

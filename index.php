@@ -19,8 +19,13 @@
     )));
 
     $collection->attachRoute(new Route('/login/', array(
-        '_controller' => 'LoginController::showView',
+        '_controller' => 'LoginController::loginView',
         'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/loginAction/', array(
+        '_controller' => 'LoginController::loginAction',
+        'methods' => 'POST'
     )));
 
     $collection->attachRoute(new Route('/backend/', array(
