@@ -57,13 +57,15 @@ class StudentModel extends PDORepository
 
     public function getStudentsWithPayedEnrolment($fromIndex = 0)
     {
+
+
         $query= "SELECT s.id ,s.firstName, s.lastName, s.email, s.sex FROM student as s
                                 inner join payment as p on (s.id = p.idStudent)
                                 inner join fee as f on (p.idFee = f.id)
                                 where f.kind=1
-                                limit ?,20";
+                               ";
 
-        return $this->executeQuery($query,array($fromIndex))->fetchAll();
+        return $this->executeQuery($query,array( $fromIndex))->fetchAll();
 
     }
 
