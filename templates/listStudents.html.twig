@@ -1,4 +1,3 @@
-{% set kind = {0: "Madre",1: "Padre",2: "Tutor"} %}
 {% set sex = {0: "Hombre",1: "Mujer"} %}
 
 {% extends 'common/base.html.twig' %}
@@ -7,12 +6,11 @@
 
 {% block head %}
   {{ parent() }}
-  <link rel="stylesheet" href="/css/AltaUsuario.css">
 
 {% endblock %}
 
 {% block body %}
-
+  {{ parent() }}
   <div class="container">
 
     <h2 class="sub-header">Alumnos</h2>
@@ -37,9 +35,8 @@
               <td>{{ student.firstName }}</td>
               <td>{{ student.lastName }}</td>
               <td>{{ student.email }}</td>
-
               <td>{{ sex[student.sex]}}</td>
-              <td><a href="/associateStudentAction/{{ student[0] }}/{{ studentID }}">Asociar</a></td>
+              <td><a href="/associateStudentAction/{{ student[0] }}/{{ studentID }}">Seleccionar</a></td>
               <td><a href="/updateStudent/{{ student.id }}">Edit</a>
               </td>
               <td><a href="/deleteStudent/{{ student.id }}">Delete</a>

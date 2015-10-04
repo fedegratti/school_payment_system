@@ -2,7 +2,7 @@
 
 class BackendView extends TwigView {
 
-    public function show($username) {
+    public function show($username = null) {
 
         self::getTwig()->display('backend.html.twig', array('username' => $username));
 

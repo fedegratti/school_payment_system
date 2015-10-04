@@ -6,6 +6,5 @@ class AddFeeView extends TwigView
 
         self::getTwig()->display('addFee.html.twig');
         
-
     }
 }

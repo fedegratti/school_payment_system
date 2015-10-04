@@ -2,9 +2,9 @@
 
 class LoginView extends TwigView {
 
-    public function show() {
+    public function show($error = null) {
 
-        self::getTwig()->display('login.html.twig');
+        self::getTwig()->display('login.html.twig',array("error"=>$error));
     }
 
 }
