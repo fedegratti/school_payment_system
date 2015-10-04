@@ -13,7 +13,7 @@ class UserController
     {
 
         $result = (new UserModel()) ->createUser($_POST);
-        
+
         AuthController::checkPermission();
         if ($result == "SUCCESS")
         {
