@@ -10,7 +10,7 @@
 	<body>
 		<h1>Alta Cuota</h1>
 		<div class="whiteBox">
-		 <form action="/AddFeeAction" method="post">
+		 <form action="/{{ action }}" method="post">
 
 			<label>Tipo:</label>
 			<select id='tipo' name="kind">
@@ -20,11 +20,11 @@
 
 
 			 <label>A&ntilde;o</label>
-			 <input type="number" name="year">
+			 <input type="number" name="year" value="{{ feeData.year }}">
 
 
-		 	<label>Mes y A&ntilde;o</label>
-			<input type="month" name="month">
+		 	<label>Mes</label>
+			<input type="number" name="month" value="{{ feeData.month }}">
 
 			<label>N&uacute;mero de cuota:</label>
 			<select id='numeroCuota'name="number">
@@ -41,11 +41,11 @@
 			</select>
 	
 			<label>Monto:</label>
-			<input type="number" name="amount">
+			<input type="number" name="amount" value="{{ feeData.amount }}">
 			
 		
 			<label>Porcentaje de de comisi&oacute;n:</label>
-			<input type="number" name="collectorPayment" required>
+			<input type="number" name="collectorPayment" required value="{{ feeData.collectorPayment }}">
 		
 			<input type="submit" value=" Enviar Pago">
 		</form>

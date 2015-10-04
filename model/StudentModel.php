@@ -18,16 +18,15 @@ class StudentModel extends PDORepository
 
     }
 
-    public  function updateStudent($studentData)
+    public  function updateStudent($studentData, $studentID)
     {
-        $query="INSERT INTO student (documentType,documentNumber,lastName,firstName,birthDate,sex,
-                                      email,address,admissionDate,graduationDate,createDate)
-                        VALUES (?,?,?,?,?,?,?,?,?,?, CURRENT_DATE )";
+        $query="UPDATE user SET documentType=?,documentNumber=?,lastName=?,firstName=?,birthDate=?,sex=?,
+                                      email=?,address=?,admissionDate=?,graduationDate=? WHERE id=?";
 
 
         $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
             $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
-            $studentData["email"],$studentData["address"],$studentData["admissionDate"], null));
+            $studentData["email"],$studentData["address"],$studentData["admissionDate"], $studentData["graduationDate"], $studentID));
 
 
     }

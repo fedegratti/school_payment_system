@@ -107,6 +107,21 @@
         'methods' => 'POST'
     )));
 
+    $collection->attachRoute(new Route('/UpdateFeeAction/:feeID', array(
+        '_controller' => 'FeeController::updateFeeAction',
+        'methods' => 'POST'
+    )));
+
+    $collection->attachRoute(new Route('/UpdateFee/:feeID', array(
+        '_controller' => 'FeeController::updateFeeView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/DeleteFeeAction/:feeID', array(
+        '_controller' => 'FeeController::deleteFeeAction',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/ListFees/', array(
         '_controller' => 'FeeController::listFeesView',
         'methods' => 'GET'
@@ -155,6 +170,10 @@ $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studen
         'methods' => 'POST'
     )));
 
+    $collection->attachRoute(new Route('/DeleteFee/:feeID', array(
+        '_controller' => 'FeeController::deleteFeeAction',
+        'methods' => 'GET'
+    )));
 	$router = new Router($collection);
 	$router->setBasePath('/');
 	$route = $router->matchCurrentRequest();

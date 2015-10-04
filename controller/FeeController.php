@@ -27,5 +27,28 @@ class FeeController
         $view = new listFeesView();
         $view->show($fees);
     }
+    public  static function deleteFeeAction($feeID)
+    {
+        AuthController::checkPermission();
+        $feeModel = new FeeModel();
+        $feeModel->deleteFee($feeID);
+        echo "borrado exitoso";
+    }
+
+    public static function updateFeeView($feeID)
+    {
+        AuthController::checkPermission();
+        $feeModel = new FeeModel();
+        $feeData = $feeModel->getFee($feeID);
+        $view = new UpdateFeeView();
+        $view->show($feeData);
+    }
+    public static function updateFeeAction($feeID)
+    {
+        AuthController::checkPermission();
+        $feeRepository = new FeeModel();
+        $feeRepository->updateFee($feeID, $_POST);
+        echo "cuota actualizada ( con suerte )" . $feeID;
+    }
 
 }

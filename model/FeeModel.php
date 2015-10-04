@@ -12,6 +12,15 @@ class FeeModel extends PDORepository
 		 										  $feeData["amount"],$feeData["kind"], $feeData["collectorPayment"]));
 	}
 
+
+	public function updateFee($idFee,$feeData)
+	{
+		$query="UPDATE fee SET year=?,month=?,number=?,amount=?,kind=?,collectorPayment=? WHERE id=?";
+
+		$stmnt = $this->executeQuery($query,array($feeData["year"],$feeData["month"], $feeData["number"],
+			$feeData["amount"],$feeData["kind"], $feeData["collectorPayment"], $idFee));
+	}
+
 	public  function deleteFee($idFee)
 	{
 		$query= "UPDATE fee set deleted=true where id=?";
@@ -21,8 +30,15 @@ class FeeModel extends PDORepository
 
 	public  function getFee($idFee)
 	{
-		$query = "select * from fee where id= ?";
+		$query = "select * from fee where id= ? and deleted=false";
 		$stmnt = $this->executeQuery($query,array($idFee));
 		return $stmnt ->fetch();
+	}
+
+	public  function listFees()
+	{
+		$query = "select * from fee where deleted=false";
+		$stmnt = $this->executeQuery($query,array());
+		return $stmnt ->fetchAll();
 	}
 }

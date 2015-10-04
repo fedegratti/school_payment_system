@@ -22,8 +22,8 @@
       <div class="table-responsive">
         <table class="table table-striped">
           <tr class="even">
-            <th>N&uacute;</th>
-            <th>A&nacute;o</th>
+            <th>N&uacute;mero</th>
+            <th>A&ntilde;o</th>
             <th>Mes</th>
             <th>Monto</th>
             <th>Tipo</th>
@@ -41,9 +41,9 @@
               <td>{{kind[fee.kind] }}</td>
               <td>{{ fee.collectorPayment }}</td>
               <td>{{ fee.createDate }}</td>
-              <td><a href="/updateFee/{{ fee.id }}">Edit</a>
+              <td><a href="/UpdateFee/{{ fee.id }}">Edit</a>
               </td>
-              <td><a href="/deleteFee/{{ fee.id }}">Delete</a>
+              <td><a href="/DeleteFee/{{ fee.id }}">Delete</a>
               </td>
             </tr>
           {% endfor %}

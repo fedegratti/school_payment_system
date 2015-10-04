@@ -4,7 +4,7 @@ class AddFeeView extends TwigView
 {
     public function show() {
 
-        self::getTwig()->display('addFee.html.twig');
+        self::getTwig()->display('feeForm.html.twig', array("action" => "AddFeeAction"));
         
     }
 }
