@@ -31,4 +31,9 @@ class ConfigurationController
         $configModel = new ConfigurationModel();
         return $configModel->isSiteEnabled();
     }
+    public  static function siteUnavailableView()
+    {
+        $configModel = new ConfigurationModel();
+        (new UnavailableSiteView())->show($configModel->getDisabledSiteMessage());
+    }
 }

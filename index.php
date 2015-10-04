@@ -10,6 +10,12 @@
 
     require_once __DIR__.'/autoload.php';
 
+    if (!ConfigurationController::isSiteEnabled())
+    {
+        ConfigurationController::siteUnavailableView();
+        return;
+    }
+
 	$collection = new RouteCollection();
 
 
@@ -186,6 +192,10 @@ $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studen
     $collection->attachRoute(new Route('/UpdateConfigurationAction/', array(
         '_controller' => 'ConfigurationController::updateConfigurationAction',
         'methods' => 'POST'
+    )));
+    $collection->attachRoute(new Route('/SiteUnavailable/', array(
+        '_controller' => 'ConfigurationController::siteUnavailableView',
+        'methods' => 'GET'
     )));
 
 

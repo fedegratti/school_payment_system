@@ -23,13 +23,20 @@ class ConfigurationModel extends PDORepository
     public  function getConfiguration()
     {
         $query = "SELECT * FROM configuration";
-        return $this->executeQuery($query,array()) ->fetchAll();
+        return $this->executeQuery($query,array()) ->fetch();
     }
 
     public  function isSiteEnabled()
     {
         $query = "SELECT siteEnabled from configuration";
         $stmnt =  $this->executeQuery($query,array());
-        return $stmnt ->fetch();
+        return $stmnt ->fetch()["siteEnabled"];
+    }
+
+    public  function getDisabledSiteMessage()
+    {
+        $query = "SELECT disabledSiteMessage from configuration";
+        $stmnt =  $this->executeQuery($query,array());
+        return $stmnt ->fetch()["disabledSiteMessage"];
     }
 }

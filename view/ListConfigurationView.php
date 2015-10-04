@@ -10,7 +10,8 @@ class ListConfigurationView extends TwigView {
 
     public function show($configData)
     {
-        self::getTwig()->display('configurationList.html.twig',array("config"=>$configData));
+
+        self::getTwig()->display('configurationList.html.twig',array("config" => $configData));
     }
 
 }
