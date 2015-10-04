@@ -82,7 +82,10 @@
         'methods' => 'GET'
     )));
 
-
+    $collection->attachRoute(new Route('/ListStudentsWithPayedEnrolment/:fromIndex', array(
+        '_controller' => 'StudentController::listStudentsWithPayedEnrolmentView',
+        'methods' => 'GET'
+    )));
     $collection->attachRoute(new Route('/AddGuardianAction/', array(
         '_controller' => 'GuardianController::addGuardianAction',
         'methods' => 'POST'
