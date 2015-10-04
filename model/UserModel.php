@@ -10,7 +10,7 @@ class UserModel extends PDORepository
 
             $enabled = true;
 
-            $stmnt = $this->executeQuery($query,array($userData["username"],$userData["password"],$enabled,$userData["role"]));
+            $stmnt = $this->executeQuery($query,array($userData["username"],sha1($userData["password"]),$enabled,$userData["role"]));
 
 			return "SUCCESS";
 		}
@@ -21,9 +21,9 @@ class UserModel extends PDORepository
 	{
 		if($this->UserAlreadyExists($userID))
 		{
-			$query="UPDATE user SET username=?,email=?,enabled=?,roleid=? WHERE id=?";
+			$query="UPDATE user SET username=?,password=?,email=?,enabled=?,roleid=? WHERE id=?";
 
-			$stmnt = $this->executeQuery($query,array($userData["username"],$userData["email"],$userData["enabled"],$userData["role"],$userID));
+			$stmnt = $this->executeQuery($query,array($userData["username"],sha1($userData["password"]),$userData["email"],$userData["enabled"],$userData["role"],$userID));
 
 			return "SUCCESS";
 		}

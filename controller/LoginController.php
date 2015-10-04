@@ -11,7 +11,7 @@ class LoginController
     public static function LoginAction ()
     {
         $loginModel=new LoginModel();
-        $regId = $loginModel->authenticate($_POST['username'],sha1($_POST['password']));
+        $regId = $loginModel->authenticate($_POST['username'],$_POST['password']);
 
         if ($regId != "error")
         {

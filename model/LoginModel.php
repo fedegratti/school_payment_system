@@ -6,7 +6,7 @@ class LoginModel extends PDORepository
 	{
 		$query="SELECT roleId FROM user WHERE username = ? AND password = ?";
 
-		$stmnt = $this->executeQuery($query,array($username,$password));
+		$stmnt = $this->executeQuery($query,array($username,sha1($password)));
 
 		if ($stmnt->rowCount() == 0)
 			return 'error';

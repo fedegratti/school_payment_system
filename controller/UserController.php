@@ -4,18 +4,20 @@ class UserController
 {
     public static function addUserView()
     {
-        AuthController::checkPermission();
+        //AuthController::checkPermission();
         $view = new AddUserView();
         $view->show();
     }
 
     public static function addUserAction ()
     {
-        AuthController::checkPermission();
-        $result = (new UserModel()) ->createUser($_POST);
 
+        $result = (new UserModel()) ->createUser($_POST);
+        
+        AuthController::checkPermission();
         if ($result == "SUCCESS")
         {
+
             header('Location: /ListUsers');
         }
     }
