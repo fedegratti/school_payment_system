@@ -1,0 +1,56 @@
+{% set kind = {0: "Mensual",1: "Matricula"} %}
+
+{% extends 'common/base.html.twig' %}
+
+{% block title %}Listado de cuotas{% endblock %}
+
+{% block head %}
+  {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+  {{ parent() }}
+  <div class="container">
+
+    <h2 class="sub-header">Cuotas</h2>
+
+    {% if fees|length  == 0 %}
+      <p>No hay cuotas.</p>
+    {% endif %}
+    {% if fees|length  > 0 %}
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tr class="even">
+            <th>N&uacute;</th>
+            <th>A&nacute;o</th>
+            <th>Mes</th>
+            <th>Monto</th>
+            <th>Tipo</th>
+            <th>comisi&oacute;n collector</th>
+            <th>Fecha de creaci&oacute;n</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          {% for fee in fees %}
+            <tr class="{% if fees.odd == true  %}">odd{% else %}even{% endif %}">
+              <td>{{ fee.number }}</td>
+              <td>{{ fee.year }}</td>
+              <td>{{ fee.month }}</td>
+              <td>{{ fee.amount }}</td>
+              <td>{{kind[fee.kind] }}</td>
+              <td>{{ fee.collectorPayment }}</td>
+              <td>{{ fee.createDate }}</td>
+              <td><a href="/updateFee/{{ fee.id }}">Edit</a>
+              </td>
+              <td><a href="/deleteFee/{{ fee.id }}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endif %}
+
+    <a href="/addFee" class="btn btn-lg btn-success pull-right">Add</a>
+  </div>
+{% endblock %}

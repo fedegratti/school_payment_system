@@ -16,4 +16,16 @@ class FeeController
         $feeRepository->createFee($_POST);
         echo "cuota agregada";
     }
+
+    public static function listFeesView()
+    {
+        AuthController::checkPermission();
+        $feeModel = new FeeModel();
+
+        $fees = $feeModel->listFees();
+
+        $view = new listFeesView();
+        $view->show($fees);
+    }
+
 }

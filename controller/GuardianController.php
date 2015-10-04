@@ -2,7 +2,7 @@
 
 class GuardianController
 {
-    public static function addGuardianView($studentID)
+    public static function addGuardianView($studentID = null)
     {
         AuthController::checkPermission();
         $view = new AddGuardianView();
@@ -23,7 +23,7 @@ class GuardianController
         $guardianModel=new GuardianModel();
        // $guardianModel->cargarDB();
 
-        $guardians = $guardianModel->listGuardians();
+       $guardians = $guardianModel->listGuardians();
 
        $view = new listGuardiansView();
        $view->show($guardians, $studentID);
