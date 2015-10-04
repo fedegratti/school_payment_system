@@ -13,29 +13,30 @@ class FeeModel extends PDORepository
 	}
 
 
-	public function updateFee($idFee,$feeData)
+	public function updateFee($feeData)
 	{
+		print_r($feeData);
 		$query="UPDATE fee SET year=?,month=?,number=?,amount=?,kind=?,collectorPayment=? WHERE id=?";
 
 		$stmnt = $this->executeQuery($query,array($feeData["year"],$feeData["month"], $feeData["number"],
-			$feeData["amount"],$feeData["kind"], $feeData["collectorPayment"], $idFee));
+			$feeData["amount"],$feeData["kind"], $feeData["collectorPayment"], $feeData["id"]));
 	}
 
-	public  function deleteFee($idFee)
+	public function deleteFee($idFee)
 	{
 		$query= "UPDATE fee set deleted=true where id=?";
 
 		$stmnt = $this->executeQuery($query,array($idFee));
 	}
 
-	public  function getFee($idFee)
+	public function getFee($idFee)
 	{
 		$query = "select * from fee where id= ? and deleted=false";
 		$stmnt = $this->executeQuery($query,array($idFee));
 		return $stmnt ->fetch();
 	}
 
-	public  function listFees()
+	public function listFees()
 	{
 		$query = "select * from fee where deleted=false";
 		$stmnt = $this->executeQuery($query,array());

@@ -57,10 +57,13 @@
                 <label>Direcci&oacute;n:</label>
                 <input type="text" name="address" class="form-control" value="{{ student.address }}" required>
 
-                <label>Fecha de ingreso a la escuela:</label>
-                <input type="date" name="admissionDate" class="form-control" value="{{ student.admissionDate }}" required>
-
                 {% if student.firstName==null or student.firstName=='' %}
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="isAdmitted" name="isAdmitted" value="1"> Habilitado
+                        </label>
+                    </div>
+
                     <label>Acci&oacute;n del responsable:</label>
                     <select name="guardianType" class="form-control">
                         <option value="createGuardian">Crear Responsable</option>
@@ -73,6 +76,9 @@
                     <br>
                     <button class="btn btn-lg btn-success pull-right" type="submit">Continuar</button>
                 {% else %}
+                    <label>Fecha de ingreso a la escuela:</label>
+                    <input type="date" name="admissionDate" class="form-control" value="{{ student.admissionDate }}" required>
+
                     <label>Fecha de graduacion de la escuela:</label>
                     <input type="date" name="graduationDate" class="form-control" value="{{ student.graduationDate }}">
 

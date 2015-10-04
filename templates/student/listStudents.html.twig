@@ -31,7 +31,7 @@
             <th>Apellido</th>
             <th>Email</th>
             <th>Sexo</th>
-            <th>Asociar Responsable</th>
+            {% if admitted == true %} <th>Ver cuotas</th> {% endif %}
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -41,7 +41,7 @@
               <td>{{ student.lastName }}</td>
               <td>{{ student.email }}</td>
               <td>{{ sex[student.sex]}}</td>
-              <td><a href="/AssociateStudentAction/{{ student[0] }}/{{ studentID }}">Seleccionar</a></td>
+              {% if admitted == true %}<td><a href="{{ selectAction }}">Seleccionar</a></td>{% endif %}
               <td><a href="/UpdateStudent/{{ student.id }}">Edit</a>
               </td>
               <td><a href="/DeleteStudentAction/{{ student.id }}">Delete</a>

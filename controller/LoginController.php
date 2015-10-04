@@ -18,12 +18,19 @@ class LoginController
             session_start();
 
             $_SESSION['role'] = $regId;
-            header('Location: /backend');
+            header('Location: /ListUsers/');
         }
         else
         {
             header('Location: /login/error');
         }
 
+    }
+
+    public static function LogoutView($error = null)
+    {
+        session_start();
+        session_destroy();
+        header('Location: /login/');
     }
 }

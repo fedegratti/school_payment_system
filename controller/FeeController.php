@@ -39,15 +39,16 @@ class FeeController
     {
         AuthController::checkPermission();
         $feeModel = new FeeModel();
-        $feeData = $feeModel->getFee($feeID);
+        $fee = $feeModel->getFee($feeID);
         $view = new UpdateFeeView();
-        $view->show($feeData);
+        $view->show($fee);
     }
-    public static function updateFeeAction($feeID)
+    public static function updateFeeAction()
     {
         AuthController::checkPermission();
         $feeRepository = new FeeModel();
-        $feeRepository->updateFee($feeID, $_POST);
+
+        $feeRepository->updateFee($_POST);
         header("Location: /ListFees");
     }
 

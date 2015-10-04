@@ -31,7 +31,7 @@ class StudentModel extends PDORepository
 
     }
 
-    public  function  getStudentsByName($studentName)
+    public  function getStudentsByName($studentName)
     {
         $query= "SELECT id,firstName,lastName FROM student WHERE firstName like ? or lastName like ?";
         $result= $this->executeQuery($query, array("%".$studentName."%", "%".$studentName."%"));
@@ -47,6 +47,14 @@ class StudentModel extends PDORepository
 
     }
 
+    public function getAdmittedStudents ()
+    {
+        $query= "SELECT * FROM student WHERE admissionDate != 'null'";
+        $result= $this->executeQuery($query, array());
+
+        return $result->fetch();
+    }
+
     public function getStudent ($studentID)
     {
         $query= "SELECT * FROM student WHERE id=?";
@@ -58,11 +66,10 @@ class StudentModel extends PDORepository
     public function getStudentsWithPayedEnrolment($fromIndex = 0)
     {
 
-
         $query= "SELECT s.id ,s.firstName, s.lastName, s.email, s.sex FROM student as s
                                 inner join payment as p on (s.id = p.idStudent)
                                 inner join fee as f on (p.idFee = f.id)
-                                where f.kind=1
+                                where f.kind=1 and s.deleted=false
                                ";
 
         return $this->executeQuery($query,array( $fromIndex))->fetchAll();

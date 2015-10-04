@@ -66,6 +66,16 @@ class StudentController
 
         (new StudentsWithPayedEnrolmentView())->show($students);
     }
+
+    public static function listAdmittedStudentsView($startingIndex = 0)
+    {
+        AuthController::checkPermission();
+        $StudentModel = new StudentModel();
+        $students = $StudentModel->getAdmittedStudents($startingIndex);
+
+        (new ListAdmittedStudentsView())->show($students);
+    }
+
     public  static function deleteStudentAction($studentID)
     {
         AuthController::checkPermission();
