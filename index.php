@@ -35,7 +35,7 @@
 
     $collection->attachRoute(new Route('/backend/', array(
         '_controller' => 'BackendController::showView',
-        'methods' => 'POST'
+        'methods' => 'GET'
     )));
 
 	$collection->attachRoute(new Route('/AddUser/', array(

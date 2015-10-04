@@ -18,7 +18,7 @@ class LoginController
             session_start();
 
             $_SESSION['role'] = $regId;
-            header('Location: /addStudent');
+            header('Location: /backend');
         }
         else
         {
