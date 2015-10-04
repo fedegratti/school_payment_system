@@ -16,14 +16,14 @@ class UserController
 
         if ($result == "SUCCESS")
         {
-            header('Location: /login');
+            header('Location: /ListUsers');
         }
     }
 
     public static function listUsersView()
     {
         AuthController::checkPermission();
-        $result = (new UserModel()) ->listUsers();
+        $result = (new UserModel()) ->getUsers();
 
         $view = new ListUsersView();
         $view ->show($result);
@@ -32,16 +32,16 @@ class UserController
     public static function updateUserView($id)
     {
         AuthController::checkPermission();
-        $result = (new UserModel()) ->listUser($id);
+        $result = (new UserModel()) ->getUser($id);
 
         $view = new UpdateUserView();
         $view->show($result);
     }
 
-    public static function updateUserAction ()
+    public static function updateUserAction ($userID)
     {
         AuthController::checkPermission();
-        $result = (new UserModel()) ->updateUser($_POST);
+        $result = (new UserModel()) ->updateUser($_POST,$userID);
         if ($result == "SUCCESS")
         {
             header('Location: /ListUsers');
@@ -59,11 +59,11 @@ class UserController
         $result = (new UserModel()) ->deleteUser($id);
         if($result == "SUCCESS")
         {
-            echo "delete exitoso";
+            header('Location: /ListUsers');
         }
         else
         {
-            echo "fallo el delete, usuario no existe para borrar";
+            echo "fallo el delete, usuario no existe para borrar o no se, exploto todo";
         }
 
     }
