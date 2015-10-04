@@ -18,12 +18,23 @@ abstract class PDORepository {
         return $dbConnection;
     }
 
+    protected function executeUnpreparedQuery ($query, $args)
+    {
+        $connection = $this->getConnection();
+        $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
+        return $this->exeQuery($query,$connection,$args);
+    }
+
     protected function executeQuery ($query, $args)
     {
         $connection = $this->getConnection();
+        return $this->exeQuery($query,$connection,$args);
+    }
+
+    private function exeQuery ($query, $connection, $args)
+    {
         $stmt = $connection->prepare($query);
         $stmt->execute($args);
-        //$connection = null;
 
         self :: $lastInsertedID = $connection ->lastInsertId();
         return $stmt;

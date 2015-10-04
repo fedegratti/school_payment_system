@@ -1,7 +1,7 @@
 {% set kind = {0: "Madre",1: "Padre",2: "Tutor"} %}
 {% set sex = {0: "Hombre",1: "Mujer"} %}
 
-{% extends 'common/base.html.twig' %}
+{% extends '/common/base.html.twig' %}
 
 {% block title %}Listado de responsables{% endblock %}
 
@@ -55,8 +55,8 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                {% for guardian in guardians %}
-                    <li><a href="#">1</a></li>
+                {% for i in 0..(guardiansAmount//10) %}
+                    <li><a href="/listGuardians/{{ i+1 }}">{{ i+1 }}</a></li>
                 {% endfor %}
                 <li>
                     <a href="#" aria-label="Next">

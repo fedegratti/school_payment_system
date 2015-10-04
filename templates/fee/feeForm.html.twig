@@ -1,0 +1,72 @@
+{% extends '/common/base.html.twig' %}
+
+{% block title %}Cuotas{% endblock %}
+
+{% block head %}
+	{{ parent() }}
+	{#<script src="/js/UpdateUser.js"></script>#}
+	<script type="application/javascript">
+		$(document).ready (function()
+		{
+			$('#number').val({{ fee.number }});
+            $('#kind').val({{ fee.kind }});
+
+		});
+	</script>
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+	<div class="container">
+		<h2 class="page-header">
+			{% if fee.id==null or fee.id=='' %}
+				Agregar cuota
+			{% else %}
+				Editar cuota
+			{% endif %}
+		</h2>
+		<div class="col-md-6 col-md-offset-3">
+			<form action="/{{ action }}" method="post" class="form-horizontal">
+
+				<label>Tipo:</label>
+				<select id="kind" name="kind" class="form-control">
+                    <option value="" disabled selected>Selecciona una opci&oacute;n</option>
+					<option value="1">Matricula</option>
+					<option value="2">Mensual</option>
+				</select>
+
+				<label>A&ntilde;o</label>
+				<input type="number" name="year" class="form-control" value="{{ fee.year }}">
+
+				<label>Mes</label>
+				<input type="number" name="month" class="form-control" value="{{ fee.month }}">
+
+				<label>N&uacute;mero de cuota:</label>
+				<select id="number"name="number" class="form-control">
+					<option value="" disabled selected>Selecciona una opci&oacute;n</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value=5>5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+
+				<label>Monto:</label>
+				<input type="number" name="amount" class="form-control" value="{{ fee.amount }}">
+
+				<label>Porcentaje de de comisi&oacute;n:</label>
+				<input type="number" name="collectorPayment" class="form-control" required value="{{ fee.collectorPayment }}">
+
+				<input type="hidden" name="id" value="{{ fee.id }}">
+				<br>
+				<br>
+				<button type="submit" class="btn btn-lg btn-success pull-right" >Enviar Pago</button>
+			</form>
+		</div>
+	</div> <!-- /container -->
+{% endblock %}

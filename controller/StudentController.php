@@ -60,7 +60,6 @@ class StudentController
 
     public static function listStudentsWithPayedEnrolmentView($startingIndex = 0)
     {
-
         AuthController::checkPermission();
         $studentRepository = new StudentModel();
         $students = $studentRepository->getStudentsWithPayedEnrolment($startingIndex);

@@ -5,18 +5,18 @@ function __autoload($classname)
 
     $fileName= $classname . ".php";
 
-    if(file_exists("controller/". $fileName))
-    {
-        require_once("controller/". $fileName);
-    }
-    if(file_exists( "view/". $fileName))
-    {
-        require_once("view/". $fileName);
-    }
-    if(file_exists( "model/". $fileName))
-    {
-        require_once("model/". $fileName);
-    }
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'model');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'controller');
+
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'view');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'view/common');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'view/fee');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'view/guardian');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'view/student');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'view/user');
+
+    include_once $fileName;
+
 }
 
 spl_autoload_register('__autoload');

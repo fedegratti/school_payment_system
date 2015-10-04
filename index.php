@@ -7,7 +7,7 @@
 	use PHPRouter\Route;
 
     // Carga las cosas q esten en la carpeta model, view, controller.
-    // El resto lo van a tener q declarar abajo de esto.
+
     require_once __DIR__.'/autoload.php';
 
 	$collection = new RouteCollection();
@@ -127,15 +127,15 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/ListGuardians/:id', array(
+    $collection->attachRoute(new Route('/ListGuardians/:index', array(
         '_controller' => 'GuardianController::listGuardiansView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/ListGuardians/', array(
-        '_controller' => 'GuardianController::listGuardiansView',
-        'methods' => 'GET'
-    )));
+//    $collection->attachRoute(new Route('/ListGuardians/', array(
+//        '_controller' => 'GuardianController::listGuardiansView',
+//        'methods' => 'GET'
+//    )));
 
 $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studentID', array(
         '_controller' => 'GuardianController::associateGuardianAction',

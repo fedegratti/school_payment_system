@@ -17,16 +17,17 @@ class GuardianController
         header('Location: /backend');
     }
 
-    public static function listGuardiansView($studentID = null)
+    public static function listGuardiansView($index = 0,$studentID = null)
     {
         AuthController::checkPermission();
         $guardianModel=new GuardianModel();
        // $guardianModel->cargarDB();
 
-       $guardians = $guardianModel->listGuardians();
+       $guardians = $guardianModel->listGuardians($index);
+       $guardiansAmount = $guardianModel->getGuardiansAmount();
 
        $view = new listGuardiansView();
-       $view->show($guardians, $studentID);
+       $view->show($guardians, $guardiansAmount, $studentID);
     }
 
     public static function associateGuardianAction($guardianID, $studentID)
