@@ -10,7 +10,7 @@ class AuthController
 
         if (!isset($_SESSION['role'])) header('Location: /login');
         //(new AuthModel())->authenticate($_SESSION['role'],$resourceCalled);
-        if(!(new AuthModel())->authenticate($_SESSION['role'],$resourceCalled)) header('Location: /login');
+        if(!(new AuthModel())->authenticate($_SESSION['role'],$resourceCalled)) header("Location: /login/TuUserEsBullshit");
 
     }
 }

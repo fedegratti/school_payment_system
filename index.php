@@ -23,6 +23,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/login/:error', array(
+        '_controller' => 'LoginController::loginView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/loginAction/', array(
         '_controller' => 'LoginController::loginAction',
         'methods' => 'POST'

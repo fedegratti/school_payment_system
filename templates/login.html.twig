@@ -1,17 +1,25 @@
-<!DOCTYPE html>
-<html>
-	<head> 
-		<title>Login page</title>
-		<link rel="stylesheet" href="../css/style.css">
-	</head>
-	<body>
-		<h1>Login</h1>
-		<div class="whiteBox loginBox">
-		 <form action="/loginAction" method="post">
-			<input type="text" name="username" required placeholder="Usuario">
-			<input type="password" name="password" required placeholder="Contrase&ntilde;a">
-			<input type="submit" value="Iniciar sesi&oacute;n">
-		</form> 
+{% extends 'common/base.html.twig' %}
+
+{% block title %}Iniciar sesi&oacute;n{% endblock %}
+
+
+{% block body %}
+	<div class="container">
+		<h2 class="page-header">
+			Iniciar sesi&oacute;n
+		</h2>
+		<div class="col-md-6 col-md-offset-3">
+            <h3>{{ error }}</h3>
+			<form action="/loginAction" method="post" class="form-horizontal">
+				<input type="text" name="username" class="form-control" required placeholder="Usuario">
+                <br>
+				<input type="password" name="password" class="form-control" required placeholder="Contrase&ntilde;a">
+                <br>
+				<button type="submit" class="btn btn-lg btn-success pull-right">Iniciar sesi&oacute;n</button>
+			</form>
+
 		</div>
-	</body>
-</html>
+	</div> <!-- /container -->
+{% endblock %}
+
+
