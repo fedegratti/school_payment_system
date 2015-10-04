@@ -142,12 +142,12 @@ $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studen
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateStudent/:id', array(
+    $collection->attachRoute(new Route('/UpdateStudent/:studentID', array(
         '_controller' => 'StudentController::updateStudentView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateStudentAction', array(
+    $collection->attachRoute(new Route('/UpdateStudentAction/:studentID', array(
         '_controller' => 'StudentController::updateStudentAction',
         'methods' => 'POST'
     )));

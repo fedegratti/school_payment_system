@@ -1,9 +1,9 @@
 <?php
 class UpdateStudentView extends TwigView
 {
-    public function show($student) {
+    public function show($student, $studentID) {
 
-        self::getTwig()->display('addStudent.html.twig',array("student" => $student, 'action' => 'UpdateUserAction'));
+        self::getTwig()->display('studentForm.html.twig',array("student" => $student, 'action' => 'UpdateStudentAction/'.$studentID));
 
     }
 }

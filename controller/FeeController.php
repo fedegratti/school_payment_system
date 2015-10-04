@@ -32,7 +32,7 @@ class FeeController
         AuthController::checkPermission();
         $feeModel = new FeeModel();
         $feeModel->deleteFee($feeID);
-        echo "borrado exitoso";
+        header("Location: /ListFees");
     }
 
     public static function updateFeeView($feeID)
@@ -48,7 +48,7 @@ class FeeController
         AuthController::checkPermission();
         $feeRepository = new FeeModel();
         $feeRepository->updateFee($feeID, $_POST);
-        echo "cuota actualizada ( con suerte )" . $feeID;
+        header("Location: /ListFees");
     }
 
 }

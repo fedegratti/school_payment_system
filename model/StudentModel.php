@@ -20,7 +20,7 @@ class StudentModel extends PDORepository
 
     public  function updateStudent($studentData, $studentID)
     {
-        $query="UPDATE user SET documentType=?,documentNumber=?,lastName=?,firstName=?,birthDate=?,sex=?,
+        $query="UPDATE student SET documentType=?,documentNumber=?,lastName=?,firstName=?,birthDate=?,sex=?,
                                       email=?,address=?,admissionDate=?,graduationDate=? WHERE id=?";
 
 
@@ -36,6 +36,15 @@ class StudentModel extends PDORepository
         $query= "SELECT id,firstName,lastName FROM student WHERE firstName like ? or lastName like ?";
         $result= $this->executeQuery($query, array("%".$studentName."%", "%".$studentName."%"));
         return $result->fetchAll();
+    }
+
+    public function getStudents()
+    {
+        $query= "SELECT id,firstName,lastName,email,sex FROM student where deleted=false";
+        $result= $this->executeQuery($query, array());
+
+        return $result->fetchAll();
+
     }
 
     public function getStudent ($studentID)

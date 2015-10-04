@@ -18,10 +18,10 @@
     {{ parent() }}
 	<div class="container">
 		<h2 class="page-header">
-			{% if student.name==null or student.name=='' %}
-				Agregar usuario
+			{% if student.firstName==null or student.firstName=='' %}
+				Agregar alumno
 			{% else %}
-				Editar usuario
+				Editar alumno
 			{% endif %}
 		</h2>
 		<div class="col-md-6 col-md-offset-3">
@@ -43,7 +43,7 @@
                 <input type="text" name="lastName" class="form-control" value="{{student.lastName}}" required >
 
                 <label for="date">Fecha de Nacimiento:</label>
-                <input type="date" name="birthDate" class="form-control" required >
+                <input type="date" name="birthDate" class="form-control"  value="{{student.birthDate}}" required >
 
                 <label for="sex">Sexo:</label>
                 <select name="sex" class="form-control">
@@ -60,17 +60,28 @@
                 <label>Fecha de ingreso a la escuela:</label>
                 <input type="date" name="admissionDate" class="form-control" value="{{ student.admissionDate }}" required>
 
-                <label>Acci&oacute;n del responsable:</label>
-                <select name="guardianType" class="form-control">
-                    <option value="createGuardian">Crear Responsable</option>
-                    <option value="chooseGuardian">Elegir Responsable </option>
-                </select>
+                {% if student.firstName==null or student.firstName=='' %}
+                    <label>Acci&oacute;n del responsable:</label>
+                    <select name="guardianType" class="form-control">
+                        <option value="createGuardian">Crear Responsable</option>
+                        <option value="chooseGuardian">Elegir Responsable </option>
+                    </select>
 
-				<input type="hidden" name="id" value="{{ student.id }}">
+                    <input type="hidden" name="id" value="{{ student.id }}">
 
-                <br>
-                <br>
-				<button class="btn btn-lg btn-success pull-right" type="submit">Continuar</button>
+                    <br>
+                    <br>
+                    <button class="btn btn-lg btn-success pull-right" type="submit">Continuar</button>
+                {% else %}
+                    <label>Fecha de graduacion de la escuela:</label>
+                    <input type="date" name="graduationDate" class="form-control" value="{{ student.graduationDate }}">
+
+
+                    <br>
+                    <br>
+                    <button class="btn btn-lg btn-success pull-right" type="submit">Aplicar cambios</button>
+                {% endif %}
+
 			</form>
 		</div>
 	</div> <!-- /container -->

@@ -29,15 +29,9 @@ class StudentController
     public  static function listStudentsView()
     {
         AuthController::checkPermission();
-        if(isset($_POST["studentName"]))
-        {
-            StudentController::listStudentsWithNameView($_POST["studentName"]);
-        }
-        else
-        {
-            $view = new ListStudentsView();
-            $view ->show();
-        }
+        $view = new ListStudentsView();
+        $studentData = (new StudentModel())->getStudents();
+        $view ->show($studentData);
 
     }
     public  static function listStudentsWithNameView($studentName)
@@ -52,15 +46,16 @@ class StudentController
         AuthController::checkPermission();
         $view = new UpdateStudentView();
         $studentData = (new StudentModel())->getStudent($studentID);
-        $view->show($studentData);
+        $view->show($studentData, $studentID);
     }
 
-    public static function updateStudentAction ()
+    public static function updateStudentAction ($studentID)
     {
+
         AuthController::checkPermission();
         $studentRepository = new StudentModel();
-        $studentRepository->updateStudent($_POST);
-        echo "alumno actualizado";
+        $studentRepository->updateStudent($_POST, $studentID);
+        header("Location: /ListStudents");
     }
 
     public static function listStudentsWithPayedEnrolmentView($startingIndex = 0)
@@ -73,7 +68,7 @@ class StudentController
     public  static function deleteStudentAction($studentID)
     {
         AuthController::checkPermission();
-        //(new StudentRepository())->deleteStudent($studentID);
-        echo "alumno eliminado";
+        (new StudentModel())->deleteStudent($studentID);
+        header("Location: /ListStudents");
     }
 }

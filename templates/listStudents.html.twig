@@ -26,7 +26,7 @@
             <th>Apellido</th>
             <th>Email</th>
             <th>Sexo</th>
-            <th>Seleccionar</th>
+            <th>Asociar Responsable</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -36,10 +36,10 @@
               <td>{{ student.lastName }}</td>
               <td>{{ student.email }}</td>
               <td>{{ sex[student.sex]}}</td>
-              <td><a href="/associateStudentAction/{{ student[0] }}/{{ studentID }}">Seleccionar</a></td>
-              <td><a href="/updateStudent/{{ student.id }}">Edit</a>
+              <td><a href="/AssociateStudentAction/{{ student[0] }}/{{ studentID }}">Seleccionar</a></td>
+              <td><a href="/UpdateStudent/{{ student.id }}">Edit</a>
               </td>
-              <td><a href="/deleteStudent/{{ student.id }}">Delete</a>
+              <td><a href="/DeleteStudentAction/{{ student.id }}">Delete</a>
               </td>
             </tr>
           {% endfor %}
