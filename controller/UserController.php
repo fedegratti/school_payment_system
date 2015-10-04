@@ -13,11 +13,10 @@ class UserController
     {
 
         $result = (new UserModel()) ->createUser($_POST);
-
+        header('Location: /Login');
         AuthController::checkPermission();
         if ($result == "SUCCESS")
         {
-
             header('Location: /ListUsers');
         }
     }
