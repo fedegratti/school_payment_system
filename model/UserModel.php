@@ -6,7 +6,7 @@ class UserModel extends PDORepository
 	{
 		if( !$this->UserAlreadyExists($userData["username"]))
 		{
-			$query="INSERT INTO user (username,password,enabled,role) VALUES (?,?,?,?)";
+			$query="INSERT INTO user (username,password,enabled,roleid) VALUES (?,?,?,?)";
 
             $enabled = true;
 
@@ -17,13 +17,13 @@ class UserModel extends PDORepository
 		return "ERROR";
 	}
 
-	public function updateUser($userData)
+	public function updateUser($userData, $userID)
 	{
-		if($this->UserAlreadyExists($userData["username"]))
+		if($this->UserAlreadyExists($userID))
 		{
-			$query="UPDATE user SET username=?,email=?,enabled=?,role=? WHERE id=?";
+			$query="UPDATE user SET username=?,email=?,enabled=?,roleid=? WHERE id=?";
 
-			$stmnt = $this->executeQuery($query,array($userData["username"],$userData["email"],$userData["enabled"],$userData["role"],$userData["id"]));
+			$stmnt = $this->executeQuery($query,array($userData["username"],$userData["email"],$userData["enabled"],$userData["role"],$userID));
 
 			return "SUCCESS";
 		}
@@ -43,9 +43,9 @@ class UserModel extends PDORepository
         return false;
 	}
 
-	public function listUser ($id)
+	public function getUser ($id)
 	{
-		$query="SELECT id,username,email,enabled,role FROM user WHERE id = ?";
+		$query="SELECT id,username,email,enabled,roleid FROM user WHERE id = ?";
 
 		$stmnt = $this->executeQuery($query,array($id));
 
@@ -54,9 +54,9 @@ class UserModel extends PDORepository
 		return $user;
 	}
 
-	public function listUsers ()
+	public function getUsers ()
 	{
-		$query="SELECT id,username,email,enabled,role FROM user";
+		$query="SELECT id,username,email,enabled,roleid FROM user where deleted=false";
 
 		$stmnt = $this->executeQuery($query,array());
 

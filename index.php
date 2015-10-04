@@ -35,7 +35,7 @@
 
     $collection->attachRoute(new Route('/backend/', array(
         '_controller' => 'BackendController::showView',
-        'methods' => 'POST'
+        'methods' => 'GET'
     )));
 
 	$collection->attachRoute(new Route('/AddUser/', array(
@@ -58,7 +58,7 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateUserAction/', array(
+    $collection->attachRoute(new Route('/UpdateUserAction/:userID', array(
         '_controller' => 'UserController::updateUserAction',
         'methods' => 'POST'
     )));
@@ -77,16 +77,20 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/ListStudents/', array(
-        '_controller' => 'StudentController::listStudentsView',
-        'methods' => 'POST'
-    )));
-
     $collection->attachRoute(new Route('/ListStudents/:studentName', array(
         '_controller' => 'StudentController::listStudentsWithNameView',
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/ListStudentsWithPayedEnrolment/:fromIndex', array(
+        '_controller' => 'StudentController::listStudentsWithPayedEnrolmentView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/AddGuardian/', array(
+        '_controller' => 'GuardianController::addGuardianView',
+        'methods' => 'GET'
+    )));
 
     $collection->attachRoute(new Route('/AddGuardianAction/', array(
         '_controller' => 'GuardianController::addGuardianAction',
@@ -97,10 +101,32 @@
         '_controller' => 'FeeController::addFeeView',
         'methods' => 'GET'
     )));
+
     $collection->attachRoute(new Route('/AddFeeAction/', array(
         '_controller' => 'FeeController::addFeeAction',
         'methods' => 'POST'
     )));
+
+    $collection->attachRoute(new Route('/UpdateFeeAction/:feeID', array(
+        '_controller' => 'FeeController::updateFeeAction',
+        'methods' => 'POST'
+    )));
+
+    $collection->attachRoute(new Route('/UpdateFee/:feeID', array(
+        '_controller' => 'FeeController::updateFeeView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/DeleteFeeAction/:feeID', array(
+        '_controller' => 'FeeController::deleteFeeAction',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/ListFees/', array(
+        '_controller' => 'FeeController::listFeesView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/ListGuardians/:id', array(
         '_controller' => 'GuardianController::listGuardiansView',
         'methods' => 'GET'
@@ -116,12 +142,12 @@ $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studen
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateStudent/:id', array(
+    $collection->attachRoute(new Route('/UpdateStudent/:studentID', array(
         '_controller' => 'StudentController::updateStudentView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateStudentAction', array(
+    $collection->attachRoute(new Route('/UpdateStudentAction/:studentID', array(
         '_controller' => 'StudentController::updateStudentAction',
         'methods' => 'POST'
     )));
@@ -144,6 +170,10 @@ $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studen
         'methods' => 'POST'
     )));
 
+    $collection->attachRoute(new Route('/DeleteFee/:feeID', array(
+        '_controller' => 'FeeController::deleteFeeAction',
+        'methods' => 'GET'
+    )));
 	$router = new Router($collection);
 	$router->setBasePath('/');
 	$route = $router->matchCurrentRequest();

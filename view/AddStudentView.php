@@ -4,7 +4,7 @@ class AddStudentView extends TwigView
 {
     public function show() {
 
-        self::getTwig()->display('addStudent.html.twig',array("action"=>"AddStudentAction"));
+        self::getTwig()->display('studentForm.html.twig',array('action' => 'AddStudentAction'));
 
     }
 }

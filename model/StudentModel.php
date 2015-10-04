@@ -18,16 +18,15 @@ class StudentModel extends PDORepository
 
     }
 
-    public  function updateStudent($studentData)
+    public  function updateStudent($studentData, $studentID)
     {
-        $query="INSERT INTO student (documentType,documentNumber,lastName,firstName,birthDate,sex,
-                                      email,address,admissionDate,graduationDate,createDate)
-                        VALUES (?,?,?,?,?,?,?,?,?,?, CURRENT_DATE )";
+        $query="UPDATE student SET documentType=?,documentNumber=?,lastName=?,firstName=?,birthDate=?,sex=?,
+                                      email=?,address=?,admissionDate=?,graduationDate=? WHERE id=?";
 
 
         $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
             $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
-            $studentData["email"],$studentData["address"],$studentData["admissionDate"], null));
+            $studentData["email"],$studentData["address"],$studentData["admissionDate"], $studentData["graduationDate"], $studentID));
 
 
     }
@@ -39,6 +38,15 @@ class StudentModel extends PDORepository
         return $result->fetchAll();
     }
 
+    public function getStudents()
+    {
+        $query= "SELECT id,firstName,lastName,email,sex FROM student where deleted=false";
+        $result= $this->executeQuery($query, array());
+
+        return $result->fetchAll();
+
+    }
+
     public function getStudent ($studentID)
     {
         $query= "SELECT * FROM student WHERE id=?";
@@ -47,15 +55,17 @@ class StudentModel extends PDORepository
         return $result->fetch();
     }
 
-    public function getStudentsWithPayedEnrolment($studentID,$fromIndex)
+    public function getStudentsWithPayedEnrolment($fromIndex = 0)
     {
-        $query= "SELECT s.firstName, s.lastName FROM student as s
+
+
+        $query= "SELECT s.id ,s.firstName, s.lastName, s.email, s.sex FROM student as s
                                 inner join payment as p on (s.id = p.idStudent)
                                 inner join fee as f on (p.idFee = f.id)
                                 where f.kind=1
-                                limit ?,20";
+                               ";
 
-        return $this->executeQuery($query,$studentID,$fromIndex)->fetchAll();
+        return $this->executeQuery($query,array( $fromIndex))->fetchAll();
 
     }
 

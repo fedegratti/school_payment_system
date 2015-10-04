@@ -5,7 +5,6 @@
 {% block head %}
     {{ parent() }}
     {#<script src="/js/UpdateUser.js"></script>#}
-    <link rel="stylesheet" href="/css/AltaUsuario.css">
     <script type="application/javascript">
         $(document).ready (function()
         {
@@ -19,6 +18,7 @@
 {% endblock %}
 
 {% block body %}
+    {{ parent() }}
 <div class="container">
     <h2 class="page-header">
         {% if user.id==null or user.id=='' %}
@@ -57,7 +57,7 @@
             <br>
             <br>
 
-            <a class="btn btn-lg btn-success pull-right" type="submit">Enviar Datos</a>
+            <button class="btn btn-lg btn-success pull-right" type="submit">Enviar Datos</button>
          </form>
     </div>
 </div> <!-- /container -->

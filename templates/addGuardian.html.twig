@@ -1,53 +1,71 @@
-<!DOCTYPE html>
-<html>
-	<head> 
-		<title>Alta de Responsable</title>
-		<link rel="stylesheet" href="../css/style.css">
-	</head>
-	<body>
-		<h1>Alta de responsable</h1>
-		<div class="whiteBox">
-		 <form action="/AddGuardianAction" method="post">
+{% extends 'common/base.html.twig' %}
 
-		 	<label>Tipo de Responsable</label>
-			<select name="kind">
-				  <option value="mother">Madre</option>
-				  <option value="father">Padre</option>
-				  <option value="tutor">Tutor</option>
-			</select>
+{% block title %}Agregar responsable{% endblock %}
 
-			<label>Nombre:</label>
-			<input type="text" name="firstName" required >
+{% block head %}
+	{{ parent() }}
 
-			<label>Apellido:</label>
-			<input type="text" name="lastName" required >
+	<script type="application/javascript">
+		$(document).ready (function()
+		{
+			$('#kind').val({{ guardian.kind }});
+            $('#sex').val({{ guardian.sex }});
 
-			<label>Fecha de Nacimiento:</label>
-			<input type="date" name="birthDate" required >
-	
-			<label>Sexo:</label>
-			
-			<select name="sex">
-				  <option value="m">Masculino</option>
-				  <option value="f">Femenino</option>
-			</select>
-	
-			<label>Mail de contacto:</label>
-			<input type="email" name="email">
-		
-			<label>Direcci&oacute;n:</label>
-			<input type="text" name="address" required>
-			
+		});
+	</script>
+{% endblock %}
 
-			<label>Telefono:</label>
-			<input type="text" name="phone" required>
-			
-			<input type="submit" value="Enviar Datos">
+{% block body %}
+	{{ parent() }}
+	<div class="container">
+		<h2 class="page-header">
+			{% if guardian.firstName==null or guardian.firstName=='' %}
+				Agregar responsable
+			{% else %}
+				Editar responsable
+			{% endif %}
+		</h2>
+		<div class="col-md-6 col-md-offset-3">
+			<form action="/{{ action }}" method="post" class="form-horizontal">
 
-			<input type="hidden" name="studentID" value="{{studentID}}" >
-		</form>
+                <label>Tipo de Responsable</label>
+                <select id="kind" name="kind" class="form-control">
+                    <option value="mother">Madre</option>
+                    <option value="father">Padre</option>
+                    <option value="tutor">Tutor</option>
+                </select>
+
+                <label>Nombre:</label>
+                <input type="text" name="firstName" class="form-control" value="{{ guardian.firstName }}" required >
+
+                <label>Apellido:</label>
+                <input type="text" name="lastName" class="form-control" value="{{ guardian.lastName }}" required >
+
+                <label>Fecha de Nacimiento:</label>
+                <input type="date" name="birthDate" class="form-control" value="{{ guardian.birthDate }}" required >
+
+                <label>Sexo:</label>
+                <select id="sex" name="sex" class="form-control">
+                    <option value="m">Masculino</option>
+                    <option value="f">Femenino</option>
+                </select>
+
+                <label>Mail de contacto:</label>
+                <input type="email" name="email" class="form-control" value="{{ guardian.email }}">
+
+                <label>Direcci&oacute;n:</label>
+                <input type="text" name="address" class="form-control" value="{{ guardian.address }}" required>
 
 
+                <label>Telefono:</label>
+                <input type="text" name="phone" class="form-control" value="{{ guardian.phone }}" required>
+
+                <input type="hidden" name="studentID" value="{{studentID}}" >
+                <br>
+                <br>
+                <button class="btn btn-lg btn-success pull-right" type="submit">Enviar Datos</button>
+
+			</form>
 		</div>
-	</body>
-</html>
+	</div> <!-- /container -->
+{% endblock %}
