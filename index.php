@@ -174,6 +174,21 @@ $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studen
         '_controller' => 'FeeController::deleteFeeAction',
         'methods' => 'GET'
     )));
+
+    $collection->attachRoute(new Route('/ListConfiguration/', array(
+        '_controller' => 'ConfigurationController::listConfigurationView',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/UpdateConfiguration/', array(
+        '_controller' => 'ConfigurationController::updateConfigurationView',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/UpdateConfigurationAction/', array(
+        '_controller' => 'ConfigurationController::updateConfigurationAction',
+        'methods' => 'POST'
+    )));
+
+
 	$router = new Router($collection);
 	$router->setBasePath('/');
 	$route = $router->matchCurrentRequest();
