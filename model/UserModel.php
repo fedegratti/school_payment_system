@@ -4,13 +4,15 @@ class UserModel extends PDORepository
 {
 	public function createUser($userData)
 	{
+		echo "hola";
 		if( !$this->UserAlreadyExists($userData["username"]))
 		{
-			$query="INSERT INTO user (username,password,enabled,roleid) VALUES (?,?,?,?)";
+			echo "hola2";
+			$query="INSERT INTO user (username,password,email, enabled,roleid,deleted) VALUES (?,?,?,?,?,?)";
 
             $enabled = true;
-
-            $stmnt = $this->executeQuery($query,array($userData["username"],$userData["password"],$enabled,$userData["role"]));
+			$deleted = false;
+            $stmnt = $this->executeQuery($query,array($userData["username"],sha1($userData["password"]),$userData["email"],$enabled,$userData["role"],$deleted));
 
 			return "SUCCESS";
 		}
@@ -21,9 +23,9 @@ class UserModel extends PDORepository
 	{
 		if($this->UserAlreadyExists($userID))
 		{
-			$query="UPDATE user SET username=?,email=?,enabled=?,roleid=? WHERE id=?";
+			$query="UPDATE user SET username=?,password=?,email=?,enabled=?,roleid=? WHERE id=?";
 
-			$stmnt = $this->executeQuery($query,array($userData["username"],$userData["email"],$userData["enabled"],$userData["role"],$userID));
+			$stmnt = $this->executeQuery($query,array($userData["username"],sha1($userData["password"]),$userData["email"],$userData["enabled"],$userData["role"],$userID));
 
 			return "SUCCESS";
 		}
