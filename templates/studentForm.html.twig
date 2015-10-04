@@ -1,0 +1,88 @@
+{% extends 'common/base.html.twig' %}
+
+{% block title %}Alta de alumnos{% endblock %}
+
+{% block head %}
+	{{ parent() }}
+
+	<script type="application/javascript">
+		$(document).ready (function()
+		{
+			$('#documentType').val({{ student.studentType }});
+
+		});
+	</script>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+	<div class="container">
+		<h2 class="page-header">
+			{% if student.firstName==null or student.firstName=='' %}
+				Agregar alumno
+			{% else %}
+				Editar alumno
+			{% endif %}
+		</h2>
+		<div class="col-md-6 col-md-offset-3">
+			<form action="/{{ action }}" method="post" class="form-horizontal">
+
+                <label>Tipo de documento:</label>
+                <select name="documentType" class="form-control">
+                    <option value="0">D.N.I.</option>
+                    <option value="1">L.E.</option>
+                </select>
+
+                <label>N&uacute;mero de Documento:</label>
+                <input type="number" name="documentNumber" class="form-control" value="{{ student.documentNumber }}" required >
+
+				<label for="firstName">Nombre:</label>
+				<input type="text" name="firstName" class="form-control" value="{{student.firstName}}" required >
+
+                <label for="lastName">Apellido:</label>
+                <input type="text" name="lastName" class="form-control" value="{{student.lastName}}" required >
+
+                <label for="date">Fecha de Nacimiento:</label>
+                <input type="date" name="birthDate" class="form-control"  value="{{student.birthDate}}" required >
+
+                <label for="sex">Sexo:</label>
+                <select name="sex" class="form-control">
+                    <option value="m">Masculino</option>
+                    <option value="f">Femenino</option>
+                </select>
+
+                <label for="email">Correo electr&oacute;nico:</label>
+                <input type="email" name="email" class="form-control" value="{{ student.email }}" required >
+
+                <label>Direcci&oacute;n:</label>
+                <input type="text" name="address" class="form-control" value="{{ student.address }}" required>
+
+                <label>Fecha de ingreso a la escuela:</label>
+                <input type="date" name="admissionDate" class="form-control" value="{{ student.admissionDate }}" required>
+
+                {% if student.firstName==null or student.firstName=='' %}
+                    <label>Acci&oacute;n del responsable:</label>
+                    <select name="guardianType" class="form-control">
+                        <option value="createGuardian">Crear Responsable</option>
+                        <option value="chooseGuardian">Elegir Responsable </option>
+                    </select>
+
+                    <input type="hidden" name="id" value="{{ student.id }}">
+
+                    <br>
+                    <br>
+                    <button class="btn btn-lg btn-success pull-right" type="submit">Continuar</button>
+                {% else %}
+                    <label>Fecha de graduacion de la escuela:</label>
+                    <input type="date" name="graduationDate" class="form-control" value="{{ student.graduationDate }}">
+
+
+                    <br>
+                    <br>
+                    <button class="btn btn-lg btn-success pull-right" type="submit">Aplicar cambios</button>
+                {% endif %}
+
+			</form>
+		</div>
+	</div> <!-- /container -->
+{% endblock %}
