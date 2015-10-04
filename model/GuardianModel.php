@@ -36,7 +36,7 @@ class GuardianModel extends PDORepository
     {
         $indexSanitized = filter_var($index, FILTER_SANITIZE_NUMBER_INT);
 
-        $query = "SELECT id, firstName, lastName, kind, sex, email, phone, address FROM guardian LIMIT ?,?";
+        $query = "SELECT id, firstName, lastName, kind, sex, email, phone, address FROM guardian WHERE deleted=false LIMIT ?,?";
 
         $stmt = $this->executeUnpreparedQuery($query, array($indexSanitized, 10));
         return $stmt->fetchAll();

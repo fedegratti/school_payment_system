@@ -24,8 +24,13 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/login/', array(
+    $collection->attachRoute(new Route('/Login/', array(
         '_controller' => 'LoginController::loginView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/Logout/', array(
+        '_controller' => 'LoginController::LogoutView',
         'methods' => 'GET'
     )));
 
@@ -93,6 +98,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/ListAdmittedStudents/', array(
+        '_controller' => 'StudentController::listAdmittedStudentsView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/AddGuardian/', array(
         '_controller' => 'GuardianController::addGuardianView',
         'methods' => 'GET'
@@ -113,7 +123,7 @@
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/UpdateFeeAction/:feeID', array(
+    $collection->attachRoute(new Route('/UpdateFeeAction/', array(
         '_controller' => 'FeeController::updateFeeAction',
         'methods' => 'POST'
     )));
