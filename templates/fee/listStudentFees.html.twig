@@ -1,0 +1,91 @@
+{% set kind = {0: "Mensual",1: "Matricula"} %}
+
+{% extends '/common/base.html.twig' %}
+
+{% block title %}Listado de cuotas{% endblock %}
+
+{% block head %}
+  {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+  {{ parent() }}
+  <div class="container">
+
+    <h2 class="sub-header">Cuotas del alumno {{ student.firstName }} {{ student.lastName }}</h2>
+
+    <h3 class="sub-header">Cuotas sin pagar</h3>
+    {% if unPayedFees|length  == 0 %}
+      <p>No hay cuotas sin pagar.</p>
+    {% endif %}
+    {% if unPayedFees|length  > 0 %}
+      <div class="table-responsive">
+          <table class="table table-striped">
+              <tr class="even">
+                  <th>N&uacute;mero</th>
+                  <th>A&ntilde;o</th>
+                  <th>Mes</th>
+                  <th>Monto</th>
+                  <th>Tipo</th>
+                  <th>comisi&oacute;n</th>
+                  <th>Fecha de creaci&oacute;n</th>
+                  <th>Pagar</th>
+                  <th>Becar</th>
+              </tr>
+              {% for fee in unPayedFees %}
+                  <tr class="{% if unPayedFees.odd == true  %}">odd{% else %}even{% endif %}">
+                      <td>{{ fee.number }}</td>
+                      <td>{{ fee.year }}</td>
+                      <td>{{ fee.month }}</td>
+                      <td>{{ fee.amount }}</td>
+                      <td>{{kind[fee.kind] }}</td>
+                      <td>{{ fee.collectorPayment }}</td>
+                      <td>{{ fee.createDate }}</td>
+                      <td><a href="/PayFee/{{ fee.id }}">Pagar</a></td>
+                      <td><a href="/GrantFee/{{ fee.id }}">Becar</a></td>
+
+                  </tr>
+              {% endfor %}
+          </table>
+      </div>
+    {% endif %}
+
+    <h3 class="sub-header">Cuotas pagas</h3>
+    {% if payedFees|length  == 0 %}
+      <p>No hay cuotas pagas.</p>
+    {% endif %}
+    {% if payedFees|length  > 0 %}
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <tr class="even">
+            <th>N&uacute;mero</th>
+            <th>A&ntilde;o</th>
+            <th>Mes</th>
+            <th>Monto</th>
+            <th>Tipo</th>
+            <th>comisi&oacute;n</th>
+            <th>Fecha de creaci&oacute;n</th>
+            <th>Pagar</th>
+            <th>Becar</th>
+          </tr>
+          {% for fee in payedFees %}
+            <tr class="{% if payedFees.odd == true  %}">odd{% else %}even{% endif %}">
+              <td>{{ fee.number }}</td>
+              <td>{{ fee.year }}</td>
+              <td>{{ fee.month }}</td>
+              <td>{{ fee.amount }}</td>
+              <td>{{kind[fee.kind] }}</td>
+              <td>{{ fee.collectorPayment }}</td>
+              <td>{{ fee.createDate }}</td>
+                <td><a href="/PayFee/{{ fee.id }}">Pagar</a></td>
+                <td><a href="/GrantFee/{{ fee.id }}">Becar</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endif %}
+
+    {#<a href="/addFee" class="btn btn-lg btn-success pull-right">Add</a>#}
+  </div>
+{% endblock %}

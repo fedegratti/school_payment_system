@@ -52,7 +52,7 @@ class StudentModel extends PDORepository
         $query= "SELECT * FROM student WHERE admissionDate != 'null'";
         $result= $this->executeQuery($query, array());
 
-        return $result->fetch();
+        return $result->fetchAll();
     }
 
     public function getStudent ($studentID)
@@ -74,30 +74,6 @@ class StudentModel extends PDORepository
 
         return $this->executeQuery($query,array( $fromIndex))->fetchAll();
 
-    }
-
-    public function getPayedFeesOfStudent($studentID)
-    {
-        $query= "SELECT f.number, f.year, f.month, f.amount
-                 FROM payment as p
-                         inner join fee as f on (p.idFee = f.id)
-                  WHERE p.idStudent = ?
-                  order by f.year, f.month";
-
-        return $this->executeQuery($query,$studentID)->fetchAll();
-    }
-
-    public function getUnPayedFeesOfStudent($studentID)
-    {
-        $query= "SELECT f.number, f.year, f.month, f.amount
-                 FROM fee as f
-                 WHERE f.id not in (select fe.id
-                                     FROM payment as p
-                         				  inner join fee as fe on (p.idFee = fe.id)
-                  					WHERE p.idStudent = ?)
-                  order by f.year, f.month";
-
-        return $this->executeQuery($query,$studentID)->fetchAll();
     }
 
 
