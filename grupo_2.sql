@@ -2,10 +2,10 @@
 -- version 4.4.14
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 05, 2015 at 06:28 AM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-10-2015 a las 07:32:22
+-- Versión del servidor: 5.6.26-log
+-- Versión de PHP: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,32 +17,35 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `grupo_2`
+-- Base de datos: `grupo_2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `auth_mapper`
+-- Estructura de tabla para la tabla `auth_mapper`
 --
 
 CREATE TABLE IF NOT EXISTS `auth_mapper` (
   `id` int(11) NOT NULL,
   `roleId` int(11) NOT NULL,
   `resourceId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `auth_mapper`
+-- Volcado de datos para la tabla `auth_mapper`
 --
 
 INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
-(1, 1, 1);
+(8, 3, 70),
+(9, 3, 62),
+(10, 2, 70),
+(11, 2, 62);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `configuration`
+-- Estructura de tabla para la tabla `configuration`
 --
 
 CREATE TABLE IF NOT EXISTS `configuration` (
@@ -52,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `configuration` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `configuration`
+-- Volcado de datos para la tabla `configuration`
 --
 
 INSERT INTO `configuration` (`id`, `configuration`, `value`) VALUES
@@ -66,7 +69,7 @@ INSERT INTO `configuration` (`id`, `configuration`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `fee`
+-- Estructura de tabla para la tabla `fee`
 --
 
 CREATE TABLE IF NOT EXISTS `fee` (
@@ -82,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `fee` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `fee`
+-- Volcado de datos para la tabla `fee`
 --
 
 INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collectorPayment`, `createDate`, `deleted`) VALUES
@@ -99,7 +102,7 @@ INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collector
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guardian`
+-- Estructura de tabla para la tabla `guardian`
 --
 
 CREATE TABLE IF NOT EXISTS `guardian` (
@@ -117,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `guardian` (
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `guardian`
+-- Volcado de datos para la tabla `guardian`
 --
 
 INSERT INTO `guardian` (`id`, `idUser`, `kind`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `phone`, `address`, `deleted`) VALUES
@@ -179,7 +182,7 @@ INSERT INTO `guardian` (`id`, `idUser`, `kind`, `lastName`, `firstName`, `birthD
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guardian_student_relationship`
+-- Estructura de tabla para la tabla `guardian_student_relationship`
 --
 
 CREATE TABLE IF NOT EXISTS `guardian_student_relationship` (
@@ -190,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `guardian_student_relationship` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `guardian_student_relationship`
+-- Volcado de datos para la tabla `guardian_student_relationship`
 --
 
 INSERT INTO `guardian_student_relationship` (`id`, `studentId`, `guardianId`, `deleted`) VALUES
@@ -203,7 +206,7 @@ INSERT INTO `guardian_student_relationship` (`id`, `studentId`, `guardianId`, `d
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Estructura de tabla para la tabla `payment`
 --
 
 CREATE TABLE IF NOT EXISTS `payment` (
@@ -217,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `payment`
+-- Volcado de datos para la tabla `payment`
 --
 
 INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`, `updatedDate`, `deleted`) VALUES
@@ -230,46 +233,66 @@ INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `resource`
+-- Estructura de tabla para la tabla `resource`
 --
 
 CREATE TABLE IF NOT EXISTS `resource` (
   `id` int(11) NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `resource`
+-- Volcado de datos para la tabla `resource`
 --
 
 INSERT INTO `resource` (`id`, `description`) VALUES
-(1, 'showView'),
-(2, 'addFeeView'),
-(3, 'showView'),
-(4, 'addFeeView'),
-(5, 'addFeeAction'),
-(6, 'addGuardianView'),
-(7, 'addGuardianAction'),
-(8, 'listGuardiansView'),
-(9, 'associateGuardianAction'),
-(10, 'addStudentView'),
-(11, 'addStudentAction'),
-(12, 'listStudentsView'),
-(13, 'listStudentsWithNameView'),
-(14, 'updateStudentAction'),
-(15, 'deleteStudentAction'),
-(16, 'addUserView('),
-(17, 'addUserAction'),
-(18, 'listUsersView'),
-(19, 'updateUserView'),
-(20, 'updateUserAction'),
-(21, 'deleteUserView'),
-(22, 'deleteUserAction');
+(48, 'showView'),
+(49, 'loginView'),
+(50, 'LogoutView'),
+(51, 'loginAction'),
+(52, 'addUserView'),
+(53, 'addUserAction'),
+(54, 'listUsersView'),
+(55, 'updateUserView'),
+(56, 'updateUserAction'),
+(57, 'addStudentView'),
+(58, 'addStudentAction'),
+(59, 'listStudentsView'),
+(60, 'listStudentsWithNameView'),
+(61, 'listStudentsWithPayedEnrolmentView'),
+(62, 'listAdmittedStudentsView'),
+(63, 'addGuardianView'),
+(64, 'addGuardianAction'),
+(65, 'addFeeView'),
+(66, 'addFeeAction'),
+(67, 'updateFeeAction'),
+(68, 'updateFeeView'),
+(69, 'deleteFeeAction'),
+(70, 'listFeesView'),
+(71, 'listStudentFeesView'),
+(72, 'payOrGrantFeeView'),
+(73, 'listGuardiansView'),
+(74, 'deleteGuardianAction'),
+(75, 'updateGuardianView'),
+(76, 'updateGuardianAction'),
+(77, 'associateGuardianAction'),
+(78, 'updateStudentView'),
+(79, 'updateStudentAction'),
+(80, 'deleteUserView'),
+(81, 'deleteUserAction'),
+(82, 'deleteStudentAction'),
+(83, 'addConfigurationView'),
+(84, 'addConfigurationAction'),
+(85, 'listConfigurationsView'),
+(86, 'updateConfigurationView'),
+(87, 'updateConfigurationAction'),
+(88, 'deleteConfigurationAction'),
+(89, 'siteUnavailableView');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Estructura de tabla para la tabla `role`
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
@@ -278,18 +301,18 @@ CREATE TABLE IF NOT EXISTS `role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `role`
+-- Volcado de datos para la tabla `role`
 --
 
 INSERT INTO `role` (`id`, `description`) VALUES
 (1, 'admin'),
 (2, 'management'),
-(3, 'enquire');
+(3, 'ask');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
+-- Estructura de tabla para la tabla `student`
 --
 
 CREATE TABLE IF NOT EXISTS `student` (
@@ -309,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `student`
+-- Volcado de datos para la tabla `student`
 --
 
 INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `address`, `admissionDate`, `graduationDate`, `createDate`, `deleted`) VALUES
@@ -322,7 +345,7 @@ INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firs
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Estructura de tabla para la tabla `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -336,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `user`
+-- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, `deleted`) VALUES
@@ -361,120 +384,120 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, 
 (20, '555', 'a@a', '8effee409c625e1a2d8f5033631840e6ce1dcb64', 1, 1, 1);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `auth_mapper`
+-- Indices de la tabla `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `configuration`
+-- Indices de la tabla `configuration`
 --
 ALTER TABLE `configuration`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `fee`
+-- Indices de la tabla `fee`
 --
 ALTER TABLE `fee`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `guardian`
+-- Indices de la tabla `guardian`
 --
 ALTER TABLE `guardian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `guardian_student_relationship`
+-- Indices de la tabla `guardian_student_relationship`
 --
 ALTER TABLE `guardian_student_relationship`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `payment`
+-- Indices de la tabla `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `resource`
+-- Indices de la tabla `resource`
 --
 ALTER TABLE `resource`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `role`
+-- Indices de la tabla `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `student`
+-- Indices de la tabla `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indices de la tabla `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `auth_mapper`
+-- AUTO_INCREMENT de la tabla `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
--- AUTO_INCREMENT for table `configuration`
+-- AUTO_INCREMENT de la tabla `configuration`
 --
 ALTER TABLE `configuration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `fee`
+-- AUTO_INCREMENT de la tabla `fee`
 --
 ALTER TABLE `fee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `guardian`
+-- AUTO_INCREMENT de la tabla `guardian`
 --
 ALTER TABLE `guardian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
--- AUTO_INCREMENT for table `guardian_student_relationship`
+-- AUTO_INCREMENT de la tabla `guardian_student_relationship`
 --
 ALTER TABLE `guardian_student_relationship`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT de la tabla `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT for table `resource`
+-- AUTO_INCREMENT de la tabla `resource`
 --
 ALTER TABLE `resource`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=90;
 --
--- AUTO_INCREMENT for table `role`
+-- AUTO_INCREMENT de la tabla `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `student`
+-- AUTO_INCREMENT de la tabla `student`
 --
 ALTER TABLE `student`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
