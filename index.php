@@ -196,23 +196,37 @@
         '_controller' => 'StudentController::deleteStudentAction',
         'methods' => 'GET'
     )));
-    $collection->attachRoute(new Route('/DeleteUserAction', array(
-        '_controller' => 'StudentController::deleteStudentAction',
+
+    $collection->attachRoute(new Route('/AddConfiguration/', array(
+        '_controller' => 'ConfigurationController::addConfigurationView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/AddConfigurationAction/', array(
+        '_controller' => 'ConfigurationController::addConfigurationAction',
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/ListConfiguration/', array(
-        '_controller' => 'ConfigurationController::listConfigurationView',
+    $collection->attachRoute(new Route('/ListConfigurations/', array(
+        '_controller' => 'ConfigurationController::listConfigurationsView',
         'methods' => 'GET'
     )));
-    $collection->attachRoute(new Route('/UpdateConfiguration/', array(
+
+    $collection->attachRoute(new Route('/UpdateConfiguration/:configuration', array(
         '_controller' => 'ConfigurationController::updateConfigurationView',
         'methods' => 'GET'
     )));
+
     $collection->attachRoute(new Route('/UpdateConfigurationAction/', array(
         '_controller' => 'ConfigurationController::updateConfigurationAction',
         'methods' => 'POST'
     )));
+
+    $collection->attachRoute(new Route('/DeleteConfigurationAction/:configuration', array(
+        '_controller' => 'ConfigurationController::deleteConfigurationAction',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/SiteUnavailable/', array(
         '_controller' => 'ConfigurationController::siteUnavailableView',
         'methods' => 'GET'

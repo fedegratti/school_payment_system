@@ -1,42 +1,74 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Skeith
- * Date: 04/10/2015
- * Time: 18:17
- */
 class ConfigurationModel extends PDORepository
 {
-    public  function updateConfiguration($configData)
+    public function createConfiguration($configuration)
     {
-        $query = "UPDATE configuration SET siteEnabled=?, title = ?,
-                                            description=?, contactEmail=?,
-                                            elementsPerList=?, disabledSiteMessage=?";
+        if( !$this->ConfigurationAlreadyExists($configuration["configuration"]))
+        {
+            $query="INSERT INTO configuration (configuration,value) VALUES (?,?)";
 
-        $this->executeQuery($query,$configData["siteEnabled"],$configData["title"],
-            $configData["description"],$configData["contactEmail"],$configData["elementsPerList"],
-            $configData["disabledSiteMessage"]);
+            $stmnt = $this->executeQuery($query,array($configuration["configuration"],$configuration["value"]));
 
+            return "SUCCESS";
+        }
+        return "ERROR";
     }
 
-    public  function getConfiguration()
+    public function updateConfiguration($config)
+    {
+        if($this->ConfigurationAlreadyExists($config['configuration']))
+        {
+            $query = "UPDATE configuration SET configuration=?, value = ? WHERE configuration=?";
+
+            $this->executeQuery($query,array($config["configuration"],$config["value"],$config["oldConfiguration"]));
+
+            return "SUCCESS";
+        }
+        return "ERROR";
+    }
+
+    public function getConfigurations()
     {
         $query = "SELECT * FROM configuration";
-        return $this->executeQuery($query,array()) ->fetch();
+        return $this->executeQuery($query,array()) ->fetchAll();
     }
 
-    public  function isSiteEnabled()
+    public function getConfiguration($configuration)
     {
-        $query = "SELECT siteEnabled from configuration";
-        $stmnt =  $this->executeQuery($query,array());
-        return $stmnt ->fetch()["siteEnabled"];
+        $query = "SELECT * from configuration where configuration = ?";
+        $stmnt =  $this->executeQuery($query,array($configuration));
+        return $stmnt ->fetch();
     }
 
-    public  function getDisabledSiteMessage()
+    public function isSiteEnabled ()
     {
-        $query = "SELECT disabledSiteMessage from configuration";
-        $stmnt =  $this->executeQuery($query,array());
-        return $stmnt ->fetch()["disabledSiteMessage"];
+        $siteEnabled = $this->getConfiguration("siteEnabled")["value"];
+        return ($siteEnabled == 1);
+    }
+
+    public function ConfigurationAlreadyExists($configuration)
+    {
+        $query="SELECT COUNT(*) FROM configuration WHERE configuration= ?";
+
+        $stmnt = $this->executeQuery($query, array($configuration));
+
+        if ($stmnt->fetchColumn() > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function deleteConfiguration($configuration)
+    {
+        if($this->ConfigurationAlreadyExists($configuration))
+        {
+            $query= "DELETE FROM configuration where configuration=?";
+
+            $stmnt = $this->executeQuery($query,array($configuration));
+            return "SUCCESS";
+        }
+        return "ERROR";
     }
 }

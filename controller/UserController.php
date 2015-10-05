@@ -49,11 +49,6 @@ class UserController
         }
     }
 
-    public static function deleteUserView()
-    {
-        AuthController::checkPermission();
-        echo "falta implementar vista";
-    }
     public static function deleteUserAction($id)
     {
         AuthController::checkPermission();

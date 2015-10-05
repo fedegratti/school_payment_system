@@ -2,32 +2,72 @@
 
 class ConfigurationController
 {
-    public static function listConfigurationView()
+    public static function addConfigurationView()
     {
-        $configModel = new ConfigurationModel();
-
-        (new ListConfigurationView())->show($configModel->getConfiguration());
+        AuthController::checkPermission();
+        $view = new AddConfigurationView();
+        $view->show();
     }
 
-    public static function updateConfigurationView()
+    public static function addConfigurationAction ()
     {
+        AuthController::checkPermission();
+        $result = (new ConfigurationModel()) ->createConfiguration($_POST);
+        if ($result == "SUCCESS")
+        {
+            header('Location: /ListConfigurations/');
+        }
+    }
+
+    public static function listConfigurationsView()
+    {
+        AuthController::checkPermission();
         $configModel = new ConfigurationModel();
-        $configModel->getConfiguration();
+
+        (new ListConfigurationView())->show($configModel->getConfigurations());
+    }
+
+    public static function updateConfigurationView($configuration)
+    {
+        AuthController::checkPermission();
+        $result = (new ConfigurationModel()) ->getConfiguration($configuration);
+
+        $view = new UpdateConfigurationView();
+        $view->show($result);
     }
     public static function updateConfigurationAction()
     {
-        $configModel = new ConfigurationModel();
-        $configModel->updateConfiguration($_POST);
+        AuthController::checkPermission();
+        $result = (new ConfigurationModel()) ->updateConfiguration($_POST);
+        if ($result == "SUCCESS")
+        {
+            header('Location: /ListConfigurations');
+        }
     }
 
-    public  static function isSiteEnabled()
+    public static function isSiteEnabled()
     {
         $configModel = new ConfigurationModel();
         return $configModel->isSiteEnabled();
     }
-    public  static function siteUnavailableView()
+    public static function siteUnavailableView()
     {
         $configModel = new ConfigurationModel();
-        (new UnavailableSiteView())->show($configModel->getDisabledSiteMessage());
+        (new UnavailableSiteView())->show($configModel->getConfiguration("disabledSiteMessage")["value"]);
+    }
+
+    public static function deleteConfigurationAction($configuration)
+    {
+        AuthController::checkPermission();
+        $result = (new ConfigurationModel()) ->deleteConfiguration($configuration);
+        if($result == "SUCCESS")
+        {
+            header('Location: /ListConfigurations');
+        }
+        else
+        {
+            echo "fallo el delete, conf no existe";
+        }
+
     }
 }
