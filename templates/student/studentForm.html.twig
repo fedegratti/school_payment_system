@@ -8,7 +8,10 @@
 	<script type="application/javascript">
 		$(document).ready (function()
 		{
-			$('#documentType').val({{ student.studentType }});
+			$('#documentType').val({{ student.documentType }});
+            $('#sex').val({{ student.sex }});
+
+
 
 		});
 	</script>
@@ -28,7 +31,7 @@
 			<form action="/{{ action }}" method="post" class="form-horizontal">
 
                 <label>Tipo de documento:</label>
-                <select name="documentType" class="form-control">
+                <select id="documentType" name="documentType" class="form-control">
                     <option value="0">D.N.I.</option>
                     <option value="1">L.E.</option>
                 </select>
@@ -46,9 +49,9 @@
                 <input type="date" name="birthDate" class="form-control"  value="{{student.birthDate}}" required >
 
                 <label for="sex">Sexo:</label>
-                <select name="sex" class="form-control">
-                    <option value="m">Masculino</option>
-                    <option value="f">Femenino</option>
+                <select name="sex" id="sex" class="form-control">
+                    <option value="0">Masculino</option>
+                    <option value="1">Femenino</option>
                 </select>
 
                 <label for="email">Correo electr&oacute;nico:</label>
@@ -65,7 +68,7 @@
                     </div>
 
                     <label>Acci&oacute;n del responsable:</label>
-                    <select name="guardianType" class="form-control">
+                    <select id="guardianType" name="guardianType" class="form-control">
                         <option value="createGuardian">Crear Responsable</option>
                         <option value="chooseGuardian">Elegir Responsable </option>
                     </select>
