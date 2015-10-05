@@ -171,7 +171,7 @@
         '_controller' => 'GuardianController::updateGuardianView',
         'methods' => 'GET'
     )));
-    $collection->attachRoute(new Route('/UpdateGuardian/:guardianID', array(
+    $collection->attachRoute(new Route('/UpdateGuardianAction/', array(
         '_controller' => 'GuardianController::updateGuardianAction',
         'methods' => 'POST'
     )));

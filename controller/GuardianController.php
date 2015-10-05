@@ -48,11 +48,11 @@ class GuardianController
         (new UpdateGuardianView())->show(($guardianModel->getGuardian($guardianID)));
     }
 
-    public  static function updateGuardianAction($guardianID)
+    public  static function updateGuardianAction()
     {
         AuthController::checkPermission();
         $guardianModel=new GuardianModel();
-        $guardianModel->updateGuardian($guardianID, $_POST);
+        $guardianModel->updateGuardian($_POST);
         header('Location: /ListGuardians/');
     }
     public static function associateGuardianAction($guardianID, $studentID)

@@ -63,14 +63,14 @@ class GuardianModel extends PDORepository
         $this->executeQuery($query,array($guardianID));
     }
 
-    public function updateGuardian($guardianID, $guardianData)
+    public function updateGuardian($guardianData)
     {
         $query = "UPDATE guardian set kind=?,lastName=?,firstName=?,birthDate=?,sex=?,email=?,phone=?, address=?
                WHERE id=?";
 
         $this->executeQuery($query, array($guardianData["kind"], $guardianData["lastName"],
             $guardianData["firstName"], $guardianData["birthDate"], $guardianData["sex"],
-            $guardianData["email"], $guardianData["phone"], $guardianData["address"], $guardianID));
+            $guardianData["email"], $guardianData["phone"], $guardianData["address"], $guardianData["guardianID"]));
 
 
     }
