@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2015 a las 07:32:22
+-- Tiempo de generación: 05-10-2015 a las 08:46:08
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -30,17 +30,25 @@ CREATE TABLE IF NOT EXISTS `auth_mapper` (
   `id` int(11) NOT NULL,
   `roleId` int(11) NOT NULL,
   `resourceId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `auth_mapper`
 --
 
 INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
-(8, 3, 70),
-(9, 3, 62),
-(10, 2, 70),
-(11, 2, 62);
+(12, 3, 70),
+(13, 3, 62),
+(14, 2, 70),
+(15, 2, 62),
+(16, 2, 65),
+(17, 2, 66),
+(18, 2, 67),
+(19, 2, 68),
+(20, 2, 69),
+(21, 2, 70),
+(22, 2, 71),
+(23, 2, 72);
 
 -- --------------------------------------------------------
 
@@ -455,7 +463,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `configuration`
 --
