@@ -31,6 +31,30 @@ class GuardianController
        $view->show($guardians, $guardiansAmount, $studentID);
     }
 
+    public  static function deleteGuardianAction($guardianID)
+    {
+
+        AuthController::checkPermission();
+        $guardianModel=new GuardianModel();
+        $guardianModel->deleteGuardian($guardianID);
+
+        header('Location: /ListGuardians/');
+    }
+
+    public  static function updateGuardianView($guardianID)
+    {
+        AuthController::checkPermission();
+        $guardianModel=new GuardianModel();
+        (new UpdateGuardianView())->show(($guardianModel->getGuardian($guardianID)));
+    }
+
+    public  static function updateGuardianAction($guardianID)
+    {
+        AuthController::checkPermission();
+        $guardianModel=new GuardianModel();
+        $guardianModel->updateGuardian($guardianID, $_POST);
+        header('Location: /ListGuardians/');
+    }
     public static function associateGuardianAction($guardianID, $studentID)
     {
         AuthController::checkPermission();

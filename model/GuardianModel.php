@@ -44,9 +44,34 @@ class GuardianModel extends PDORepository
 
     public function getGuardiansAmount()
     {
-        $query = "SELECT COUNT(id) FROM guardian";
+        $query = "SELECT COUNT(id) FROM guardian where deleted=false";
 
         $stmt = $this->executeQuery($query, array());
         return $stmt->fetch()[0];
+    }
+
+    public function getGuardian($guardianID)
+    {
+        $query = "SELECT * FROM guardian where id=? and deleted=false";
+        return $this->executeQuery($query,array($guardianID))->fetch();
+
+    }
+    public function deleteGuardian($guardianID)
+    {
+
+        $query = "UPDATE guardian set deleted=true where id=?";
+        $this->executeQuery($query,array($guardianID));
+    }
+
+    public function updateGuardian($guardianID, $guardianData)
+    {
+        $query = "UPDATE guardian set kind=?,lastName=?,firstName=?,birthDate=?,sex=?,email=?,phone=?, address=?
+               WHERE id=?";
+
+        $this->executeQuery($query, array($guardianData["kind"], $guardianData["lastName"],
+            $guardianData["firstName"], $guardianData["birthDate"], $guardianData["sex"],
+            $guardianData["email"], $guardianData["phone"], $guardianData["address"], $guardianID));
+
+
     }
 }

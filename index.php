@@ -153,6 +153,19 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/DeleteGuardian/:guardianID', array(
+        '_controller' => 'GuardianController::deleteGuardianAction',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/UpdateGuardian/:guardianID', array(
+        '_controller' => 'GuardianController::updateGuardianView',
+        'methods' => 'GET'
+    )));
+    $collection->attachRoute(new Route('/UpdateGuardian/:guardianID', array(
+        '_controller' => 'GuardianController::updateGuardianAction',
+        'methods' => 'POST'
+    )));
+
 //    $collection->attachRoute(new Route('/ListGuardians/', array(
 //        '_controller' => 'GuardianController::listGuardiansView',
 //        'methods' => 'GET'
