@@ -50,7 +50,7 @@ abstract class PDORepository {
         return $list;
     }
 
-    protected function getLastInsertedID()
+    public function getLastInsertedID()
     {
         return static ::$lastInsertedID;
     }

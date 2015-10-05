@@ -11,7 +11,7 @@ class StudentModel extends PDORepository
 
         $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
             $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
-            $studentData["email"],$studentData["address"],$studentData["admissionDate"], null));
+            $studentData["email"],$studentData["address"],null, null));
 
 
         return $this->getLastInsertedID();
