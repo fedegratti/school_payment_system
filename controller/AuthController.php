@@ -5,9 +5,6 @@ class AuthController
     public static function checkPermission()
     {
 
-        //para evitar la autenticacion
-        return;
-
         $resourceCalled = debug_backtrace()[1]['function'];
         session_start();
 
