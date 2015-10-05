@@ -53,7 +53,7 @@ class GuardianController
         AuthController::checkPermission();
         $guardianModel=new GuardianModel();
         $guardianModel->updateGuardian($_POST);
-        header('Location: /ListStudents');
+        header('Location: /ListGuardians/');
     }
     public static function associateGuardianAction($guardianID, $studentID)
     {
