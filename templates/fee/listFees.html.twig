@@ -29,8 +29,10 @@
             <th>Tipo</th>
             <th>comisi&oacute;n</th>
             <th>Fecha de creaci&oacute;n</th>
+            {% if role != 3  %}
             <th>Edit</th>
             <th>Delete</th>
+            {% endif %}
           </tr>
           {% for fee in fees %}
             <tr class="{% if fees.odd == true  %}">odd{% else %}even{% endif %}">
@@ -41,16 +43,20 @@
               <td>{{kind[fee.kind] }}</td>
               <td>{{ fee.collectorPayment }}</td>
               <td>{{ fee.createDate }}</td>
+              {% if role != 3  %}
               <td><a href="/UpdateFee/{{ fee.id }}">Edit</a>
               </td>
               <td><a href="/DeleteFee/{{ fee.id }}">Delete</a>
               </td>
+              {% endif %}
             </tr>
           {% endfor %}
         </table>
       </div>
     {% endif %}
 
+    {% if role != 3  %}
     <a href="/addFee" class="btn btn-lg btn-success pull-right">Add</a>
+    {% endif %}
   </div>
 {% endblock %}

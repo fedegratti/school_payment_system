@@ -66,6 +66,21 @@ class FeeModel extends PDORepository
 		return $this->executeQuery($query,array($studentID))->fetchAll();
 	}
 
+	public function getExpiredFeesOfStudent($studentID)
+	{
+
+		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.createDate
+                 FROM fee as f
+                 WHERE f.id not in (select fe.id
+                                     FROM payment as p
+                         				  inner join fee as fe on (p.feeId = fe.id)
+                  					 WHERE p.studentId = ?) and (YEAR(CURRENT_DATE ) >= f.year and
+                  												MONTH(CURRENT_DATE ) > f.month )
+                  order by f.year, f.month";
+
+		return $this->executeQuery($query,array($studentID))->fetchAll();
+	}
+
 	public function listFees()
 	{
 		$query = "select * from fee where deleted=false";

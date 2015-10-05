@@ -30,8 +30,10 @@
                   <th>Tipo</th>
                   <th>comisi&oacute;n</th>
                   <th>Fecha de creaci&oacute;n</th>
+                  {% if role != 3  %}
                   <th>Pagar</th>
                   <th>Becar</th>
+                  {% endif %}
               </tr>
               {% for fee in unPayedFees %}
                   <tr class="{% if unPayedFees.odd == true  %}">odd{% else %}even{% endif %}">
@@ -42,9 +44,10 @@
                       <td>{{kind[fee.kind] }}</td>
                       <td>{{ fee.collectorPayment }}</td>
                       <td>{{ fee.createDate }}</td>
+                      {% if role != 3  %}
                       <td><a href="/PayOrGrantFee/{{ fee.id }}/{{ student.id }}/0">Pagar</a></td>
                       <td><a href="/PayOrGrantFee/{{ fee.id }}/{{ student.id }}/1">Becar</a></td>
-
+                      {% endif %}
                   </tr>
               {% endfor %}
           </table>
@@ -79,6 +82,37 @@
             </tr>
           {% endfor %}
         </table>
+      </div>
+    {% endif %}
+
+    <h3 class="sub-header">Cuotas vencidas</h3>
+    {% if expiredFees|length  == 0 %}
+      <p>No hay cuotas vencidas.</p>
+    {% endif %}
+    {% if expiredFees|length  > 0 %}
+      <div class="table-responsive">
+          <table class="table table-striped">
+              <tr class="even">
+                  <th>N&uacute;mero</th>
+                  <th>A&ntilde;o</th>
+                  <th>Mes</th>
+                  <th>Monto</th>
+                  <th>Tipo</th>
+                  <th>comisi&oacute;n</th>
+                  <th>Fecha de creaci&oacute;n</th>
+              </tr>
+              {% for fee in expiredFees %}
+                  <tr class="{% if expiredFees.odd == true  %}">odd{% else %}even{% endif %}">
+                      <td>{{ fee.number }}</td>
+                      <td>{{ fee.year }}</td>
+                      <td>{{ fee.month }}</td>
+                      <td>{{ fee.amount }}</td>
+                      <td>{{kind[fee.kind] }}</td>
+                      <td>{{ fee.collectorPayment }}</td>
+                      <td>{{ fee.createDate }}</td>
+                  </tr>
+              {% endfor %}
+          </table>
       </div>
     {% endif %}
 

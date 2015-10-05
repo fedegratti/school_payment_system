@@ -34,9 +34,9 @@ class FeeController
         $payedFees = $feeModel->getPayedFeesOfStudent($studentId);
         $unPayedFees = $feeModel->getUnPayedFeesOfStudent($studentId);
         $student = $studentModel->getStudent($studentId);
-
+        $expiredFees = $feeModel->getExpiredFeesOfStudent($studentId);
         $view = new listStudentFeesView();
-        $view->show($payedFees,$unPayedFees,$student);
+        $view->show($payedFees,$unPayedFees,$expiredFees,$student);
     }
     public static function listFeesView()
     {

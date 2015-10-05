@@ -39,7 +39,7 @@
 			<form action="/{{ action }}" method="post" class="form-horizontal">
 
 				<label>Tipo:</label>
-				<select id="kind" name="kind" class="form-control">
+				<select id="kind" name="kind" class="form-control" required>
                     <option value="" disabled selected>Selecciona una opci&oacute;n</option>
 					<option value="1">Matricula</option>
 					<option value="2">Mensual</option>
@@ -72,7 +72,7 @@
 				<input type="hidden" name="id" value="{{ fee.id }}">
 				<br>
 				<br>
-				<button type="submit" class="btn btn-lg btn-success pull-right" >Enviar Pago</button>
+				<button type="submit" class="btn btn-lg btn-success pull-right" >Agregar</button>
 			</form>
 		</div>
 	</div> <!-- /container -->

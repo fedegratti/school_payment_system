@@ -11,8 +11,12 @@ class AuthController
         {
             header('Location: /login/No_iniciaste_sesion');
         }
-        
-        if ($_SESSION['role'] == 1) return;
+
+
+        if ($_SESSION['role'] == 1)
+        {
+            return;
+        }
 
         if(!(new AuthModel())->authenticate($_SESSION['role'],$resourceCalled))
         {
