@@ -7,11 +7,9 @@ class FeeModel extends PDORepository
 	{
 		$query="INSERT INTO fee (year,month,number,amount,kind,collectorPayment,createDate) VALUES (?,?,?,?,?,?,CURRENT_DATE)";
 
-
 		$stmnt = $this->executeQuery($query,array($feeData["year"],$feeData["month"], $feeData["number"],
 		 										  $feeData["amount"],$feeData["kind"], $feeData["collectorPayment"]));
 	}
-
 
 	public function updateFee($feeData)
 	{
@@ -29,20 +27,26 @@ class FeeModel extends PDORepository
 		$stmnt = $this->executeQuery($query,array($idFee));
 	}
 
-	public function getFee($idFee)
+	public function getFee($feeId)
 	{
 		$query = "select * from fee where id= ? and deleted=false";
-		$stmnt = $this->executeQuery($query,array($idFee));
+		$stmnt = $this->executeQuery($query,array($feeId));
 		return $stmnt ->fetch();
 	}
+
+    public function payOrGrantFee($feeId,$studentId,$grant)
+    {
+        $query = "INSERT INTO payment (studentId,feeId,grantholding,createDate) VALUES (?,?,?,CURRENT_DATE)";
+        $stmnt = $this->executeQuery($query,array($studentId,$feeId,$grant));
+    }
 
 	public function getPayedFeesOfStudent($studentID)
 	{
 
-		$query= "SELECT f.number, f.year, f.month, f.amount
+		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.createDate
                  FROM payment as p
-                         inner join fee as f on (p.idFee = f.id)
-                  WHERE p.idStudent = ?
+                         inner join fee as f on (p.feeId = f.id)
+                  WHERE p.studentId = ?
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();
@@ -51,12 +55,12 @@ class FeeModel extends PDORepository
 	public function getUnPayedFeesOfStudent($studentID)
 	{
 
-		$query= "SELECT f.number, f.year, f.month, f.amount
+		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.createDate
                  FROM fee as f
                  WHERE f.id not in (select fe.id
                                      FROM payment as p
-                         				  inner join fee as fe on (p.idFee = fe.id)
-                  					WHERE p.idStudent = ?)
+                         				  inner join fee as fe on (p.feeId = fe.id)
+                  					WHERE p.studentId = ?)
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();
