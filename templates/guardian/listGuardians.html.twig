@@ -55,7 +55,7 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                {% for i in 0..(guardiansAmount//10) %}
+                {% for i in 0..(guardiansAmount//paginationNumber) %}
                     <li><a href="/listGuardians/{{ i }}">{{ i+1 }}</a></li>
                 {% endfor %}
                 <li>

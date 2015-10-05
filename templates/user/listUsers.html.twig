@@ -39,6 +39,24 @@
                     {% endfor %}
                 </table>
             </div>
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    {% for i in 0..( usersAmount // paginationNumber ) %}
+                        <li><a href="/listUsers/{{ i }}">{{ i+1 }}</a></li>
+                    {% endfor %}
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         {% endif %}
 
 		<a href="/addUser" class="btn btn-lg btn-success pull-right">Add</a>

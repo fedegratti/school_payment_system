@@ -59,6 +59,11 @@
 	    'methods' => 'POST'
 	)));
 
+    $collection->attachRoute(new Route('/ListUsers/:index', array(
+        '_controller' => 'UserController::listUsersView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/ListUsers/', array(
         '_controller' => 'UserController::listUsersView',
         'methods' => 'GET'

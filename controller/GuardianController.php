@@ -22,13 +22,15 @@ class GuardianController
         AuthController::checkPermission();
         $guardianModel=new GuardianModel();
 
+        $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
+       $guardians = $guardianModel->listGuardians($index,$paginationNumber);
 
-       $guardians = $guardianModel->listGuardians($index);
        $guardiansAmount = $guardianModel->getGuardiansAmount();
+
 
        $view = new listGuardiansView();
 
-       $view->show($guardians, $guardiansAmount, $studentID);
+       $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
     }
 
     public  static function deleteGuardianAction($guardianID)

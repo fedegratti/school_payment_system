@@ -14,7 +14,6 @@ class AuthController
 
         if (!isset($_SESSION['role']))
         {
-
             header('Location: /login/No_iniciaste_sesion');
         }
 

@@ -47,6 +47,11 @@ class ConfigurationModel extends PDORepository
         return ($siteEnabled == 1);
     }
 
+    public function getPaginationNumber ()
+    {
+        return $this->getConfiguration("paginationNumber")["value"];
+    }
+
     public function ConfigurationAlreadyExists($configuration)
     {
         $query="SELECT COUNT(*) FROM configuration WHERE configuration= ?";

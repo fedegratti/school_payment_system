@@ -11,13 +11,13 @@ class LoginController
     public static function LoginAction ()
     {
         $loginModel=new LoginModel();
-        $regId = $loginModel->authenticate($_POST['username'],$_POST['password']);
+        $roleId = $loginModel->authenticate($_POST['username'],$_POST['password']);
 
-        if ($regId != "error")
+        if ($roleId != "error")
         {
             session_start();
 
-            $_SESSION['role'] = $regId;
+            $_SESSION['role'] = $roleId;
 
             header('Location: /ListUsers/');
         }

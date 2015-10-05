@@ -24,10 +24,14 @@ class UserController
     public static function listUsersView()
     {
         AuthController::checkPermission();
-        $result = (new UserModel()) ->getUsers();
+        $userModel = new UserModel();
+        $result = $userModel->getUsers();
+
+        $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
+        $usersAmount = $userModel->getUsersAmount();
 
         $view = new ListUsersView();
-        $view ->show($result);
+        $view ->show($result,$paginationNumber,$usersAmount);
     }
 
     public static function updateUserView($id)

@@ -65,6 +65,14 @@ class UserModel extends PDORepository
 		return $user;
 	}
 
+	public function getUsersAmount()
+	{
+		$query = "SELECT COUNT(id) FROM users where deleted=false";
+
+		$stmt = $this->executeQuery($query, array());
+		return $stmt->fetch()[0];
+	}
+
     public  function deleteUser($id)
     {
         if($this->UserAlreadyExists($id))
