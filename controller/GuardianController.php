@@ -21,12 +21,13 @@ class GuardianController
     {
         AuthController::checkPermission();
         $guardianModel=new GuardianModel();
-       // $guardianModel->cargarDB();
+
 
        $guardians = $guardianModel->listGuardians($index);
        $guardiansAmount = $guardianModel->getGuardiansAmount();
 
        $view = new listGuardiansView();
+
        $view->show($guardians, $guardiansAmount, $studentID);
     }
 

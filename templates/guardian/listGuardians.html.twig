@@ -28,7 +28,7 @@
             <th>Email</th>
             <th>Tipo</th>
             <th>Sexo</th>
-            <th>Seleccionar</th>
+           {% if studentID != null %} <th>Seleccionar</th> {% endif %}
             <th>Edit</th>
             <th>Delete</th>
           </tr>
@@ -39,7 +39,7 @@
               <td>{{ guardian.email }}</td>
               <td>{{kind[guardian.kind]}}</td>
               <td>{{ sex[guardian.sex]}}</td>
-              <td><a href="/associateGuardianAction/{{ guardian[0] }}/{{ studentID }}">Seleccionar</a></td>
+                {% if studentID != null %} <td><a href="/associateGuardianAction/{{ guardian[0] }}/{{ studentID }}">Seleccionar</a></td> {% endif %}
               <td><a href="/updateGuardian/{{ guardian.id }}">Edit</a>
               </td>
               <td><a href="/deleteGuardian/{{ guardian.id }}">Delete</a>
