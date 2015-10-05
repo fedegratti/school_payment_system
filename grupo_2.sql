@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2015 a las 08:46:08
+-- Tiempo de generación: 05-10-2015 a las 10:28:27
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `auth_mapper` (
   `id` int(11) NOT NULL,
   `roleId` int(11) NOT NULL,
   `resourceId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `auth_mapper`
@@ -48,7 +48,8 @@ INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
 (20, 2, 69),
 (21, 2, 70),
 (22, 2, 71),
-(23, 2, 72);
+(23, 2, 72),
+(24, 3, 71);
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `collectorPayment` decimal(10,0) NOT NULL,
   `createDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `fee`
@@ -105,7 +106,8 @@ INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collector
 (6, 1, 1, 1, '1', 0, '1', '2015-10-04', 0),
 (7, 2, 3, 4, '3', 1, '12', '2015-10-05', 0),
 (8, 2, 2, 5, '2', 2, '2', '2015-10-05', 0),
-(9, 1, 2, 4, '123', 1, '12', '2015-10-05', 0);
+(9, 1, 2, 4, '123', 1, '12', '2015-10-05', 0),
+(10, 2011, 12, 4, '200', 2, '300', '2015-10-05', 0);
 
 -- --------------------------------------------------------
 
@@ -364,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `enabled` tinyint(1) NOT NULL,
   `roleId` int(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `user`
@@ -373,23 +375,26 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, `deleted`) VALUES
 (1, 'HOLIS2', 'AQWEQWE@asd.com', 'asd', 1, 1, 0),
 (2, 'hola rama ah re', 'rama@gay', 'asd', 1, 0, 0),
-(4, 'asdasd', NULL, 'asd', 1, 0, 0),
+(4, 'asdasd', NULL, 'asd', 1, 0, 1),
 (5, 'zxc', NULL, 'zxc', 1, 0, 1),
-(6, 'zxczxcasd', NULL, 'asd', 1, 0, 0),
+(6, 'zxczxcasd', NULL, 'asd', 1, 0, 1),
 (7, 'a', NULL, '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', 1, 1, 1),
 (8, 'b', NULL, 'b', 1, 0, 1),
-(9, 'qweqwe 222222', 'ramiro_fages@hotmail.comssssss', 'qwe', 1, 2, 0),
-(10, 'asdasdsaasdasdasd', NULL, 'asd', 1, 0, 0),
-(11, 'ffdd', NULL, 'dff', 1, 0, 0),
-(12, 'andaaaa', NULL, 'asdasd', 1, 2, 0),
-(13, 'ola k ase', NULL, 'asd', 1, 2, 0),
-(14, 'nuevo', NULL, 'usuario', 1, 2, 0),
-(15, 'rama', NULL, '123', 1, 2, 0),
+(9, 'qweqwe 222222', 'ramiro_fages@hotmail.comssssss', 'qwe', 1, 2, 1),
+(10, 'asdasdsaasdasdasd', NULL, 'asd', 1, 0, 1),
+(11, 'ffdd', NULL, 'dff', 1, 0, 1),
+(12, 'andaaaa', NULL, 'asdasd', 1, 2, 1),
+(13, 'ola k ase', NULL, 'asd', 1, 2, 1),
+(14, 'nuevo', NULL, 'usuario', 1, 2, 1),
+(15, 'rama', NULL, '123', 1, 2, 1),
 (16, 'asd', NULL, 'f10e2821bbbea527ea02200352313bc059445190', 1, 1, 1),
 (17, '321', NULL, '5f6955d227a320c7f1f6c7da2a6d96a851a8118f', 1, 3, 0),
 (18, 'pepe', 'a@a', '265392dc2782778664cc9d56c8e3cd9956661bb0', 1, 2, 0),
 (19, 'carlos', 'a@a', 'ab5e2bca84933118bbc9d48ffaccce3bac4eeb64', 1, 1, 0),
-(20, '555', 'a@a', '8effee409c625e1a2d8f5033631840e6ce1dcb64', 1, 1, 1);
+(20, '555', 'a@a', '8effee409c625e1a2d8f5033631840e6ce1dcb64', 1, 1, 1),
+(21, 'admin', 'asd@asd', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 1, 0),
+(22, 'consulta', 'a@a', 'b71deb9fd5e102295b64777fc8806019b9965813', 1, 3, 0),
+(23, 'gestion', 'ramiro_fages@hotmail.com', 'e66bb2fabbe7b86def4cb857aa62748ce7880394', 1, 2, 0);
 
 --
 -- Índices para tablas volcadas
@@ -463,7 +468,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT de la tabla `configuration`
 --
@@ -473,7 +478,7 @@ ALTER TABLE `configuration`
 -- AUTO_INCREMENT de la tabla `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `guardian`
 --
@@ -508,7 +513,7 @@ ALTER TABLE `student`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
