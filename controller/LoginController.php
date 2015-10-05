@@ -10,6 +10,8 @@ class LoginController
 
     public static function LoginAction ()
     {
+        $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListUsers/", 3 => "/ListAdmittedStudents/");
+
         $loginModel=new LoginModel();
         $roleId = $loginModel->authenticate($_POST['username'],$_POST['password']);
 
@@ -19,7 +21,7 @@ class LoginController
 
             $_SESSION['role'] = $roleId;
 
-            header('Location: /ListUsers/');
+            header('Location: '.$rolesAction[$roleId]);
         }
         else
         {
