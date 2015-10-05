@@ -143,6 +143,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/ListFees/:id', array(
+        '_controller' => 'FeeController::listStudentFeesView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/ListGuardians/:index', array(
         '_controller' => 'GuardianController::listGuardiansView',
         'methods' => 'GET'

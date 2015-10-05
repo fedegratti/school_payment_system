@@ -32,8 +32,8 @@
             <th>Email</th>
             <th>Sexo</th>
             {% if admitted == true %} <th>Ver cuotas</th> {% endif %}
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Editar</th>
+            <th>Borrar</th>
           </tr>
           {% for student in students %}
             <tr class="{% if students.odd == true  %}">odd{% else %}even{% endif %}">
@@ -41,11 +41,9 @@
               <td>{{ student.lastName }}</td>
               <td>{{ student.email }}</td>
               <td>{{ sex[student.sex]}}</td>
-              {% if admitted == true %}<td><a href="{{ selectAction }}">Seleccionar</a></td>{% endif %}
-              <td><a href="/UpdateStudent/{{ student.id }}">Edit</a>
-              </td>
-              <td><a href="/DeleteStudentAction/{{ student.id }}">Delete</a>
-              </td>
+              {% if admitted == true %}<td><a href="/ListFees/{{ student.id }}">Ver cuotas</a></td>{% endif %}
+              <td><a href="/UpdateStudent/{{ student.id }}">Edit</a></td>
+              <td><a href="/DeleteStudentAction/{{ student.id }}">Delete</a></td>
             </tr>
           {% endfor %}
         </table>

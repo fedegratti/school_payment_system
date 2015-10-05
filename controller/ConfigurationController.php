@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Skeith
- * Date: 04/10/2015
- * Time: 18:29
- */
 class ConfigurationController
 {
     public static function listConfigurationView()
