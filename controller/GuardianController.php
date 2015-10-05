@@ -14,7 +14,7 @@ class GuardianController
         $guardianID = (new GuardianModel())->createGuardian($_POST);
 
         (new GuardianOfStudentModel())->associateStudentWithGuardian($_POST["studentID"],$guardianID);
-        header('Location: /backend');
+        header('Location: /ListGuardians');
     }
 
     public static function listGuardiansView($index = 0,$studentID = null)
@@ -38,7 +38,7 @@ class GuardianController
         $guardianModel=new GuardianModel();
         $guardianModel->deleteGuardian($guardianID);
 
-        header('Location: /ListGuardians/');
+        header('Location: /ListGuardians');
     }
 
     public  static function updateGuardianView($guardianID)
@@ -53,12 +53,12 @@ class GuardianController
         AuthController::checkPermission();
         $guardianModel=new GuardianModel();
         $guardianModel->updateGuardian($_POST);
-        header('Location: /ListGuardians/');
+        header('Location: /ListStudents');
     }
     public static function associateGuardianAction($guardianID, $studentID)
     {
         AuthController::checkPermission();
         (new GuardianOfStudentModel())->associateStudentWithGuardian($studentID,$guardianID);
-        header('Location: /login');
+        header('Location: /ListStudents');
     }
 }
