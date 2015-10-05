@@ -10,6 +10,7 @@ function __autoload($classname)
 
     set_include_path(get_include_path() . PATH_SEPARATOR . 'view');
     set_include_path(get_include_path() . PATH_SEPARATOR . 'view/common');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'view/configuration');
     set_include_path(get_include_path() . PATH_SEPARATOR . 'view/fee');
     set_include_path(get_include_path() . PATH_SEPARATOR . 'view/guardian');
     set_include_path(get_include_path() . PATH_SEPARATOR . 'view/student');

@@ -14,6 +14,7 @@ class FeeController
         AuthController::checkPermission();
         $feeRepository = new FeeModel();
         $feeRepository->createFee($_POST);
+        header("Location: /ListFees");
     }
 
     public static function payOrGrantFeeView($feeId,$studentId,$grant)

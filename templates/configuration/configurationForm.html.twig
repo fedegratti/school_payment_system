@@ -1,0 +1,38 @@
+{% extends '/common/base.html.twig' %}
+
+{% block title %}Alta de configuraci&oacute;nes{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+<div class="container">
+    <h2 class="page-header">
+        {% if configuration.id==null or configuration.id=='' %}
+        Agregar configuraci&oacute;n
+        {% else %}
+        Editar configuraci&oacute;n
+        {% endif %}
+    </h2>
+    <div class="col-md-6 col-md-offset-3">
+        <form action="/{{ action }}" method="post" class="form-horizontal">
+
+            <label for="configuration">Nombre de configuraci&oacute;n:</label>
+
+            {% if configuration.id==null or configuration.id=='' %}
+                <input type="text" name="configuration" class="form-control" value="{{configuration.configuration}}" required >
+            {% else %}
+                <input type="text" name="configuration" class="form-control" value="{{configuration.configuration}}" disabled >
+            {% endif %}
+
+            <label for="value">Valor:</label>
+            <input type="text" name="value" class="form-control" value="{{configuration.value}}" required >
+
+            <input type="hidden" name="oldConfiguration" value="{{ configuration.configuration }}">
+            <br>
+            <br>
+            <button class="btn btn-lg btn-success pull-right" type="submit">Enviar Datos</button>
+         </form>
+    </div>
+</div> <!-- /container -->
+{% endblock %}
+
+

@@ -4,10 +4,8 @@ class UserModel extends PDORepository
 {
 	public function createUser($userData)
 	{
-		echo "hola";
 		if( !$this->UserAlreadyExists($userData["username"]))
 		{
-			echo "hola2";
 			$query="INSERT INTO user (username,password,email, enabled,roleid,deleted) VALUES (?,?,?,?,?,?)";
 
             $enabled = true;

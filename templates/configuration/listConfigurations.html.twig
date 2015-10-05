@@ -1,0 +1,44 @@
+{% extends '/common/base.html.twig' %}
+
+{% block title %}Listado de configuraciones{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+
+        <h2 class="sub-header">Configuraciones</h2>
+
+        {% if configurations|length  == 0 %}
+            <p>No hay Configuraciones.</p>
+        {% endif %}
+        {% if configurations|length  > 0 %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <tr class="even">
+                        <th>Configuraci&oacute;n</th>
+                        <th>Valor</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    {% for configuration in configurations %}
+                        <tr class="{% if configurations.odd == true  %}">odd{% else %}even{% endif %}">
+                            <td>{{ configuration.configuration }}</td>
+                            <td>{{ configuration.value }}</td>
+                            <td><a href="/updateConfiguration/{{ configuration.configuration }}">Edit</a>
+                            </td>
+                            <td><a href="/deleteConfigurationAction/{{ configuration.configuration }}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+
+        <a href="/addConfiguration" class="btn btn-lg btn-success pull-right">Add</a>
+    </div>
+{% endblock %}
