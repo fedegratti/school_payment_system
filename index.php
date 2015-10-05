@@ -133,6 +133,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/DeleteFee/:feeID', array(
+        '_controller' => 'FeeController::deleteFeeAction',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/DeleteFeeAction/:feeID', array(
         '_controller' => 'FeeController::deleteFeeAction',
         'methods' => 'GET'
@@ -148,6 +153,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/PayOrGrantFee/:feeId/:studentID/:grant', array(
+        '_controller' => 'FeeController::payOrGrantFeeView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/ListGuardians/:index', array(
         '_controller' => 'GuardianController::listGuardiansView',
         'methods' => 'GET'
@@ -158,7 +168,7 @@
 //        'methods' => 'GET'
 //    )));
 
-$collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studentID', array(
+    $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studentID', array(
         '_controller' => 'GuardianController::associateGuardianAction',
         'methods' => 'GET'
     )));
@@ -189,11 +199,6 @@ $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studen
     $collection->attachRoute(new Route('/DeleteUserAction', array(
         '_controller' => 'StudentController::deleteStudentAction',
         'methods' => 'POST'
-    )));
-
-    $collection->attachRoute(new Route('/DeleteFee/:feeID', array(
-        '_controller' => 'FeeController::deleteFeeAction',
-        'methods' => 'GET'
     )));
 
     $collection->attachRoute(new Route('/ListConfiguration/', array(

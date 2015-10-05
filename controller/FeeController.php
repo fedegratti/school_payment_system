@@ -14,8 +14,16 @@ class FeeController
         AuthController::checkPermission();
         $feeRepository = new FeeModel();
         $feeRepository->createFee($_POST);
-        echo "cuota agregada";
     }
+
+    public static function payOrGrantFeeView($feeId,$studentId,$grant)
+    {
+        AuthController::checkPermission();
+        $feeRepository = new FeeModel();
+        $feeRepository->payOrGrantFee($feeId,$studentId,$grant);
+        header("Location: /ListFees/".$studentId);
+    }
+
     public static function listStudentFeesView($studentId)
     {
         AuthController::checkPermission();
