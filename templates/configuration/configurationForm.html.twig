@@ -20,13 +20,13 @@
             {% if configuration.id==null or configuration.id=='' %}
                 <input type="text" name="configuration" class="form-control" value="{{configuration.configuration}}" required >
             {% else %}
-                <input type="text" name="configuration" class="form-control" value="{{configuration.configuration}}" disabled >
+                <input type="text" class="form-control" value="{{configuration.configuration}}" disabled >
             {% endif %}
 
             <label for="value">Valor:</label>
             <input type="text" name="value" class="form-control" value="{{configuration.value}}" required >
 
-            <input type="hidden" name="oldConfiguration" value="{{ configuration.configuration }}">
+            <input type="hidden" name="configuration" value="{{ configuration.configuration }}">
             <br>
             <br>
             <button class="btn btn-lg btn-success pull-right" type="submit">Enviar Datos</button>

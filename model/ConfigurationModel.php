@@ -17,11 +17,11 @@ class ConfigurationModel extends PDORepository
 
     public function updateConfiguration($config)
     {
-        if($this->ConfigurationAlreadyExists($config['configuration']))
+        if($this->ConfigurationAlreadyExists($config["configuration"]))
         {
-            $query = "UPDATE configuration SET configuration=?, value = ? WHERE configuration=?";
+            $query = "UPDATE configuration SET value = ? WHERE configuration=?";
 
-            $this->executeQuery($query,array($config["configuration"],$config["value"],$config["oldConfiguration"]));
+            $this->executeQuery($query,array($config["value"],$config["configuration"]));
 
             return "SUCCESS";
         }
