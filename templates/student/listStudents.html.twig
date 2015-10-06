@@ -13,11 +13,16 @@
   {{ parent() }}
   <div class="container">
       <h2 class="page-header">
-          {% if enrolment==null or enrolment=='' %}
+          {% if enrolment==null or enrolment==''%}
               Alumnos
           {% else %}
               Alumnos con matricula paga
           {% endif %}
+
+          {% if role == 2%}
+              asignados
+          {% endif %}
+
       </h2>
 
     {% if students|length  == 0 %}
@@ -32,7 +37,7 @@
             <th>Email</th>
             <th>Sexo</th>
             {% if admitted == true %} <th>Ver cuotas</th> {% endif %}
-            {% if role != 3  %}
+            {% if role == 1  %}
             <th>Editar</th>
             <th>Borrar</th>
             {% endif %}
@@ -45,7 +50,7 @@
               <td>{{ sex[student.sex]}}</td>
               {% if admitted == true %}<td><a href="/ListFees/{{ student.id }}">Ver cuotas</a></td>{% endif %}
 
-              {% if role != 3  %}
+              {% if role == 1  %}
               <td><a href="/UpdateStudent/{{ student.id }}">Edit</a></td>
               <td><a href="/DeleteStudentAction/{{ student.id }}">Delete</a></td>
               {% endif %}
