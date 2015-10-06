@@ -9,6 +9,7 @@
         $(document).ready (function()
         {
             $('#role').val({{ user.roleid }});
+            $('#enabled').val({{ user.enabled }});
 
             {% if user.enabled == 1 %}
                 $('#enabled').attr("checked","");
@@ -39,11 +40,15 @@
             <label for="email">Email de usuario:</label>
             <input type="email" name="email" class="form-control" value="{{ user.email }}" required >
 
-             <div class="checkbox">
-                 <label>
-                     <input type="checkbox" id="enabled" name="enabled" value="1"> Habilitado
-                 </label>
-             </div>
+
+
+            <label for="enabled">Habilitado:</label>
+            <select id="enabled" name="enabled" class="form-control" required>
+
+                <option value="0">No</option>
+                <option value="1">Si</option>
+
+            </select>
 
             <label for="role">Rol:</label>
             <select id="role" name="role" class="form-control" required>

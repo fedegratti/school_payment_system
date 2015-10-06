@@ -76,7 +76,7 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateUserAction/:userID', array(
+    $collection->attachRoute(new Route('/UpdateUserAction/', array(
         '_controller' => 'UserController::updateUserAction',
         'methods' => 'POST'
     )));

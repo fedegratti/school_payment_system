@@ -13,7 +13,6 @@ class UserController
     {
 
         $result = (new UserModel()) ->createUser($_POST);
-        header('Location: /Login');
 
         if ($result == "SUCCESS")
         {
@@ -43,10 +42,10 @@ class UserController
         $view->show($result);
     }
 
-    public static function updateUserAction ($userID)
+    public static function updateUserAction ()
     {
 
-        $result = (new UserModel()) ->updateUser($_POST,$userID);
+        $result = (new UserModel()) ->updateUser($_POST);
         if ($result == "SUCCESS")
         {
             header('Location: /ListUsers');

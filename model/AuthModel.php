@@ -14,4 +14,18 @@ class AuthModel extends PDORepository
 
 		return ($stmnt->rowCount() > 0);
 	}
+
+
+
+	public  function getAuthorizedResourcesOf($role)
+	{
+		$query = "SELECT r.description
+				  FROM resource as r
+				  		inner join auth_mapper as am on ( am.resourceId = r.id )
+				  		inner join role as ro on ( am.roleId = ro.id)
+				  WHERE ro.description = ?";
+
+		$stmnt = $this->executeQuery($query,array($role));
+		return $stmnt->fetchAll();
+	}
 }

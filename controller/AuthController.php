@@ -4,21 +4,19 @@ class AuthController
 {
     public static function checkPermission($resourceCalled)
     {
-        //$resourceCalled = debug_backtrace()[1]['function'];
 
-        if( $resourceCalled == "showHomeView" or
-            $resourceCalled == "loginView"    or
-            $resourceCalled == "loginAction"  or
-            $resourceCalled == "loginView"    or
-            $resourceCalled == "logoutView" )
+        $exclusions = array("showHomeView",
+                            "loginView",
+                            "loginAction",
+                            "logoutView");
+
+        if(in_array($resourceCalled,$exclusions))
         {
             return true;
         }
 
-
         if (!isset($_SESSION['role']))
         {
-
             header('Location: /login/No_iniciaste_sesion');
         }
 

@@ -10,19 +10,29 @@ class LoginController
 
     public static function loginAction ()
     {
-        $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListUsers/", 3 => "/ListAdmittedStudents/");
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListStudents/", 3 => "/ListAdmittedStudents/");
 
         $loginModel=new LoginModel();
-        $roleId = $loginModel->authenticate($_POST['username'],$_POST['password']);
+        $roleId = $loginModel->authenticate($username,$password);
 
         if ($roleId != "error")
         {
+            $userModel = new UserModel();
 
+            if($userModel->isEnabled($username))
+            {
+                $_SESSION['role'] = $roleId;
+                $_SESSION['username'] = $username;
 
-            $_SESSION['role'] = $roleId;
-            $_SESSION['username'] = $_POST['username'];
+                header('Location: '.$rolesAction[$roleId]);
+            }
+            else
+            {
+                header('Location: /login/Usuario_no_esta_habilitado');
+            }
 
-            header('Location: '.$rolesAction[$roleId]);
         }
         else
         {
@@ -33,7 +43,6 @@ class LoginController
 
     public static function logoutView($error = null)
     {
-
         session_destroy();
         header('Location: /login/');
     }
