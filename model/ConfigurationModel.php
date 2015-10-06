@@ -4,11 +4,12 @@ class ConfigurationModel extends PDORepository
 {
     public function createConfiguration($configuration)
     {
-        if( !$this->ConfigurationAlreadyExists($configuration["configuration"]))
-        {
-            $query="INSERT INTO configuration (configuration,value) VALUES (?,?)";
 
-            $stmnt = $this->executeQuery($query,array($configuration["configuration"],$configuration["value"]));
+        if( !$this->ConfigurationAlreadyExists($configuration["name"]))
+        {
+            $query="INSERT INTO configuration (name,value) VALUES (?,?)";
+
+            $stmnt = $this->executeQuery($query,array($configuration["name"],$configuration["value"]));
 
             return "SUCCESS";
         }
@@ -17,11 +18,11 @@ class ConfigurationModel extends PDORepository
 
     public function updateConfiguration($config)
     {
-        if($this->ConfigurationAlreadyExists($config["configuration"]))
+        if($this->ConfigurationAlreadyExists($config["name"]))
         {
-            $query = "UPDATE configuration SET value = ? WHERE configuration=?";
+            $query = "UPDATE configuration SET value = ? WHERE name=?";
 
-            $this->executeQuery($query,array($config["value"],$config["configuration"]));
+            $this->executeQuery($query,array($config["value"],$config["name"]));
 
             return "SUCCESS";
         }
@@ -34,10 +35,10 @@ class ConfigurationModel extends PDORepository
         return $this->executeQuery($query,array()) ->fetchAll();
     }
 
-    public function getConfiguration($configuration)
+    public function getConfiguration($configurationName)
     {
-        $query = "SELECT * from configuration where configuration = ?";
-        $stmnt =  $this->executeQuery($query,array($configuration));
+        $query = "SELECT * from configuration where name = ?";
+        $stmnt =  $this->executeQuery($query,array($configurationName));
         return $stmnt ->fetch();
     }
 
@@ -52,11 +53,11 @@ class ConfigurationModel extends PDORepository
         return $this->getConfiguration("paginationNumber")["value"];
     }
 
-    public function ConfigurationAlreadyExists($configuration)
+    public function ConfigurationAlreadyExists($configurationName)
     {
-        $query="SELECT COUNT(*) FROM configuration WHERE configuration= ?";
+        $query="SELECT COUNT(*) FROM configuration WHERE name= ?";
 
-        $stmnt = $this->executeQuery($query, array($configuration));
+        $stmnt = $this->executeQuery($query, array($configurationName));
 
         if ($stmnt->fetchColumn() > 0)
         {
@@ -65,13 +66,14 @@ class ConfigurationModel extends PDORepository
         return false;
     }
 
-    public function deleteConfiguration($configuration)
+    public function deleteConfiguration($configurationName)
     {
-        if($this->ConfigurationAlreadyExists($configuration))
+        
+        if($this->ConfigurationAlreadyExists($configurationName))
         {
-            $query= "DELETE FROM configuration where configuration=?";
+            $query= "DELETE FROM configuration where name=?";
 
-            $stmnt = $this->executeQuery($query,array($configuration));
+            $stmnt = $this->executeQuery($query,array($configurationName));
             return "SUCCESS";
         }
         return "ERROR";

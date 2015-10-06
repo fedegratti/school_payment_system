@@ -231,7 +231,7 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/UpdateConfiguration/:configuration', array(
+    $collection->attachRoute(new Route('/UpdateConfiguration/:configurationName', array(
         '_controller' => 'ConfigurationController::updateConfigurationView',
         'methods' => 'GET'
     )));
@@ -241,7 +241,7 @@
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/DeleteConfigurationAction/:configuration', array(
+    $collection->attachRoute(new Route('/DeleteConfigurationAction/:configurationName', array(
         '_controller' => 'ConfigurationController::deleteConfigurationAction',
         'methods' => 'GET'
     )));

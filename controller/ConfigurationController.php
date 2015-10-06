@@ -27,10 +27,10 @@ class ConfigurationController
         (new ListConfigurationView())->show($configModel->getConfigurations());
     }
 
-    public static function updateConfigurationView($configuration)
+    public static function updateConfigurationView($configurationName)
     {
 
-        $result = (new ConfigurationModel()) ->getConfiguration($configuration);
+        $result = (new ConfigurationModel()) ->getConfiguration($configurationName);
 
         $view = new UpdateConfigurationView();
         $view->show($result);
@@ -39,10 +39,8 @@ class ConfigurationController
     {
 
         $result = (new ConfigurationModel()) ->updateConfiguration($_POST);
-        if ($result == "SUCCESS")
-        {
-            header('Location: /ListConfigurations');
-        }
+        header('Location: /ListConfigurations');
+
     }
 
     public static function isSiteEnabled()
@@ -56,9 +54,10 @@ class ConfigurationController
         (new UnavailableSiteView())->show($configModel->getConfiguration("disabledSiteMessage")["value"]);
     }
 
-    public static function deleteConfigurationAction($configuration)
+    public static function deleteConfigurationAction($configurationName)
     {
-        $result = (new ConfigurationModel()) ->deleteConfiguration($configuration);
+
+        $result = (new ConfigurationModel()) ->deleteConfiguration($configurationName);
         if($result == "SUCCESS")
         {
             header('Location: /ListConfigurations');

@@ -27,11 +27,11 @@
                     </tr>
                     {% for configuration in configurations %}
                         <tr class="{% if configurations.odd == true  %}">odd{% else %}even{% endif %}">
-                            <td>{{ configuration.configuration }}</td>
+                            <td>{{ configuration.name }}</td>
                             <td>{{ configuration.value }}</td>
-                            <td><a href="/updateConfiguration/{{ configuration.configuration }}">Edit</a>
+                            <td><a href="/updateConfiguration/{{ configuration.name }}">Edit</a>
                             </td>
-                            <td><a href="/deleteConfigurationAction/{{ configuration.configuration }}">Delete</a>
+                            <td><a href="/deleteConfigurationAction/{{ configuration.name }}">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}

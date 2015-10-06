@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2015 a las 10:28:27
+-- Tiempo de generación: 06-10-2015 a las 20:31:54
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `auth_mapper` (
   `id` int(11) NOT NULL,
   `roleId` int(11) NOT NULL,
   `resourceId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `auth_mapper`
@@ -49,7 +49,8 @@ INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
 (21, 2, 70),
 (22, 2, 71),
 (23, 2, 72),
-(24, 3, 71);
+(24, 3, 71),
+(25, 2, 59);
 
 -- --------------------------------------------------------
 
@@ -59,21 +60,20 @@ INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
 
 CREATE TABLE IF NOT EXISTS `configuration` (
   `id` int(11) NOT NULL,
-  `configuration` text NOT NULL,
+  `name` text NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `configuration`
 --
 
-INSERT INTO `configuration` (`id`, `configuration`, `value`) VALUES
+INSERT INTO `configuration` (`id`, `name`, `value`) VALUES
 (2, 'siteEnabled', '1'),
 (3, 'disabledSiteMessage', 'El sitio se encuentra en mantenimiento'),
 (4, 'title', 'AdministrAnexa'),
 (5, 'description', 'Sitio de gestion de alumnos'),
-(6, 'email', 'soporte@graduada.unlp.edu.ar'),
-(7, 'paginationNumber', '12');
+(6, 'email', 'soporte@graduada.unlp.edu.ar');
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `collectorPayment` decimal(10,0) NOT NULL,
   `createDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `fee`
@@ -99,15 +99,14 @@ CREATE TABLE IF NOT EXISTS `fee` (
 
 INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collectorPayment`, `createDate`, `deleted`) VALUES
 (1, 1, 1, 1, '200', 1, '200', '2015-10-04', 1),
-(2, 111111, 2017, 1, '1111', 0, '222', '2015-10-04', 0),
-(3, 5555, 2, 1, '-2', 0, '123', '2015-10-04', 1),
+(2, 111111, 2017, 4, '1111', 1, '222', '2015-10-04', 0),
 (4, 2, 1111111, 2, '500', 2, '500', '2015-10-04', 1),
 (5, 3333333, 33333333, 3, '33333333', 2, '333333333', '2015-10-04', 0),
-(6, 1, 1, 1, '1', 0, '1', '2015-10-04', 0),
 (7, 2, 3, 4, '3', 1, '12', '2015-10-05', 0),
 (8, 2, 2, 5, '2', 2, '2', '2015-10-05', 0),
 (9, 1, 2, 4, '123', 1, '12', '2015-10-05', 0),
-(10, 2011, 12, 4, '200', 2, '300', '2015-10-05', 0);
+(10, 2011, 12, 4, '200', 2, '300', '2015-10-05', 0),
+(11, 21, 21, 1, '121', 1, '12', '2015-10-05', 0);
 
 -- --------------------------------------------------------
 
@@ -127,14 +126,14 @@ CREATE TABLE IF NOT EXISTS `guardian` (
   `phone` int(20) DEFAULT NULL,
   `address` mediumtext COLLATE utf8_unicode_ci,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `guardian`
 --
 
 INSERT INTO `guardian` (`id`, `idUser`, `kind`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `phone`, `address`, `deleted`) VALUES
-(1, 1, 1, 'Rodriguez', 'Ah re loca', '2015-10-01', 1, 'juli@asd.com', 1234, '13 e 44 y 56', 0),
+(1, 1, 2, 'Rodriguez', 'Ah re loca', '2015-10-01', 1, 'juli@asd.com', 1234, '13 e 44 y 56', 0),
 (2, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
 (3, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
 (4, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
@@ -187,7 +186,9 @@ INSERT INTO `guardian` (`id`, `idUser`, `kind`, `lastName`, `firstName`, `birthD
 (51, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
 (52, 0, 0, 'asd', 'asd', '0000-00-00', 0, 'asd@asd', 21323, 'asdasd', 0),
 (53, 0, 0, 'zzzz', 'xxxx', '2015-10-19', 0, 's@a', 1231231, 'asdasd', 0),
-(54, 0, 0, 'czxczxc', 'cxzcxzcxzc', '2015-10-19', 0, 's@a', 12312, 'xxcz', 0);
+(54, 0, 0, 'czxczxc', 'cxzcxzcxzc', '2015-10-19', 0, 's@a', 12312, 'xxcz', 0),
+(55, 0, 1, 'fulanote', 'fulanito', '0000-00-00', 1, 'asd@asd', 42141241, '2124121', 0),
+(56, 0, 0, 'Ã±kkjlkjÃ±', 'Ã±kkjlkjÃ±', '0000-00-00', 1, 'pepe@pepe', 1231231, 'asdasd', 0);
 
 -- --------------------------------------------------------
 
@@ -200,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `guardian_student_relationship` (
   `studentId` int(11) NOT NULL,
   `guardianId` int(11) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `guardian_student_relationship`
@@ -211,7 +212,9 @@ INSERT INTO `guardian_student_relationship` (`id`, `studentId`, `guardianId`, `d
 (2, 2, 53, 0),
 (3, 3, 6, 0),
 (4, 4, 54, 0),
-(5, 5, 5, 0);
+(5, 5, 5, 0),
+(6, 6, 55, 0),
+(7, 7, 56, 0);
 
 -- --------------------------------------------------------
 
@@ -227,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `createDate` date NOT NULL,
   `updatedDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `payment`
@@ -238,7 +241,8 @@ INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`,
 (3, 1, 6, 0, '2015-10-04', NULL, 0),
 (4, 1, 4, 1, '2015-10-04', NULL, 0),
 (5, 1, 3, 1, '2015-10-04', NULL, 0),
-(6, 1, 2, 0, '2015-10-04', NULL, 0);
+(6, 1, 2, 0, '2015-10-04', NULL, 0),
+(7, 1, 9, 1, '2015-10-06', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -339,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `graduationDate` date DEFAULT NULL,
   `createDate` date NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `student`
@@ -348,9 +352,11 @@ CREATE TABLE IF NOT EXISTS `student` (
 INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `address`, `admissionDate`, `graduationDate`, `createDate`, `deleted`) VALUES
 (1, 0, 1123, 'sad', 'vvvvvvvv', '2015-10-19', 0, 'asd@asd', '13 55 y 56 1139', '2015-10-13', '2015-10-13', '2015-10-03', 1),
 (2, 0, 111, 's', 'rama aslkdasldkasd', '2015-10-19', 0, 'a@a', 'asdasd', '2015-10-19', '2015-10-13', '2015-10-04', 1),
-(3, 0, 111, 's', 'rama', '2015-10-19', 0, 'a@a', 'asdasd', '2015-10-19', NULL, '2015-10-04', 0),
+(3, 0, 111, 's', 'ramassss', '2015-10-19', 1, 'a@a', 'asdasd', '2015-10-19', '0000-00-00', '2015-10-04', 0),
 (4, 0, 5555555, 'ddddddddddddd', 'dddddddddddddd', '2015-10-19', 0, 's@a', 'asdasd', '2015-10-19', NULL, '2015-10-04', 0),
-(5, 0, 213123, 'xczxc', 'muerte a juli', '2015-10-19', 0, 'ramiro_fages@hotmail.com', 'asdasdad', '2015-10-19', NULL, '2015-10-04', 0);
+(5, 0, 213123, 'xczxc', 'muerte a juli', '2015-10-19', 0, 'ramiro_fages@hotmail.com', 'asdasdad', '2015-10-19', NULL, '2015-10-04', 0),
+(6, 1, 513213, 'hola como va', 'hola como va', '2015-10-19', 1, 'asd@asd', 'lalala', NULL, NULL, '2015-10-05', 0),
+(7, 1, 513213, 'hola como va', 'hola como va', '2015-10-19', 1, 'asd@asd', 'lalala', NULL, NULL, '2015-10-05', 0);
 
 -- --------------------------------------------------------
 
@@ -366,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `enabled` tinyint(1) NOT NULL,
   `roleId` int(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `user`
@@ -374,7 +380,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, `deleted`) VALUES
 (1, 'HOLIS2', 'AQWEQWE@asd.com', 'asd', 1, 1, 0),
-(2, 'hola rama ah re', 'rama@gay', 'asd', 1, 0, 0),
+(2, 'hola rama ah re', 'rama@gay', 'asd', 1, 0, 1),
 (4, 'asdasd', NULL, 'asd', 1, 0, 1),
 (5, 'zxc', NULL, 'zxc', 1, 0, 1),
 (6, 'zxczxcasd', NULL, 'asd', 1, 0, 1),
@@ -388,13 +394,21 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, 
 (14, 'nuevo', NULL, 'usuario', 1, 2, 1),
 (15, 'rama', NULL, '123', 1, 2, 1),
 (16, 'asd', NULL, 'f10e2821bbbea527ea02200352313bc059445190', 1, 1, 1),
-(17, '321', NULL, '5f6955d227a320c7f1f6c7da2a6d96a851a8118f', 1, 3, 0),
+(17, '321', 'pepe@pepe', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 0, 1, 0),
 (18, 'pepe', 'a@a', '265392dc2782778664cc9d56c8e3cd9956661bb0', 1, 2, 0),
 (19, 'carlos', 'a@a', 'ab5e2bca84933118bbc9d48ffaccce3bac4eeb64', 1, 1, 0),
 (20, '555', 'a@a', '8effee409c625e1a2d8f5033631840e6ce1dcb64', 1, 1, 1),
 (21, 'admin', 'asd@asd', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 1, 0),
 (22, 'consulta', 'a@a', 'b71deb9fd5e102295b64777fc8806019b9965813', 1, 3, 0),
-(23, 'gestion', 'ramiro_fages@hotmail.com', 'e66bb2fabbe7b86def4cb857aa62748ce7880394', 1, 2, 0);
+(23, 'gestion', 'ramiro_fages@hotmail.com', 'e66bb2fabbe7b86def4cb857aa62748ce7880394', 1, 2, 0),
+(24, 'fulano de tal', 'ramiro_fages@hotmail.com', 'f10e2821bbbea527ea02200352313bc059445190', 1, 2, 1),
+(25, 'lalala321', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 1, 2, 1),
+(26, 'agreganding', 's@a', '8df19dc7c82cd45ce9a88d42d2677e28d007029a', 1, 2, 1),
+(27, 'A RE LOCOOOOOO', 'a@a', 'f10e2821bbbea527ea02200352313bc059445190', 0, 3, 1),
+(28, 'SSSSSS', 'pepe@pepe', '8d756733db30807ee3b719893a75cf80feddd9f0', 1, 2, 1),
+(29, 'xxxxxxxxxxxxx', 'a@a', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 1, 1),
+(30, 'habilitado', 'asd@asd', '58d66bd37fffdd7a8c5eda921d86ce269143c02e', 1, 1, 0),
+(31, 'nohabilitado', 's@a', 'bbe1fcdda7dcbb7dce75689b873a66375dd63b58', 0, 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -468,32 +482,32 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `configuration`
 --
 ALTER TABLE `configuration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `guardian`
 --
 ALTER TABLE `guardian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
 --
 -- AUTO_INCREMENT de la tabla `guardian_student_relationship`
 --
 ALTER TABLE `guardian_student_relationship`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `resource`
 --
@@ -508,12 +522,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT de la tabla `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
