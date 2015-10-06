@@ -1,6 +1,6 @@
 <?php
 
-class listGuardiansView extends TwigView
+class ListGuardiansView extends TwigView
 {
     public function show($guardians, $guardiansAmount, $studentID, $paginationNumber)
     {

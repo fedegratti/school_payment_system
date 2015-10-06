@@ -29,7 +29,7 @@
 			<form action="/{{ action }}" method="post" class="form-horizontal">
 
                 <label>Tipo de Responsable</label>
-                <select id="kind" name="kind" class="form-control">
+                <select id="kind" name="kind" class="form-control" required>
                     <option value="0">Madre</option>
                     <option value="1">Padre</option>
                     <option value="2">Tutor</option>
@@ -45,7 +45,7 @@
                 <input type="date" name="birthDate" class="form-control" value="{{ guardian.birthDate }}" required >
 
                 <label>Sexo:</label>
-                <select id="sex" name="sex" class="form-control">
+                <select id="sex" name="sex" class="form-control" required>
                     <option value="0">Masculino</option>
                     <option value="1">Femenino</option>
                 </select>

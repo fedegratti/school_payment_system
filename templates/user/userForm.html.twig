@@ -4,11 +4,11 @@
 
 {% block head %}
     {{ parent() }}
-    {#<script src="/js/UpdateUser.js"></script>#}
+
     <script type="application/javascript">
         $(document).ready (function()
         {
-            $('#role').val({{ user.role }});
+            $('#role').val({{ user.roleid }});
 
             {% if user.enabled == 1 %}
                 $('#enabled').attr("checked","");
@@ -46,7 +46,7 @@
              </div>
 
             <label for="role">Rol:</label>
-            <select id="role" name="role" class="form-control">
+            <select id="role" name="role" class="form-control" required>
                   <option value="" disabled {% if user.id==null %}selected{% endif %} }}>Selecciona una opci&oacute;n</option>
                   <option value="1">Administraci&oacute;n</option>
                   <option value="2">Gesti&oacute;n</option>
