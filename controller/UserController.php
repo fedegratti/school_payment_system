@@ -30,7 +30,7 @@ class UserController
         $usersAmount = $userModel->getUsersAmount();
 
         $view = new ListUsersView();
-        $view ->show($result,$paginationNumber,$usersAmount);
+        $view ->show($result,$paginationNumber,$usersAmount, $_SESSION["username"]);
     }
 
     public static function updateUserView($id)
