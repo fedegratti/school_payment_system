@@ -4,13 +4,13 @@ class GuardianController
 {
     public static function addGuardianView($studentID = null)
     {
-        AuthController::checkPermission();
+
         $view = new AddGuardianView();
         $view->show($studentID);
     }
     public static function addGuardianAction()
     {
-        AuthController::checkPermission();
+
         $guardianID = (new GuardianModel())->createGuardian($_POST);
 
         (new GuardianOfStudentModel())->associateStudentWithGuardian($_POST["studentID"],$guardianID);
@@ -19,7 +19,7 @@ class GuardianController
 
     public static function listGuardiansView($index = 0,$studentID = null)
     {
-        AuthController::checkPermission();
+
         $guardianModel=new GuardianModel();
 
         $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
@@ -28,7 +28,7 @@ class GuardianController
        $guardiansAmount = $guardianModel->getGuardiansAmount();
 
 
-       $view = new listGuardiansView();
+       $view = new ListGuardiansView();
 
        $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
     }
@@ -36,7 +36,7 @@ class GuardianController
     public  static function deleteGuardianAction($guardianID)
     {
 
-        AuthController::checkPermission();
+
         $guardianModel=new GuardianModel();
         $guardianModel->deleteGuardian($guardianID);
 
@@ -45,21 +45,21 @@ class GuardianController
 
     public  static function updateGuardianView($guardianID)
     {
-        AuthController::checkPermission();
+
         $guardianModel=new GuardianModel();
         (new UpdateGuardianView())->show(($guardianModel->getGuardian($guardianID)));
     }
 
     public  static function updateGuardianAction()
     {
-        AuthController::checkPermission();
+
         $guardianModel=new GuardianModel();
         $guardianModel->updateGuardian($_POST);
-        header('Location: /ListGuardians/');
+        header('Location: /ListGuardians');
     }
     public static function associateGuardianAction($guardianID, $studentID)
     {
-        AuthController::checkPermission();
+
         (new GuardianOfStudentModel())->associateStudentWithGuardian($studentID,$guardianID);
         header('Location: /ListStudents');
     }

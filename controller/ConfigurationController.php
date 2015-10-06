@@ -4,14 +4,14 @@ class ConfigurationController
 {
     public static function addConfigurationView()
     {
-        AuthController::checkPermission();
+
         $view = new AddConfigurationView();
         $view->show();
     }
 
     public static function addConfigurationAction ()
     {
-        AuthController::checkPermission();
+
         $result = (new ConfigurationModel()) ->createConfiguration($_POST);
         if ($result == "SUCCESS")
         {
@@ -21,7 +21,7 @@ class ConfigurationController
 
     public static function listConfigurationsView()
     {
-        AuthController::checkPermission();
+
         $configModel = new ConfigurationModel();
 
         (new ListConfigurationView())->show($configModel->getConfigurations());
@@ -29,7 +29,7 @@ class ConfigurationController
 
     public static function updateConfigurationView($configuration)
     {
-        AuthController::checkPermission();
+
         $result = (new ConfigurationModel()) ->getConfiguration($configuration);
 
         $view = new UpdateConfigurationView();
@@ -37,7 +37,7 @@ class ConfigurationController
     }
     public static function updateConfigurationAction()
     {
-        AuthController::checkPermission();
+
         $result = (new ConfigurationModel()) ->updateConfiguration($_POST);
         if ($result == "SUCCESS")
         {
@@ -58,7 +58,6 @@ class ConfigurationController
 
     public static function deleteConfigurationAction($configuration)
     {
-        AuthController::checkPermission();
         $result = (new ConfigurationModel()) ->deleteConfiguration($configuration);
         if($result == "SUCCESS")
         {

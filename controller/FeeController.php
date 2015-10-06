@@ -4,14 +4,14 @@ class FeeController
 {
     public static function addFeeView()
     {
-        AuthController::checkPermission();
+
         $view = new AddFeeView();
         $view->show();
     }
 
     public static function addFeeAction()
     {
-        AuthController::checkPermission();
+
         $feeRepository = new FeeModel();
         $feeRepository->createFee($_POST);
         header("Location: /ListFees");
@@ -19,7 +19,7 @@ class FeeController
 
     public static function payOrGrantFeeView($feeId,$studentId,$grant)
     {
-        AuthController::checkPermission();
+
         $feeRepository = new FeeModel();
         $feeRepository->payOrGrantFee($feeId,$studentId,$grant);
         header("Location: /ListFees/".$studentId);
@@ -27,7 +27,7 @@ class FeeController
 
     public static function listStudentFeesView($studentId)
     {
-        AuthController::checkPermission();
+
         $feeModel = new FeeModel();
         $studentModel = new StudentModel();
 
@@ -40,7 +40,7 @@ class FeeController
     }
     public static function listFeesView()
     {
-        AuthController::checkPermission();
+
         $feeModel = new FeeModel();
 
         $fees = $feeModel->listFees();
@@ -50,7 +50,7 @@ class FeeController
     }
     public  static function deleteFeeAction($feeID)
     {
-        AuthController::checkPermission();
+
         $feeModel = new FeeModel();
         $feeModel->deleteFee($feeID);
         header("Location: /ListFees");
@@ -58,7 +58,7 @@ class FeeController
 
     public static function updateFeeView($feeID)
     {
-        AuthController::checkPermission();
+
         $feeModel = new FeeModel();
         $fee = $feeModel->getFee($feeID);
         $view = new UpdateFeeView();
@@ -66,7 +66,7 @@ class FeeController
     }
     public static function updateFeeAction()
     {
-        AuthController::checkPermission();
+
         $feeRepository = new FeeModel();
 
         $feeRepository->updateFee($_POST);

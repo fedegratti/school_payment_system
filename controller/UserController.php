@@ -4,7 +4,7 @@ class UserController
 {
     public static function addUserView()
     {
-        //AuthController::checkPermission();
+
         $view = new AddUserView();
         $view->show();
     }
@@ -14,7 +14,7 @@ class UserController
 
         $result = (new UserModel()) ->createUser($_POST);
         header('Location: /Login');
-        AuthController::checkPermission();
+
         if ($result == "SUCCESS")
         {
             header('Location: /ListUsers');
@@ -23,7 +23,7 @@ class UserController
 
     public static function listUsersView()
     {
-        AuthController::checkPermission();
+
         $userModel = new UserModel();
         $result = $userModel->getUsers();
 
@@ -36,7 +36,7 @@ class UserController
 
     public static function updateUserView($id)
     {
-        AuthController::checkPermission();
+
         $result = (new UserModel()) ->getUser($id);
 
         $view = new UpdateUserView();
@@ -45,7 +45,7 @@ class UserController
 
     public static function updateUserAction ($userID)
     {
-        AuthController::checkPermission();
+
         $result = (new UserModel()) ->updateUser($_POST,$userID);
         if ($result == "SUCCESS")
         {
@@ -55,7 +55,7 @@ class UserController
 
     public static function deleteUserAction($id)
     {
-        AuthController::checkPermission();
+
         $result = (new UserModel()) ->deleteUser($id);
         if($result == "SUCCESS")
         {

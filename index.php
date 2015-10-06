@@ -16,11 +16,13 @@
         return;
     }
 
+    session_start();
+
 	$collection = new RouteCollection();
 
 
     $collection->attachRoute(new Route('/', array(
-        '_controller' => 'HomeController::showView',
+        '_controller' => 'HomeController::showHomeView',
         'methods' => 'GET'
     )));
 
@@ -30,16 +32,16 @@
     )));
 
     $collection->attachRoute(new Route('/Logout/', array(
-        '_controller' => 'LoginController::LogoutView',
+        '_controller' => 'LoginController::logoutView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/login/:error', array(
+    $collection->attachRoute(new Route('/Login/:error', array(
         '_controller' => 'LoginController::loginView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/loginAction/', array(
+    $collection->attachRoute(new Route('/LoginAction/', array(
         '_controller' => 'LoginController::loginAction',
         'methods' => 'POST'
     )));
@@ -167,6 +169,10 @@
         '_controller' => 'GuardianController::listGuardiansView',
         'methods' => 'GET'
     )));
+    $collection->attachRoute(new Route('/ListGuardians/', array(
+        '_controller' => 'GuardianController::listGuardiansView',
+        'methods' => 'GET'
+    )));
 
     $collection->attachRoute(new Route('/DeleteGuardian/:guardianID', array(
         '_controller' => 'GuardianController::deleteGuardianAction',
@@ -248,5 +254,11 @@
 
 	$router = new Router($collection);
 	$router->setBasePath('/');
+
 	$route = $router->matchCurrentRequest();
+   
+    AuthController::checkPermission($route->getAction());
+
+    $route->dispatch();
+
 

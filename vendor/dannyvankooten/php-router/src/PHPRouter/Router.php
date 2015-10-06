@@ -126,7 +126,7 @@ class Router
             }
 
             $routes->setParameters($params);
-            $routes->dispatch();
+            //$routes->dispatch();
 
             return $routes;
         }

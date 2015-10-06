@@ -2,13 +2,13 @@
 
 class LoginController
 {
-    public static function LoginView($error = null)
+    public static function loginView($error = null)
     {
         $view = new LoginView();
         $view->show($error);
     }
 
-    public static function LoginAction ()
+    public static function loginAction ()
     {
         $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListUsers/", 3 => "/ListAdmittedStudents/");
 
@@ -17,9 +17,10 @@ class LoginController
 
         if ($roleId != "error")
         {
-            session_start();
+
 
             $_SESSION['role'] = $roleId;
+            $_SESSION['username'] = $_POST['username'];
 
             header('Location: '.$rolesAction[$roleId]);
         }
@@ -30,9 +31,9 @@ class LoginController
 
     }
 
-    public static function LogoutView($error = null)
+    public static function logoutView($error = null)
     {
-        session_start();
+
         session_destroy();
         header('Location: /login/');
     }

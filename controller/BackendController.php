@@ -4,7 +4,7 @@ class BackendController
 {
     public static function showView()
     {
-        AuthController::checkPermission();
+
         $view = new BackendView();
         if(isset($_SESSION['username']))
         {
