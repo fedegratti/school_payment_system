@@ -256,7 +256,7 @@
 	$router->setBasePath('/');
 
 	$route = $router->matchCurrentRequest();
-   
+
     AuthController::checkPermission($route->getAction());
 
     $route->dispatch();
