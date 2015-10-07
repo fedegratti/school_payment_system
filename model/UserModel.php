@@ -4,24 +4,23 @@ class UserModel extends PDORepository
 {
 	public function createUser($userData)
 	{
+		if($this->UserAlreadyExists($userData["username"])) return "ERROR";
 
-		if( !$this->UserAlreadyExists($userData["username"]))
-		{
-			$query="INSERT INTO user (username,password,email, enabled,roleid,deleted) VALUES (?,?,?,?,?,?)";
-
-
-			$deleted = false;
-            $stmnt = $this->executeQuery($query,array($userData["username"],sha1($userData["password"]),$userData["email"],$userData["enabled"],$userData["role"],$deleted));
-
-			return "SUCCESS";
-		}
-		return "ERROR";
+        $query="INSERT INTO user (username,password,email, enabled,roleid,deleted) VALUES (?,?,?,?,?,?)";
+        $deleted = false;
+         $this->executeQuery($query,array($userData["username"],
+                                        sha1($userData["password"]),
+                                        $userData["email"],
+                                        $userData["enabled"],
+                                        $userData["role"],
+                                        $deleted));
+        return $this->getLastInsertedID();
 	}
 
 	public function updateUser($userData)
 	{
 
-		if($this->UserAlreadyExists($userData["id"]))
+		if($this->UserAlreadyExists($userData["username"]))
 		{
 			$query="UPDATE user SET username=?,password=?,email=?,enabled=?,roleid=? WHERE id=?";
 
@@ -32,11 +31,11 @@ class UserModel extends PDORepository
 		return "ERROR";
 	}
 
-	public function UserAlreadyExists($id)
+	public function UserAlreadyExists($username)
 	{
-		$query="SELECT COUNT(*) FROM user WHERE id= ?";
+		$query="SELECT COUNT(*) FROM user WHERE username= ?";
 
-        $stmnt = $this->executeQuery($query, array($id));
+        $stmnt = $this->executeQuery($query, array($username));
 
         if ($stmnt->fetchColumn() > 0)
         {
@@ -68,7 +67,8 @@ class UserModel extends PDORepository
 
 	public function getUsers ()
 	{
-		$query="SELECT id,username,email,enabled,roleid FROM user where deleted=false";
+		$query="SELECT u.id,u.username,u.email,u.enabled,u.roleid,g.firstName,g.lastName FROM user as u
+                LEFT JOIN guardian as g on (u.id = g.userId) where u.deleted=false";
 
 		$stmnt = $this->executeQuery($query,array());
 
@@ -97,13 +97,9 @@ class UserModel extends PDORepository
 	}
     public  function deleteUser($id)
     {
-        if($this->UserAlreadyExists($id))
-        {
-            $query= "UPDATE user set deleted=true where id=?";
+        $query= "UPDATE user set deleted=true where id=?";
 
-            $stmnt = $this->executeQuery($query,array($id));
-            return "SUCCESS";
-        }
-        return "ERROR";
+        $stmnt = $this->executeQuery($query,array($id));
+        return "SUCCESS";
     }
 }

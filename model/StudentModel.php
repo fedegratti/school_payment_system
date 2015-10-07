@@ -8,14 +8,11 @@ class StudentModel extends PDORepository
                                       email,address,admissionDate,graduationDate,createDate)
                         VALUES (?,?,?,?,?,?,?,?,?,?, CURRENT_DATE )";
 
-
         $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
             $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
             $studentData["email"],$studentData["address"],null, null));
 
-
         return $this->getLastInsertedID();
-
     }
 
     public  function updateStudent($studentData, $studentID)

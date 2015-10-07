@@ -14,7 +14,6 @@
   <div class="container">
       <h2 class="page-header">
           {{ title }}
-
       </h2>
 
     {% if students|length  == 0 %}
@@ -28,6 +27,7 @@
             <th>Apellido</th>
             <th>Email</th>
             <th>Sexo</th>
+            <th>Responsables</th>
             {% if admitted == true %} <th>Ver cuotas</th> {% endif %}
             {% if role == 1  %}
             <th>Editar</th>
@@ -40,6 +40,7 @@
               <td>{{ student.lastName }}</td>
               <td>{{ student.email }}</td>
               <td>{{ sex[student.sex]}}</td>
+              <td><a href="">{{ student.guardiansAmount }}</a></td>
               {% if admitted == true %}<td><a href="/ListFees/{{ student.id }}">Ver cuotas</a></td>{% endif %}
 
               {% if role == 1  %}

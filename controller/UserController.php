@@ -4,33 +4,39 @@ class UserController
 {
     public static function addUserView()
     {
-
         $view = new AddUserView();
         $view->show();
     }
 
     public static function addUserAction ()
     {
+        $userId = (new UserModel()) ->createUser($_POST);
 
-        $result = (new UserModel()) ->createUser($_POST);
+        if ($userId == "ERROR")  header('Location: /error');
 
-        if ($result == "SUCCESS")
+        $user["id"] = $userId;
+        $user["username"] = $_POST["username"];
+
+        if($_POST['guardianType'] == 'createGuardian')
         {
-            header('Location: /ListUsers');
+            GuardianController::addGuardianForUserView($user);
+        }
+        else
+        {
+            GuardianController::listGuardiansForUserView(0,$user);
         }
     }
 
     public static function listUsersView()
     {
-
         $userModel = new UserModel();
-        $result = $userModel->getUsers();
+        $users = $userModel->getUsers();
 
         $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
         $usersAmount = $userModel->getUsersAmount();
 
         $view = new ListUsersView();
-        $view ->show($result,$paginationNumber,$usersAmount, $_SESSION["username"]);
+        $view ->show($users,$paginationNumber,$usersAmount, $_SESSION["username"]);
     }
 
     public static function updateUserView($id)

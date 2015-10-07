@@ -12,7 +12,6 @@
     <div class="container">
 
 		<h2 class="sub-header">Usuarios</h2>
-
 		{% if users|length  == 0 %}
             <p>No hay usuarios.</p>
         {% endif %}
@@ -23,19 +22,19 @@
                         <th>Nombre de usuario</th>
                         <th>Email</th>
                         <th>Habilitado</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Responsable</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
                     </tr>
                     {% for user in users %}
                         <tr class="{% if users.odd == true  %}">odd{% else %}even{% endif %}">
                             <td>{{ user.username }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.enabled }}</td>
-                            <td><a href="/updateUser/{{ user.id }}">Edit</a>
+                            <td>{{ user.firstName }} {{ user.lastName }}</td>
+                            <td><a href="/updateUser/{{ user.id }}">Editar</a>
                             </td>
-                            {%if user.username != loggedUser %}
-                            <td><a href="/deleteUserAction/{{ user.id }}">Delete</a>
-                            {% endif %}
+                            <td>{%if user.username != loggedUser %}<a href="/deleteUserAction/{{ user.id }}">Borrar</a>{% endif %}
                             </td>
                         </tr>
                     {% endfor %}

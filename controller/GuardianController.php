@@ -2,18 +2,24 @@
 
 class GuardianController
 {
-    public static function addGuardianView($studentID = null)
+    public static function addGuardianView($student = null)
     {
-
         $view = new AddGuardianView();
-        $view->show($studentID);
+        $view->show($student);
     }
+    public static function addGuardianForUserView($user)
+    {
+        $view = new AddGuardianForUserView();
+        $view->show($user);
+    }
+
     public static function addGuardianAction()
     {
-
         $guardianID = (new GuardianModel())->createGuardian($_POST);
 
-        (new GuardianOfStudentModel())->associateStudentWithGuardian($_POST["studentID"],$guardianID);
+        if ($_POST["studentID"] != null)
+            (new GuardianOfStudentModel())->associateStudentWithGuardian($_POST["studentID"],$guardianID);
+
         header('Location: /ListGuardians');
     }
 

@@ -11,39 +11,46 @@ class StudentController
 
     public static function addStudentAction()
     {
-
         $studentRepository = new StudentModel();
         $studentID = $studentRepository->createStudent($_POST);
 
+        $student["id"] = $studentID;
+        $student["firstName"] = $_POST["firstName"];
+        $student["lastName"] = $_POST["lastName"];
+
        	if($_POST['guardianType'] == 'createGuardian')
        	{
-
-    		GuardianController::addGuardianView($studentID);
+    		GuardianController::addGuardianView($student);
        	}
        	else
        	{
-            GuardianController::listGuardiansView(0,$studentID);
+            GuardianController::listGuardiansView(0,$student);
        	}
     }
 
-    public  static function listStudentsView()
+    public static function listStudentsView()
     {
-
         $view = new ListStudentsView();
         $studentData = (new StudentModel())->getStudents();
-        $view ->show($studentData);
+        $students = array();
+
+        foreach ($studentData as $student)
+        {
+            $student["guardiansAmount"] = (new GuardianOfStudentModel())->getGuardiansOfStudentAmount($student["id"]);
+            $students[$student["id"]] = $student;
+        }
+
+        $view ->show($students);
 
     }
-    public  static function listStudentsWithNameView($studentName)
+    public static function listStudentsWithNameView($studentName)
     {
-
         $view = new ListStudentsView();
         $studentData = (new StudentModel())->getStudentsByName($studentName);
         $view ->show($studentData);
     }
     public static function updateStudentView($studentID)
     {
-
         $view = new UpdateStudentView();
         $studentData = (new StudentModel())->getStudent($studentID);
         $view->show($studentData, $studentID);
@@ -51,8 +58,6 @@ class StudentController
 
     public static function updateStudentAction ($studentID)
     {
-
-
         $studentRepository = new StudentModel();
         $studentRepository->updateStudent($_POST, $studentID);
         header("Location: /ListStudents");

@@ -14,9 +14,9 @@
     {
         ConfigurationController::siteUnavailableView();
         return;
-    };
+    }
 
-    session_start()?
+    session_start();
 
 	$collection = new RouteCollection();
 

@@ -14,6 +14,17 @@
             {% if user.enabled == 1 %}
                 $('#enabled').attr("checked","");
             {% endif %}
+
+            $('#role').change(function() {
+                if ($('#role').val() == 3)
+                {
+                    $('#guardian').css ('display','block');
+                }
+                else
+                {
+                    $('#guardian').css ('display','none');
+                }
+            });
         });
     </script>
 {% endblock %}
@@ -41,7 +52,6 @@
             <input type="email" name="email" class="form-control" value="{{ user.email }}" required >
 
 
-
             <label for="enabled">Habilitado:</label>
             <select id="enabled" name="enabled" class="form-control" required>
 
@@ -57,6 +67,14 @@
                   <option value="2">Gesti&oacute;n</option>
                   <option value="3">Consulta</option>
             </select>
+
+            <div id="guardian">
+                <label>Acci&oacute;n del responsable:</label>
+                <select id="guardianType" name="guardianType" class="form-control">
+                    <option value="createGuardian">Crear Responsable</option>
+                    <option value="chooseGuardian">Elegir Responsable </option>
+                </select>
+            </div>
 
             <input type="hidden" name="id" value="{{ user.id }}">
             <br>

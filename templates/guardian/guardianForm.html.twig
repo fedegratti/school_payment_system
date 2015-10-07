@@ -10,7 +10,6 @@
 		{
 			$('#kind').val({{ guardian.kind }});
             $('#sex').val({{ guardian.sex }});
-
 		});
 	</script>
 {% endblock %}
@@ -19,11 +18,7 @@
 	{{ parent() }}
 	<div class="container">
 		<h2 class="page-header">
-			{% if guardian.firstName==null or guardian.firstName=='' %}
-				Agregar responsable
-			{% else %}
-				Editar responsable
-			{% endif %}
+            {{ title }}
 		</h2>
 		<div class="col-md-6 col-md-offset-3">
 			<form action="/{{ action }}" method="post" class="form-horizontal">
@@ -56,11 +51,11 @@
                 <label>Direcci&oacute;n:</label>
                 <input type="text" name="address" class="form-control" value="{{ guardian.address }}" required>
 
-
                 <label>Telefono:</label>
                 <input type="text" name="phone" class="form-control" value="{{ guardian.phone }}" required>
 
-                <input type="hidden" name="studentID" value="{{studentID}}" >
+                <input type="hidden" name="studentID" value="{{student.id}}" >
+                <input type="hidden" name="userId" value="{{user.id}}" >
                 <input type="hidden" name="guardianID" value="{{guardian.id}}" >
                 <br>
                 <br>
