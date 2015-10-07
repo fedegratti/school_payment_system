@@ -13,15 +13,7 @@
   {{ parent() }}
   <div class="container">
       <h2 class="page-header">
-          {% if enrolment==null or enrolment==''%}
-              Alumnos
-          {% else %}
-              Alumnos con matricula paga
-          {% endif %}
-
-          {% if role == 2%}
-              asignados
-          {% endif %}
+          {{ title }}
 
       </h2>
 
