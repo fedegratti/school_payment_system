@@ -17,28 +17,16 @@ class LoginController
         $loginModel=new LoginModel();
         $roleId = $loginModel->authenticate($username,$password);
 
-        if ($roleId != "error")
-        {
-            $userModel = new UserModel();
+        if ($roleId == "error") header('Location: /login/3');
 
-            if($userModel->isEnabled($username))
-            {
-                $_SESSION['role'] = $roleId;
-                $_SESSION['username'] = $username;
+        $userModel = new UserModel();
 
-                header('Location: '.$rolesAction[$roleId]);
-            }
-            else
-            {
-                header('Location: /login/Usuario_no_esta_habilitado');
-            }
+        if(!$userModel->isEnabled($username)) header('Location: /login/2');
 
-        }
-        else
-        {
-            header('Location: /login/error');
-        }
+        $_SESSION['role'] = $roleId;
+        $_SESSION['username'] = $username;
 
+        header('Location: '.$rolesAction[$roleId]);
     }
 
     public static function logoutView($error = null)

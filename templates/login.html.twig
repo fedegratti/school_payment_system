@@ -1,3 +1,7 @@
+{% set error = {0: "No tenes permisos para acceder al recurso",
+                1: "No iniciaste sesion",
+                2: "Usuario no esta habilitado",
+                3: "error"} %}
 {% extends 'common/base.html.twig' %}
 
 {% block title %}Iniciar sesi&oacute;n{% endblock %}
@@ -8,7 +12,7 @@
 			Iniciar sesi&oacute;n
 		</h2>
 		<div class="col-md-6 col-md-offset-3">
-            <h3>{{ error }}</h3>
+            <h3>{{ error[errorId] }}</h3>
 			<form action="/loginAction" method="post" class="form-horizontal">
 				<input type="text" name="username" class="form-control" required placeholder="Usuario">
                 <br>
