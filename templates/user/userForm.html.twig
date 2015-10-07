@@ -71,6 +71,7 @@
             <div id="guardian">
                 <label>Acci&oacute;n del responsable:</label>
                 <select id="guardianType" name="guardianType" class="form-control">
+                    {% if user.id!=null %}<option value="" disabled selected>No modificar responsable</option>{% endif %}
                     <option value="createGuardian">Crear Responsable</option>
                     <option value="chooseGuardian">Elegir Responsable </option>
                 </select>
