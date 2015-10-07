@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2015 a las 20:31:54
+-- Tiempo de generación: 06-10-2015 a las 21:55:55
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `configuration` (
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `configuration`
@@ -73,7 +73,8 @@ INSERT INTO `configuration` (`id`, `name`, `value`) VALUES
 (3, 'disabledSiteMessage', 'El sitio se encuentra en mantenimiento'),
 (4, 'title', 'AdministrAnexa'),
 (5, 'description', 'Sitio de gestion de alumnos'),
-(6, 'email', 'soporte@graduada.unlp.edu.ar');
+(6, 'email', 'soporte@graduada.unlp.edu.ar'),
+(11, 'paginationNumber', '20');
 
 -- --------------------------------------------------------
 
@@ -126,69 +127,22 @@ CREATE TABLE IF NOT EXISTS `guardian` (
   `phone` int(20) DEFAULT NULL,
   `address` mediumtext COLLATE utf8_unicode_ci,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `guardian`
 --
 
 INSERT INTO `guardian` (`id`, `idUser`, `kind`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `phone`, `address`, `deleted`) VALUES
-(1, 1, 2, 'Rodriguez', 'Ah re loca', '2015-10-01', 1, 'juli@asd.com', 1234, '13 e 44 y 56', 0),
-(2, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(3, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(4, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(5, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(6, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(7, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(8, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(9, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(10, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(11, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(12, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(13, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(14, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(15, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(16, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(17, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(18, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(19, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(20, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(21, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(22, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(23, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(24, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(25, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(26, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(27, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(28, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(29, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(30, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(31, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(32, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(33, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(34, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(35, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(36, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(37, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(38, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(39, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(40, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(41, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(42, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(43, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(44, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(45, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(46, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(47, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(48, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(49, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(50, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(51, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
-(52, 0, 0, 'asd', 'asd', '0000-00-00', 0, 'asd@asd', 21323, 'asdasd', 0),
-(53, 0, 0, 'zzzz', 'xxxx', '2015-10-19', 0, 's@a', 1231231, 'asdasd', 0),
+(1, 1, 2, 'Rodriguez', 'Ah re loca', '2015-10-01', 1, 'juli@asd.com', 1234, '13 e 44 y 56', 1),
+(2, 0, 1, 'apellido', 'fffffffff', '2015-10-19', 1, 'asd@asd.com', 1234567, 'direcion re loca', 1),
+(52, 0, 0, 'asd', 'asd', '0000-00-00', 0, 'asd@asd', 21323, 'asdasd', 1),
+(53, 0, 0, 'zzzz', 'xxxx', '2015-10-19', 0, 's@a', 1231231, 'asdasd', 1),
 (54, 0, 0, 'czxczxc', 'cxzcxzcxzc', '2015-10-19', 0, 's@a', 12312, 'xxcz', 0),
 (55, 0, 1, 'fulanote', 'fulanito', '0000-00-00', 1, 'asd@asd', 42141241, '2124121', 0),
-(56, 0, 0, 'Ã±kkjlkjÃ±', 'Ã±kkjlkjÃ±', '0000-00-00', 1, 'pepe@pepe', 1231231, 'asdasd', 0);
+(56, 0, 0, 'Ã±kkjlkjÃ±', 'Ã±kkjlkjÃ±', '0000-00-00', 1, 'pepe@pepe', 1231231, 'asdasd', 0),
+(57, 0, 1, 'de tal', 'fulanitoxx', '2000-02-02', 1, 's@a', 1231231, 'sasdasd', 0),
+(58, 0, 0, 'asdsadd', 'asdasdad', '2000-02-02', 1, 'a@a', 213, 'asd', 0);
 
 -- --------------------------------------------------------
 
@@ -201,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `guardian_student_relationship` (
   `studentId` int(11) NOT NULL,
   `guardianId` int(11) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `guardian_student_relationship`
@@ -214,7 +168,9 @@ INSERT INTO `guardian_student_relationship` (`id`, `studentId`, `guardianId`, `d
 (4, 4, 54, 0),
 (5, 5, 5, 0),
 (6, 6, 55, 0),
-(7, 7, 56, 0);
+(7, 7, 56, 0),
+(8, 0, 57, 0),
+(9, 8, 58, 0);
 
 -- --------------------------------------------------------
 
@@ -230,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `createDate` date NOT NULL,
   `updatedDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `payment`
@@ -242,7 +198,10 @@ INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`,
 (4, 1, 4, 1, '2015-10-04', NULL, 0),
 (5, 1, 3, 1, '2015-10-04', NULL, 0),
 (6, 1, 2, 0, '2015-10-04', NULL, 0),
-(7, 1, 9, 1, '2015-10-06', NULL, 0);
+(7, 1, 9, 1, '2015-10-06', NULL, 0),
+(8, 1, 8, 0, '2015-10-06', NULL, 0),
+(9, 1, 7, 0, '2015-10-06', NULL, 0),
+(10, 1, 11, 0, '2015-10-06', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -343,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `graduationDate` date DEFAULT NULL,
   `createDate` date NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `student`
@@ -352,11 +311,12 @@ CREATE TABLE IF NOT EXISTS `student` (
 INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `address`, `admissionDate`, `graduationDate`, `createDate`, `deleted`) VALUES
 (1, 0, 1123, 'sad', 'vvvvvvvv', '2015-10-19', 0, 'asd@asd', '13 55 y 56 1139', '2015-10-13', '2015-10-13', '2015-10-03', 1),
 (2, 0, 111, 's', 'rama aslkdasldkasd', '2015-10-19', 0, 'a@a', 'asdasd', '2015-10-19', '2015-10-13', '2015-10-04', 1),
-(3, 0, 111, 's', 'ramassss', '2015-10-19', 1, 'a@a', 'asdasd', '2015-10-19', '0000-00-00', '2015-10-04', 0),
+(3, 1, 111, 's', 'ramassss', '2015-10-19', 1, 'a@a', 'asdasd', '2015-10-19', '0000-00-00', '2015-10-04', 0),
 (4, 0, 5555555, 'ddddddddddddd', 'dddddddddddddd', '2015-10-19', 0, 's@a', 'asdasd', '2015-10-19', NULL, '2015-10-04', 0),
 (5, 0, 213123, 'xczxc', 'muerte a juli', '2015-10-19', 0, 'ramiro_fages@hotmail.com', 'asdasdad', '2015-10-19', NULL, '2015-10-04', 0),
 (6, 1, 513213, 'hola como va', 'hola como va', '2015-10-19', 1, 'asd@asd', 'lalala', NULL, NULL, '2015-10-05', 0),
-(7, 1, 513213, 'hola como va', 'hola como va', '2015-10-19', 1, 'asd@asd', 'lalala', NULL, NULL, '2015-10-05', 0);
+(7, 1, 513213, 'hola como va', 'hola como va', '2015-10-19', 1, 'asd@asd', 'lalala', NULL, NULL, '2015-10-05', 0),
+(8, 0, 21323, 'gggggggggggggg', 'gggggggggggg', '2015-10-19', 1, 'a@a', '1231231', NULL, NULL, '2015-10-06', 0);
 
 -- --------------------------------------------------------
 
@@ -372,14 +332,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `enabled` tinyint(1) NOT NULL,
   `roleId` int(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, `deleted`) VALUES
-(1, 'HOLIS2', 'AQWEQWE@asd.com', 'asd', 1, 1, 0),
+(1, 'HOLIS2', 'AQWEQWE@asd.com', '4b2b79b6f371ca18f1216461cffeaddf6848a50e', 1, 3, 0),
 (2, 'hola rama ah re', 'rama@gay', 'asd', 1, 0, 1),
 (4, 'asdasd', NULL, 'asd', 1, 0, 1),
 (5, 'zxc', NULL, 'zxc', 1, 0, 1),
@@ -408,7 +368,8 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, 
 (28, 'SSSSSS', 'pepe@pepe', '8d756733db30807ee3b719893a75cf80feddd9f0', 1, 2, 1),
 (29, 'xxxxxxxxxxxxx', 'a@a', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 1, 1),
 (30, 'habilitado', 'asd@asd', '58d66bd37fffdd7a8c5eda921d86ce269143c02e', 1, 1, 0),
-(31, 'nohabilitado', 's@a', 'bbe1fcdda7dcbb7dce75689b873a66375dd63b58', 0, 1, 0);
+(31, 'nohabilitado', 's@a', 'bbe1fcdda7dcbb7dce75689b873a66375dd63b58', 0, 1, 0),
+(32, 'juli, mira como me funciona', 's@a', '85136c79cbf9fe36bb9d05d0639c70c265c18d37', 1, 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -487,7 +448,7 @@ ALTER TABLE `auth_mapper`
 -- AUTO_INCREMENT de la tabla `configuration`
 --
 ALTER TABLE `configuration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `fee`
 --
@@ -497,17 +458,17 @@ ALTER TABLE `fee`
 -- AUTO_INCREMENT de la tabla `guardian`
 --
 ALTER TABLE `guardian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT de la tabla `guardian_student_relationship`
 --
 ALTER TABLE `guardian_student_relationship`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `resource`
 --
@@ -522,12 +483,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT de la tabla `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
