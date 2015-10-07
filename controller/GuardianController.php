@@ -23,14 +23,15 @@ class GuardianController
         $guardianModel=new GuardianModel();
 
         $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
-       $guardians = $guardianModel->listGuardians($index,$paginationNumber);
 
-       $guardiansAmount = $guardianModel->getGuardiansAmount();
+        $guardians = $guardianModel->listGuardians($index,$paginationNumber);
+
+        $guardiansAmount = $guardianModel->getGuardiansAmount();
 
 
-       $view = new ListGuardiansView();
+        $view = new ListGuardiansView();
 
-       $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
+        $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
     }
 
     public  static function deleteGuardianAction($guardianID)

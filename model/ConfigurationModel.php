@@ -68,7 +68,7 @@ class ConfigurationModel extends PDORepository
 
     public function deleteConfiguration($configurationName)
     {
-        
+
         if($this->ConfigurationAlreadyExists($configurationName))
         {
             $query= "DELETE FROM configuration where name=?";
