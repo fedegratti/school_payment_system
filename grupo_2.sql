@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.2.12deb2
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2015 a las 21:55:55
--- Versión del servidor: 5.6.26-log
--- Versión de PHP: 5.6.12
+-- Host: localhost
+-- Generation Time: Oct 07, 2015 at 07:48 PM
+-- Server version: 10.0.20-MariaDB-1~jessie-log
+-- PHP Version: 5.6.7-1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,26 +14,26 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `grupo_2`
+-- Database: `grupo_2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `auth_mapper`
+-- Table structure for table `auth_mapper`
 --
 
 CREATE TABLE IF NOT EXISTS `auth_mapper` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `roleId` int(11) NOT NULL,
   `resourceId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `auth_mapper`
+-- Dumping data for table `auth_mapper`
 --
 
 INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
@@ -49,41 +49,41 @@ INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
 (21, 2, 70),
 (22, 2, 71),
 (23, 2, 72),
-(24, 3, 71),
-(25, 2, 59);
+(24, 3, 71);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `configuration`
+-- Table structure for table `configuration`
 --
 
 CREATE TABLE IF NOT EXISTS `configuration` (
-  `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+`id` int(11) NOT NULL,
+  `configuration` text NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `configuration`
+-- Dumping data for table `configuration`
 --
 
-INSERT INTO `configuration` (`id`, `name`, `value`) VALUES
-(2, 'siteEnabled', '1'),
+INSERT INTO `configuration` (`id`, `configuration`, `value`) VALUES
+(2, 'siteEnabled', '0'),
 (3, 'disabledSiteMessage', 'El sitio se encuentra en mantenimiento'),
 (4, 'title', 'AdministrAnexa'),
 (5, 'description', 'Sitio de gestion de alumnos'),
 (6, 'email', 'soporte@graduada.unlp.edu.ar'),
-(11, 'paginationNumber', '20');
+(7, 'paginationNumber', '12'),
+(13, '', '123');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `fee`
+-- Table structure for table `fee`
 --
 
 CREATE TABLE IF NOT EXISTS `fee` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `year` int(11) NOT NULL,
   `month` int(11) NOT NULL,
   `number` int(11) NOT NULL,
@@ -92,31 +92,32 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `collectorPayment` decimal(10,0) NOT NULL,
   `createDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `fee`
+-- Dumping data for table `fee`
 --
 
 INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collectorPayment`, `createDate`, `deleted`) VALUES
-(1, 1, 1, 1, '200', 1, '200', '2015-10-04', 1),
-(2, 111111, 2017, 4, '1111', 1, '222', '2015-10-04', 0),
-(4, 2, 1111111, 2, '500', 2, '500', '2015-10-04', 1),
-(5, 3333333, 33333333, 3, '33333333', 2, '333333333', '2015-10-04', 0),
-(7, 2, 3, 4, '3', 1, '12', '2015-10-05', 0),
-(8, 2, 2, 5, '2', 2, '2', '2015-10-05', 0),
-(9, 1, 2, 4, '123', 1, '12', '2015-10-05', 0),
-(10, 2011, 12, 4, '200', 2, '300', '2015-10-05', 0),
-(11, 21, 21, 1, '121', 1, '12', '2015-10-05', 0);
+(1, 1, 1, 1, 200, 1, 200, '2015-10-04', 1),
+(2, 111111, 2017, 1, 1111, 0, 222, '2015-10-04', 0),
+(3, 5555, 2, 1, -2, 0, 123, '2015-10-04', 1),
+(4, 2, 1111111, 2, 500, 2, 500, '2015-10-04', 1),
+(5, 3333333, 33333333, 3, 33333333, 2, 333333333, '2015-10-04', 0),
+(6, 1, 1, 1, 1, 0, 1, '2015-10-04', 0),
+(7, 2, 3, 4, 3, 1, 12, '2015-10-05', 0),
+(8, 2, 2, 5, 2, 2, 2, '2015-10-05', 0),
+(9, 1, 2, 4, 123, 1, 12, '2015-10-05', 0),
+(10, 2011, 12, 4, 200, 2, 300, '2015-10-05', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `guardian`
+-- Table structure for table `guardian`
 --
 
 CREATE TABLE IF NOT EXISTS `guardian` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `idUser` int(11) NOT NULL,
   `kind` int(1) NOT NULL,
   `lastName` mediumtext COLLATE utf8_unicode_ci NOT NULL,
@@ -127,38 +128,83 @@ CREATE TABLE IF NOT EXISTS `guardian` (
   `phone` int(20) DEFAULT NULL,
   `address` mediumtext COLLATE utf8_unicode_ci,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `guardian`
+-- Dumping data for table `guardian`
 --
 
 INSERT INTO `guardian` (`id`, `idUser`, `kind`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `phone`, `address`, `deleted`) VALUES
-(1, 1, 2, 'Rodriguez', 'Ah re loca', '2015-10-01', 1, 'juli@asd.com', 1234, '13 e 44 y 56', 1),
-(2, 0, 1, 'apellido', 'fffffffff', '2015-10-19', 1, 'asd@asd.com', 1234567, 'direcion re loca', 1),
-(52, 0, 0, 'asd', 'asd', '0000-00-00', 0, 'asd@asd', 21323, 'asdasd', 1),
-(53, 0, 0, 'zzzz', 'xxxx', '2015-10-19', 0, 's@a', 1231231, 'asdasd', 1),
-(54, 0, 0, 'czxczxc', 'cxzcxzcxzc', '2015-10-19', 0, 's@a', 12312, 'xxcz', 0),
-(55, 0, 1, 'fulanote', 'fulanito', '0000-00-00', 1, 'asd@asd', 42141241, '2124121', 0),
-(56, 0, 0, 'Ã±kkjlkjÃ±', 'Ã±kkjlkjÃ±', '0000-00-00', 1, 'pepe@pepe', 1231231, 'asdasd', 0),
-(57, 0, 1, 'de tal', 'fulanitoxx', '2000-02-02', 1, 's@a', 1231231, 'sasdasd', 0),
-(58, 0, 0, 'asdsadd', 'asdasdad', '2000-02-02', 1, 'a@a', 213, 'asd', 0);
+(1, 1, 0, 'Rodrigueza', 'Lucas', '2015-10-01', 1, 'juli@asd.comsssss', 1234, '13 e 44 y 56', 1),
+(2, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 1),
+(3, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(4, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(5, 0, 2, 'apellido', 'nombre', '2015-10-01', 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(6, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(7, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(8, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(9, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(10, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(11, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(12, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(13, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(14, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(15, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(16, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(17, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(18, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(19, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(20, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(21, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(22, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(23, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(24, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(25, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(26, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(27, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(28, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(29, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(30, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(31, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(32, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(33, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(34, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(35, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(36, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(37, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(38, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(39, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(40, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(41, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(42, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(43, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(44, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(45, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(46, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(47, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(48, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(49, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(50, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(51, 0, 0, 'apellido', 'nombre', NULL, 0, 'asd@asd.com', 1234567, 'direcion re loca', 0),
+(52, 0, 0, 'asd', 'asd', '0000-00-00', 0, 'asd@asd', 21323, 'asdasd', 0),
+(53, 0, 0, 'zzzz', 'xxxx', '2015-10-19', 0, 's@a', 1231231, 'asdasd', 0),
+(54, 0, 0, 'czxczxc', 'cxzcxzcxzc', '2015-10-19', 0, 's@a', 12312, 'xxcz', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `guardian_student_relationship`
+-- Table structure for table `guardian_student_relationship`
 --
 
 CREATE TABLE IF NOT EXISTS `guardian_student_relationship` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `studentId` int(11) NOT NULL,
   `guardianId` int(11) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `guardian_student_relationship`
+-- Dumping data for table `guardian_student_relationship`
 --
 
 INSERT INTO `guardian_student_relationship` (`id`, `studentId`, `guardianId`, `deleted`) VALUES
@@ -166,30 +212,26 @@ INSERT INTO `guardian_student_relationship` (`id`, `studentId`, `guardianId`, `d
 (2, 2, 53, 0),
 (3, 3, 6, 0),
 (4, 4, 54, 0),
-(5, 5, 5, 0),
-(6, 6, 55, 0),
-(7, 7, 56, 0),
-(8, 0, 57, 0),
-(9, 8, 58, 0);
+(5, 5, 5, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `payment`
+-- Table structure for table `payment`
 --
 
 CREATE TABLE IF NOT EXISTS `payment` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `studentId` int(11) NOT NULL,
   `feeId` int(11) NOT NULL,
   `grantholding` tinyint(1) NOT NULL,
   `createDate` date NOT NULL,
   `updatedDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `payment`
+-- Dumping data for table `payment`
 --
 
 INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`, `updatedDate`, `deleted`) VALUES
@@ -197,25 +239,21 @@ INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`,
 (3, 1, 6, 0, '2015-10-04', NULL, 0),
 (4, 1, 4, 1, '2015-10-04', NULL, 0),
 (5, 1, 3, 1, '2015-10-04', NULL, 0),
-(6, 1, 2, 0, '2015-10-04', NULL, 0),
-(7, 1, 9, 1, '2015-10-06', NULL, 0),
-(8, 1, 8, 0, '2015-10-06', NULL, 0),
-(9, 1, 7, 0, '2015-10-06', NULL, 0),
-(10, 1, 11, 0, '2015-10-06', NULL, 0);
+(6, 1, 2, 0, '2015-10-04', NULL, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `resource`
+-- Table structure for table `resource`
 --
 
 CREATE TABLE IF NOT EXISTS `resource` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `resource`
+-- Dumping data for table `resource`
 --
 
 INSERT INTO `resource` (`id`, `description`) VALUES
@@ -265,16 +303,16 @@ INSERT INTO `resource` (`id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `description` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `description`) VALUES
@@ -285,11 +323,11 @@ INSERT INTO `role` (`id`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `student`
+-- Table structure for table `student`
 --
 
 CREATE TABLE IF NOT EXISTS `student` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `documentType` int(2) NOT NULL,
   `documentNumber` int(10) NOT NULL,
   `lastName` text COLLATE utf8_unicode_ci NOT NULL,
@@ -302,44 +340,41 @@ CREATE TABLE IF NOT EXISTS `student` (
   `graduationDate` date DEFAULT NULL,
   `createDate` date NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `student`
+-- Dumping data for table `student`
 --
 
 INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `address`, `admissionDate`, `graduationDate`, `createDate`, `deleted`) VALUES
 (1, 0, 1123, 'sad', 'vvvvvvvv', '2015-10-19', 0, 'asd@asd', '13 55 y 56 1139', '2015-10-13', '2015-10-13', '2015-10-03', 1),
 (2, 0, 111, 's', 'rama aslkdasldkasd', '2015-10-19', 0, 'a@a', 'asdasd', '2015-10-19', '2015-10-13', '2015-10-04', 1),
-(3, 1, 111, 's', 'ramassss', '2015-10-19', 1, 'a@a', 'asdasd', '2015-10-19', '0000-00-00', '2015-10-04', 0),
+(3, 0, 111, 's', 'rama', '2015-10-19', 0, 'a@a', 'asdasd', '2015-10-19', NULL, '2015-10-04', 0),
 (4, 0, 5555555, 'ddddddddddddd', 'dddddddddddddd', '2015-10-19', 0, 's@a', 'asdasd', '2015-10-19', NULL, '2015-10-04', 0),
-(5, 0, 213123, 'xczxc', 'muerte a juli', '2015-10-19', 0, 'ramiro_fages@hotmail.com', 'asdasdad', '2015-10-19', NULL, '2015-10-04', 0),
-(6, 1, 513213, 'hola como va', 'hola como va', '2015-10-19', 1, 'asd@asd', 'lalala', NULL, NULL, '2015-10-05', 0),
-(7, 1, 513213, 'hola como va', 'hola como va', '2015-10-19', 1, 'asd@asd', 'lalala', NULL, NULL, '2015-10-05', 0),
-(8, 0, 21323, 'gggggggggggggg', 'gggggggggggg', '2015-10-19', 1, 'a@a', '1231231', NULL, NULL, '2015-10-06', 0);
+(5, 0, 213123, 'xczxc', 'muerte a juli', '2015-10-19', 0, 'ramiro_fages@hotmail.com', 'asdasdad', '2015-10-19', NULL, '2015-10-04', 0);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL,
+`id` int(11) NOT NULL,
   `username` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `email` text COLLATE utf8_unicode_ci,
   `password` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   `roleId` int(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Volcado de datos para la tabla `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, `deleted`) VALUES
-(1, 'HOLIS2', 'AQWEQWE@asd.com', '4b2b79b6f371ca18f1216461cffeaddf6848a50e', 1, 3, 0),
+(1, 'HOLIS2', 'AQWEQWE@asd.com', '51abb9636078defbf888d8457a7c76f85c8f114c', 1, 3, 1),
 (2, 'hola rama ah re', 'rama@gay', 'asd', 1, 0, 1),
 (4, 'asdasd', NULL, 'asd', 1, 0, 1),
 (5, 'zxc', NULL, 'zxc', 1, 0, 1),
@@ -354,141 +389,132 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, 
 (14, 'nuevo', NULL, 'usuario', 1, 2, 1),
 (15, 'rama', NULL, '123', 1, 2, 1),
 (16, 'asd', NULL, 'f10e2821bbbea527ea02200352313bc059445190', 1, 1, 1),
-(17, '321', 'pepe@pepe', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 0, 1, 0),
-(18, 'pepe', 'a@a', '265392dc2782778664cc9d56c8e3cd9956661bb0', 1, 2, 0),
+(17, '321', NULL, '5f6955d227a320c7f1f6c7da2a6d96a851a8118f', 1, 3, 1),
+(18, 'pepee', 'a@a', 'd435a6cdd786300dff204ee7c2ef942d3e9034e2', 1, 1, 0),
 (19, 'carlos', 'a@a', 'ab5e2bca84933118bbc9d48ffaccce3bac4eeb64', 1, 1, 0),
 (20, '555', 'a@a', '8effee409c625e1a2d8f5033631840e6ce1dcb64', 1, 1, 1),
 (21, 'admin', 'asd@asd', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 1, 0),
 (22, 'consulta', 'a@a', 'b71deb9fd5e102295b64777fc8806019b9965813', 1, 3, 0),
-(23, 'gestion', 'ramiro_fages@hotmail.com', 'e66bb2fabbe7b86def4cb857aa62748ce7880394', 1, 2, 0),
-(24, 'fulano de tal', 'ramiro_fages@hotmail.com', 'f10e2821bbbea527ea02200352313bc059445190', 1, 2, 1),
-(25, 'lalala321', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 1, 2, 1),
-(26, 'agreganding', 's@a', '8df19dc7c82cd45ce9a88d42d2677e28d007029a', 1, 2, 1),
-(27, 'A RE LOCOOOOOO', 'a@a', 'f10e2821bbbea527ea02200352313bc059445190', 0, 3, 1),
-(28, 'SSSSSS', 'pepe@pepe', '8d756733db30807ee3b719893a75cf80feddd9f0', 1, 2, 1),
-(29, 'xxxxxxxxxxxxx', 'a@a', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 1, 1),
-(30, 'habilitado', 'asd@asd', '58d66bd37fffdd7a8c5eda921d86ce269143c02e', 1, 1, 0),
-(31, 'nohabilitado', 's@a', 'bbe1fcdda7dcbb7dce75689b873a66375dd63b58', 0, 1, 0),
-(32, 'juli, mira como me funciona', 's@a', '85136c79cbf9fe36bb9d05d0639c70c265c18d37', 1, 1, 0);
+(23, 'gestion', 'ramiro_fages@hotmail.com', 'e66bb2fabbe7b86def4cb857aa62748ce7880394', 1, 2, 0);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `auth_mapper`
+-- Indexes for table `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `configuration`
+-- Indexes for table `configuration`
 --
 ALTER TABLE `configuration`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `fee`
+-- Indexes for table `fee`
 --
 ALTER TABLE `fee`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `guardian`
+-- Indexes for table `guardian`
 --
 ALTER TABLE `guardian`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `guardian_student_relationship`
+-- Indexes for table `guardian_student_relationship`
 --
 ALTER TABLE `guardian_student_relationship`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `payment`
+-- Indexes for table `payment`
 --
 ALTER TABLE `payment`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `resource`
+-- Indexes for table `resource`
 --
 ALTER TABLE `resource`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `student`
+-- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `auth_mapper`
+-- AUTO_INCREMENT for table `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
--- AUTO_INCREMENT de la tabla `configuration`
+-- AUTO_INCREMENT for table `configuration`
 --
 ALTER TABLE `configuration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
--- AUTO_INCREMENT de la tabla `fee`
+-- AUTO_INCREMENT for table `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT de la tabla `guardian`
+-- AUTO_INCREMENT for table `guardian`
 --
 ALTER TABLE `guardian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=59;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
--- AUTO_INCREMENT de la tabla `guardian_student_relationship`
+-- AUTO_INCREMENT for table `guardian_student_relationship`
 --
 ALTER TABLE `guardian_student_relationship`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT de la tabla `payment`
+-- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
--- AUTO_INCREMENT de la tabla `resource`
+-- AUTO_INCREMENT for table `resource`
 --
 ALTER TABLE `resource`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=90;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=90;
 --
--- AUTO_INCREMENT de la tabla `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT de la tabla `student`
+-- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT de la tabla `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
