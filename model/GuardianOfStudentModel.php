@@ -13,7 +13,16 @@ class GuardianOfStudentModel extends PDORepository
     {
         $query = "SELECT COUNT(*) FROM guardian_student_relationship WHERE studentId=? and deleted=false";
 
-        $stmt = $this->executeUnpreparedQuery($query, array($studentId));
+        $stmt = $this->executeQuery($query, array($studentId));
         return $stmt->fetch()[0];
+    }
+
+    public  function getStudentsOfGuardian($guardianID)
+    {
+        $query = "SELECT * FROM guardian_student_relationship as gs inner join student as s on (gs.studentId = s.id)
+                            WHERE gs.guardianId=? and s.deleted=false";
+
+        $stmt = $this->executeQuery($query, array($guardianID));
+        return $stmt->fetchAll();
     }
 }

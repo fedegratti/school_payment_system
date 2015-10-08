@@ -85,7 +85,7 @@ class UserModel extends PDORepository
 		return $stmt->fetch()[0];
 	}
 
-	public  function isEnabled($username)
+	public function isEnabled($username)
 	{
 		$query="SELECT enabled FROM user WHERE username = ?";
 
@@ -95,11 +95,35 @@ class UserModel extends PDORepository
 
 		return $isEnabled["enabled"] == 1;
 	}
-    public  function deleteUser($id)
+    public function deleteUser($id)
     {
         $query= "UPDATE user set deleted=true where id=?";
 
         $stmnt = $this->executeQuery($query,array($id));
         return "SUCCESS";
     }
+
+	public function getResponsibleAssociated($username)
+	{
+		$query="SELECT * FROM guardian WHERE userId = ? and deleted=false";
+		$userID = $this->getUserID($username);
+
+		$stmnt = $this->executeQuery($query,array($userID));
+		if($stmnt->rowCount() > 0)
+		{
+			return $stmnt->fetch();
+		}
+		return "ERROR";
+	}
+
+	private function getUserID($username)
+	{
+		$query="SELECT id FROM user WHERE username = ? ";
+
+		$stmnt = $this->executeQuery($query,array($username));
+		return $stmnt->fetch()["id"];
+	}
+
+
+
 }

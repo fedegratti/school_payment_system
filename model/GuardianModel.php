@@ -4,6 +4,7 @@ class GuardianModel extends PDORepository
 {
     public function createGuardian($guardianData)
     {
+
         $query = "INSERT INTO guardian (kind,lastName,firstName,birthDate,sex,email,phone, address, userId)
                 VALUES (?,?,?,?,?,?,?,?,? )";
 

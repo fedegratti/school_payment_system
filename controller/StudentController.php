@@ -76,7 +76,22 @@ class StudentController
     {
 
         $StudentModel = new StudentModel();
-        $students = $StudentModel->getAdmittedStudents($startingIndex);
+
+        $responsibleAssociated = (new UserModel()) ->getResponsibleAssociated($_SESSION["username"]);
+
+        // si estamos en rol de consulta, y el usuario logeado tiene un responsable asociado...
+        // mostramos unicamente los alumnos que tiene asociado ese responsable.
+        if($_SESSION["role"] == 3 and $responsibleAssociated != "ERROR")
+        {
+
+            $students = (new GuardianOfStudentModel())->getStudentsOfGuardian($responsibleAssociated["id"]);
+        }
+        else
+        {
+
+            $students = $StudentModel->getAdmittedStudents($startingIndex);
+        }
+
 
         (new ListAdmittedStudentsView())->show($students);
     }

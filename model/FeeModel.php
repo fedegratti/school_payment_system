@@ -46,7 +46,7 @@ class FeeModel extends PDORepository
 		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.createDate
                  FROM payment as p
                          inner join fee as f on (p.feeId = f.id)
-                  WHERE p.studentId = ?
+                  WHERE p.studentId = ? and deleted=false
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();
@@ -60,7 +60,7 @@ class FeeModel extends PDORepository
                  WHERE f.id not in (select fe.id
                                      FROM payment as p
                          				  inner join fee as fe on (p.feeId = fe.id)
-                  					WHERE p.studentId = ?)
+                  					WHERE p.studentId = ? and deleted=false)
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();
@@ -75,7 +75,7 @@ class FeeModel extends PDORepository
                                      FROM payment as p
                          				  inner join fee as fe on (p.feeId = fe.id)
                   					 WHERE p.studentId = ?) and (YEAR(CURRENT_DATE ) >= f.year and
-                  												MONTH(CURRENT_DATE ) > f.month )
+                  												MONTH(CURRENT_DATE ) > f.month ) and deleted=false
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();

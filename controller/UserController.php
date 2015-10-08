@@ -27,6 +27,8 @@ class UserController
         }
     }
 
+
+
     public static function listUsersView()
     {
         $userModel = new UserModel();

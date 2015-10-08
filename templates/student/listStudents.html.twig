@@ -27,8 +27,9 @@
             <th>Apellido</th>
             <th>Email</th>
             <th>Sexo</th>
-            <th>Responsables</th>
-            {% if admitted == true %} <th>Ver cuotas</th> {% endif %}
+
+            {% if role != 3  %}       <th>Responsables</th> {% endif %}
+            {% if admitted == true %} <th>Ver cuotas</th>   {% endif %}
             {% if role == 1  %}
             <th>Editar</th>
             <th>Borrar</th>
@@ -40,7 +41,7 @@
               <td>{{ student.lastName }}</td>
               <td>{{ student.email }}</td>
               <td>{{ sex[student.sex]}}</td>
-              <td><a href="">{{ student.guardiansAmount }}</a></td>
+              {% if role != 3  %}<td><a href="">{{ student.guardiansAmount }}</a></td> {% endif %}
               {% if admitted == true %}<td><a href="/ListFees/{{ student.id }}">Ver cuotas</a></td>{% endif %}
 
               {% if role == 1  %}
