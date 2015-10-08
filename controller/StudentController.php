@@ -4,7 +4,6 @@ class StudentController
 {
     public static function addStudentView()
     {
-
         $view = new AddStudentView();
         $view->show();
     }
@@ -43,6 +42,18 @@ class StudentController
         $view ->show($students);
 
     }
+
+    public static function listStudentGuardiansView($studentId)
+    {
+        $view = new ListStudentGuardiansView();
+        $guardianData = (new GuardianOfStudentModel())->getStudentGuardians($studentId);
+        $studentData = (new StudentModel())->getStudent($studentId);
+        $guardiansAmount = (new GuardianModel())->getGuardiansAmount();
+        $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
+
+        $view ->show($guardianData,$guardiansAmount,$studentData,$paginationNumber);
+    }
+
     public static function listStudentsWithNameView($studentName)
     {
         $view = new ListStudentsView();
@@ -63,6 +74,12 @@ class StudentController
         header("Location: /ListStudents");
     }
 
+    public static function breakGuardianStudentRelationshipAction($guardianId,$studentId)
+    {
+        (new GuardianOfStudentModel())->breakStudentGuardianRelationship($studentId,$guardianId);
+        header("Location: /listStudentGuardiansView/".$studentId);
+    }
+
     public static function listStudentsWithPayedEnrolmentView($startingIndex = 0)
     {
 
@@ -74,7 +91,6 @@ class StudentController
 
     public static function listAdmittedStudentsView($startingIndex = 0)
     {
-
         $StudentModel = new StudentModel();
 
         $responsibleAssociated = (new UserModel()) ->getResponsibleAssociated($_SESSION["username"]);

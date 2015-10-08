@@ -2,24 +2,26 @@
     <div class="container-fluid">
         <div class="navbar-header">
 
-            <a class="navbar-brand" href="/">{{ siteTitle }} | {{ siteDescription }}</a>
+            <a class="navbar-brand" href="/">{{ siteTitle }} | {{ siteDescription    }}</a>
 
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                {% if role == 1 %}
-                    <li><a href="/listGuardians/0">Responsables</a></li>
+
+
+                {% if role == 1 or role == 2 %}
+                    <li><a href="/listFees">Cuotas</a></li>
                 {% endif %}
 
                 <li><a href="/listAdmittedStudents/">Alumnos matriculados</a></li>
-                <li><a href="/listFees">Cuotas</a></li>
-
 
                 {% if role == 1 %}
                 <li><a href="/listStudents">Alumnos</a></li>
                 <li><a href="/ListUsers">Usuarios</a></li>
+                    <li><a href="/listGuardians/0">Responsables</a></li>
                 <li><a href="/ListConfigurations">Configuraciones</a></li>
                 {% endif %}
+
                 <li><a href="/Logout">Cerrar sesi&oacute;n</a></li>
 
             </ul>

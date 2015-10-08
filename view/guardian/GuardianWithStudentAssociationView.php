@@ -8,6 +8,7 @@ class GuardianWithStudentAssociationView extends TwigView
                                                                             "guardiansAmount" => $guardiansAmount,
                                                                             "associationAction" => 'AssociateGuardianWithStudentAction',
                                                                             "personID" => $studentID,
+                                                                            "association" => true,
                                                                             "paginationNumber" => $paginationNumber));
 
     }

@@ -29,8 +29,8 @@
             <th>Tipo</th>
             <th>Sexo</th>
            {% if personID != null %} <th>Asignar Responsable</th> {% endif %}
-            <th>Editar</th>
-            <th>Borrar</th>
+           {% if association == false %} <th>Editar</th> {% endif %}
+           {% if role == 1 %} <th>Borrar</th> {% endif %}
           </tr>
           {% for guardian in guardians %}
             <tr class="{% if guardians.odd == true  %}">odd{% else %}even{% endif %}">
@@ -40,9 +40,15 @@
               <td>{{kind[guardian.kind]}}</td>
               <td>{{ sex[guardian.sex]}}</td>
                 {% if personID != null %} <td><a href="/{{ associationAction }}/{{ guardian[0] }}/{{ personID }}">Seleccionar</a></td> {% endif %}
-              <td><a href="/updateGuardian/{{ guardian.id }}">Editar</a>
-              </td>
-              <td><a href="/deleteGuardian/{{ guardian.id }}">Borrar</a>
+                {% if association == false %}<td><a href="/updateGuardian/{{ guardian.id }}">Editar</a>
+              </td>{% endif %}
+             {% if role == 1 %}
+                {% if association == true %}
+                    <td><a href="/{{ deleteAction }}/{{ guardian.id }}/{{ student.id }}">Borrar</a>
+                {% else %}
+                    <td><a href="/{{ deleteAction }}/{{ guardian.id }}">Borrar</a>
+                {% endif %}
+             {% endif %}
               </td>
             </tr>
           {% endfor %}

@@ -6,6 +6,8 @@ class ListGuardiansView extends TwigView
     {
         self::getTwig()->display('guardian/listGuardians.html.twig', array("guardians" => $guardians,
                                                                             "guardiansAmount" => $guardiansAmount,
-                                                                            "paginationNumber" => $paginationNumber));
+                                                                            "paginationNumber" => $paginationNumber,
+                                                                            "association" => false,
+                                                                            "deleteAction" => "deleteGuardian"));
     }
 }

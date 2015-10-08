@@ -2,8 +2,12 @@
 
 class LoginController
 {
+    static $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListAdmittedStudents/", 3 => "/ListAdmittedStudents/");
+
     public static function loginView($error = null)
     {
+        if (isset($_SESSION["username"])) header('Location: '.static::$rolesAction[$_SESSION['role']]);
+
         $view = new LoginView();
         $view->show($error);
     }
@@ -12,7 +16,6 @@ class LoginController
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListAdmittedStudents/", 3 => "/ListAdmittedStudents/");
 
         $loginModel=new LoginModel();
         $roleId = $loginModel->authenticate($username,$password);
@@ -28,7 +31,7 @@ class LoginController
         $_SESSION['siteTitle'] = (new ConfigurationModel())->getConfiguration("title")["value"];
         $_SESSION['siteDescription'] = (new ConfigurationModel())->getConfiguration("description")["value"];
 
-        header('Location: '.$rolesAction[$roleId]);
+        header('Location: '.static::$rolesAction[$roleId]);
     }
 
     public static function logoutView($error = null)

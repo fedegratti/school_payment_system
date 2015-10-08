@@ -105,6 +105,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/listStudentGuardiansView/:studentId', array(
+        '_controller' => 'StudentController::listStudentGuardiansView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/ListAdmittedStudents/', array(
         '_controller' => 'StudentController::listAdmittedStudentsView',
         'methods' => 'GET'
@@ -256,11 +261,22 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/BreakGuardianStudentRelationship/:guardianId/:studentId', array(
+        '_controller' => 'StudentController::breakGuardianStudentRelationshipAction',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/actionNotFound/', array(
+        '_controller' => 'ConfigurationController::actionNotFound',
+        'methods' => 'GET'
+    )));
 
 	$router = new Router($collection);
 	$router->setBasePath('/');
 
 	$route = $router->matchCurrentRequest();
+
+    if ($route == false) header("Location: /actionNotFound");
 
     AuthController::checkPermission($route->getAction());
 

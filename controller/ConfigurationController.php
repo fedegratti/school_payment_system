@@ -4,19 +4,22 @@ class ConfigurationController
 {
     public static function addConfigurationView()
     {
-
         $view = new AddConfigurationView();
         $view->show();
     }
 
     public static function addConfigurationAction ()
     {
-
         $result = (new ConfigurationModel()) ->createConfiguration($_POST);
         if ($result == "SUCCESS")
         {
             header('Location: /ListConfigurations/');
         }
+    }
+
+    public static function actionNotFound()
+    {
+        echo "rescatate wachin";
     }
 
     public static function listConfigurationsView()
