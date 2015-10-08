@@ -10,6 +10,7 @@
         {
             $('#role').val({{ user.roleid }});
             $('#enabled').val({{ user.enabled }});
+            $('#guardian').css('display', 'none');
 
             {% if user.enabled == 1 %}
                 $('#enabled').attr("checked","");

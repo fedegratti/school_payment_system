@@ -64,7 +64,7 @@ class FeeModel extends PDORepository
                          				  inner join fee as fe on (p.feeId = fe.id)
                   					WHERE p.studentId = ?  )
                   	   and f.deleted=false and f.kind = 2 and (YEAR(CURRENT_DATE ) >= fe.year and
-                  												MONTH(CURRENT_DATE ) > fe.month ) 
+                  												MONTH(CURRENT_DATE ) > fe.month )
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();

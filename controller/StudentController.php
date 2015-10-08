@@ -24,7 +24,7 @@ class StudentController
        	}
        	else
        	{
-            GuardianController::listGuardiansView(0,$student);
+            GuardianController::listGuardiansView(0,$studentID);
        	}
     }
 

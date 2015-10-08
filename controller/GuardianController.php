@@ -40,6 +40,12 @@ class GuardianController
         $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
     }
 
+    public static function listGuardiansForUserView($index = 0,$user = null)
+    {
+        echo "falta implementar";
+        die;
+    }
+
     public  static function deleteGuardianAction($guardianID)
     {
 

@@ -9,6 +9,12 @@ class GuardianOfStudentModel extends PDORepository
         $this->executeQuery($query,array($studentId,$guardianId));
     }
 
+    public  function breakStudentGuardianRelationship($studentId,$guardianId)
+    {
+        $query="DELETE FROM guardian_student_relationship (studentId,guardianId)
+                        VALUES (?,?)";
+        $this->executeQuery($query,array($studentId,$guardianId));
+    }
     public function getGuardiansOfStudentAmount ($studentId)
     {
         $query = "SELECT COUNT(*) FROM guardian_student_relationship WHERE studentId=? and deleted=false";
