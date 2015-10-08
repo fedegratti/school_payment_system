@@ -40,12 +40,6 @@ class GuardianController
         $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
     }
 
-    public static function listGuardiansForUserView($index = 0,$user = null)
-    {
-        echo "falta implementar";
-        die;
-    }
-
     public  static function deleteGuardianAction($guardianID)
     {
 
@@ -65,15 +59,54 @@ class GuardianController
 
     public  static function updateGuardianAction()
     {
-
         $guardianModel=new GuardianModel();
         $guardianModel->updateGuardian($_POST);
         header('Location: /ListGuardians');
     }
-    public static function associateGuardianAction($guardianID, $studentID)
-    {
 
+    public static function associateWithStudentView ($index = 0,$studentID)
+    {
+        $guardianModel=new GuardianModel();
+
+        $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
+
+        $guardians = $guardianModel->listGuardians($index,$paginationNumber);
+
+        $guardiansAmount = $guardianModel->getGuardiansAmount();
+
+
+        $view = new GuardianWithStudentAssociationView();
+
+        $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
+    }
+
+    public static function associateWithUserView ($index = 0,$userID)
+    {
+        $guardianModel=new GuardianModel();
+
+        $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
+
+        $guardians = $guardianModel->listGuardians($index,$paginationNumber);
+
+        $guardiansAmount = $guardianModel->getGuardiansAmount();
+
+
+        $view = new GuardianWithUserAssociationView();
+
+        $view->show($guardians, $guardiansAmount, $userID,$paginationNumber);
+    }
+
+    public static function associateWithStudentAction($guardianID, $studentID)
+    {
         (new GuardianOfStudentModel())->associateStudentWithGuardian($studentID,$guardianID);
         header('Location: /ListStudents');
+    }
+
+    public static function associateWithUserAction($guardianID, $userId)
+    {
+        $guardian["id"] = $guardianID;
+        $guardian["userId"] = $userId;
+        (new GuardianModel())->updateGuardianUser($guardian);
+        header('Location: /ListUsers');
     }
 }

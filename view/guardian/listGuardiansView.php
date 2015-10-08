@@ -2,13 +2,10 @@
 
 class ListGuardiansView extends TwigView
 {
-    public function show($guardians, $guardiansAmount, $studentID, $paginationNumber)
+    public function show($guardians, $guardiansAmount, $paginationNumber)
     {
-
         self::getTwig()->display('guardian/listGuardians.html.twig', array("guardians" => $guardians,
                                                                             "guardiansAmount" => $guardiansAmount,
-                                                                            "studentID" => $studentID,
                                                                             "paginationNumber" => $paginationNumber));
-
     }
 }

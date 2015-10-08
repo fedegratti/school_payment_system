@@ -28,9 +28,9 @@
             <th>Email</th>
             <th>Tipo</th>
             <th>Sexo</th>
-           {% if studentID != null %} <th>Seleccionar</th> {% endif %}
-            <th>Edit</th>
-            <th>Delete</th>
+           {% if personID != null %} <th>Asignar Responsable</th> {% endif %}
+            <th>Editar</th>
+            <th>Borrar</th>
           </tr>
           {% for guardian in guardians %}
             <tr class="{% if guardians.odd == true  %}">odd{% else %}even{% endif %}">
@@ -39,10 +39,10 @@
               <td>{{ guardian.email }}</td>
               <td>{{kind[guardian.kind]}}</td>
               <td>{{ sex[guardian.sex]}}</td>
-                {% if studentID != null %} <td><a href="/associateGuardianAction/{{ guardian[0] }}/{{ studentID }}">Seleccionar</a></td> {% endif %}
-              <td><a href="/updateGuardian/{{ guardian.id }}">Edit</a>
+                {% if personID != null %} <td><a href="/{{ associationAction }}/{{ guardian[0] }}/{{ personID }}">Seleccionar</a></td> {% endif %}
+              <td><a href="/updateGuardian/{{ guardian.id }}">Editar</a>
               </td>
-              <td><a href="/deleteGuardian/{{ guardian.id }}">Delete</a>
+              <td><a href="/deleteGuardian/{{ guardian.id }}">Borrar</a>
               </td>
             </tr>
           {% endfor %}

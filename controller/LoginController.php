@@ -25,6 +25,8 @@ class LoginController
 
         $_SESSION['role'] = $roleId;
         $_SESSION['username'] = $username;
+        $_SESSION['siteTitle'] = (new ConfigurationModel())->getConfiguration("title")["value"];
+        $_SESSION['siteDescription'] = (new ConfigurationModel())->getConfiguration("description")["value"];
 
         header('Location: '.$rolesAction[$roleId]);
     }

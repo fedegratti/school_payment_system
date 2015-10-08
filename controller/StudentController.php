@@ -24,7 +24,7 @@ class StudentController
        	}
        	else
        	{
-            GuardianController::listGuardiansView(0,$studentID);
+            GuardianController::associateWithStudentView(0,$studentID);
        	}
     }
 

@@ -23,11 +23,9 @@ class UserController
         }
         else
         {
-            GuardianController::listGuardiansForUserView(0,$user);
+            GuardianController::associateWithUserView(0,$userId);
         }
     }
-
-
 
     public static function listUsersView()
     {

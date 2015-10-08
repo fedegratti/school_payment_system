@@ -187,8 +187,13 @@
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/AssociateGuardianAction/:guardianID/:studentID', array(
-        '_controller' => 'GuardianController::associateGuardianAction',
+    $collection->attachRoute(new Route('/AssociateGuardianWithStudentAction/:guardianID/:studentID', array(
+        '_controller' => 'GuardianController::associateWithStudentAction',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/AssociateGuardianWithUserAction/:guardianID/:userID', array(
+        '_controller' => 'GuardianController::associateWithUserAction',
         'methods' => 'GET'
     )));
 

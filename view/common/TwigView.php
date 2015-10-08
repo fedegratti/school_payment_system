@@ -14,8 +14,13 @@ abstract class TwigView {
             Twig_Autoloader::register();
             $loader = new Twig_Loader_Filesystem('./templates');
             self::$twig = new Twig_Environment($loader);
+
             if (isset($_SESSION['role']))
                 self::$twig->addGlobal('role', $_SESSION['role']);
+            if (isset($_SESSION['siteTitle']))
+                self::$twig->addGlobal('siteTitle', $_SESSION['siteTitle']);
+            if (isset($_SESSION['siteDescription']))
+                self::$twig->addGlobal('siteDescription', $_SESSION['siteDescription']);
         }
         return self::$twig;
     }
