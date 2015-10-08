@@ -46,12 +46,14 @@ class FeeModel extends PDORepository
 		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.createDate
                  FROM payment as p
                          inner join fee as f on (p.feeId = f.id)
-                  WHERE p.studentId = ? and deleted=false
+                  WHERE p.studentId = ? and f.deleted=false
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();
 	}
 
+
+	// devuelve las cuotas que no fueron pagadas y tambien excluye las cuotas vencidas, para que no puedas pagar algo que se te vencio.
 	public function getUnPayedFeesOfStudent($studentID)
 	{
 
@@ -60,7 +62,9 @@ class FeeModel extends PDORepository
                  WHERE f.id not in (select fe.id
                                      FROM payment as p
                          				  inner join fee as fe on (p.feeId = fe.id)
-                  					WHERE p.studentId = ? and deleted=false)
+                  					WHERE p.studentId = ?  )
+                  	   and f.deleted=false and f.kind = 2 and (YEAR(CURRENT_DATE ) >= fe.year and
+                  												MONTH(CURRENT_DATE ) > fe.month ) 
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();
@@ -75,7 +79,7 @@ class FeeModel extends PDORepository
                                      FROM payment as p
                          				  inner join fee as fe on (p.feeId = fe.id)
                   					 WHERE p.studentId = ?) and (YEAR(CURRENT_DATE ) >= f.year and
-                  												MONTH(CURRENT_DATE ) > f.month ) and deleted=false
+                  												MONTH(CURRENT_DATE ) > f.month ) and f.deleted=false
                   order by f.year, f.month";
 
 		return $this->executeQuery($query,array($studentID))->fetchAll();

@@ -12,7 +12,7 @@ class LoginController
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListStudents/", 3 => "/ListAdmittedStudents/");
+        $rolesAction = array(1 => "/ListConfigurations/", 2 => "/ListAdmittedStudents/", 3 => "/ListAdmittedStudents/");
 
         $loginModel=new LoginModel();
         $roleId = $loginModel->authenticate($username,$password);
