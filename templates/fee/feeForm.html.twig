@@ -49,7 +49,11 @@
 				<input type="number" name="year" class="form-control" value="{{ fee.year }}">
 
 				<label>Mes</label>
-				<input type="number" name="month" class="form-control" value="{{ fee.month }}">
+				<input type="number" name="month" class="form-control" value="{{ fee.month }}" >
+
+				<label>Fecha de vencimiento</label>
+				<input type="date" name="expirationDate" class="form-control" value="{{ fee.expirationDate }}" required>
+
 
                 {% if fee.kind != 1 %}
                 <div id="feeNumber">

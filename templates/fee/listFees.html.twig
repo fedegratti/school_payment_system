@@ -28,6 +28,7 @@
             <th>Tipo</th>
             <th>comisi&oacute;n</th>
             <th>Fecha de creaci&oacute;n</th>
+            <th>Fecha de vencimiento</th>
             {% if role != 3  %}
             <th>Edit</th>
             <th>Delete</th>
@@ -42,6 +43,7 @@
               <td>{{kind[fee.kind] }}</td>
               <td>{{ fee.collectorPayment }}</td>
               <td>{{ fee.createDate }}</td>
+              <td>{{ fee.expirationDate }}</td>
               {% if role != 3  %}
               <td><a href="/UpdateFee/{{ fee.id }}">Edit</a>
               </td>
