@@ -30,6 +30,7 @@
                   <th>Tipo</th>
                   <th>comisi&oacute;n</th>
                   <th>Fecha de creaci&oacute;n</th>
+                  <th>Fecha de vencimiento</th>
                   {% if role != 3  %}
                   <th>Pagar</th>
                   <th>Becar</th>
@@ -44,6 +45,7 @@
                       <td>{{kind[fee.kind] }}</td>
                       <td>{{ fee.collectorPayment }}</td>
                       <td>{{ fee.createDate }}</td>
+                      <td>{{ fee.expirationDate }}</td>
                       {% if role != 3  %}
                       <td><a href="/PayOrGrantFee/{{ fee.id }}/{{ student.id }}/0">Pagar</a></td>
                       <td><a href="/PayOrGrantFee/{{ fee.id }}/{{ student.id }}/1">Becar</a></td>
@@ -100,6 +102,7 @@
                   <th>Tipo</th>
                   <th>comisi&oacute;n</th>
                   <th>Fecha de creaci&oacute;n</th>
+                  <th>Fecha de vencimiento</th>
               </tr>
               {% for fee in expiredFees %}
                   <tr class="{% if expiredFees.odd == true  %}">odd{% else %}even{% endif %}">
@@ -110,6 +113,7 @@
                       <td>{{kind[fee.kind] }}</td>
                       <td>{{ fee.collectorPayment }}</td>
                       <td>{{ fee.createDate }}</td>
+                      <td>{{ fee.expirationDate }}</td>
                   </tr>
               {% endfor %}
           </table>
