@@ -44,18 +44,18 @@
     <div class="col-md-6 col-md-offset-3">
         <form action="/{{ action }}" method="post" class="form-horizontal">
 
-            <label for="username">Nombre de usuario:</label>
+            <label >Nombre de usuario:</label>
             <input type="text" name="username" class="form-control" value="{{user.username}}" required >
 
-            <label for="password">Password:</label>
+            <label >Password:</label>
             <input type="password" name="password" class="form-control" required >
 
-            <label for="email">Email de usuario:</label>
+            <label >Email de usuario:</label>
             <input type="email" name="email" class="form-control" value="{{ user.email }}" required >
 
 
-            <label for="enabled">Habilitado:</label>
-            <select id="enabled" name="enabled" class="form-control" required>
+            <label >Habilitado:</label>
+            <select id="enabled" name="enabled" class="form-control" >
 
                 <option value="0">No</option>
                 <option value="1">Si</option>
@@ -64,7 +64,7 @@
 
             <label for="role">Rol:</label>
             <select id="role" name="role" class="form-control" required>
-                  <option value="" disabled {% if user.id==null %}selected{% endif %} }}>Selecciona una opci&oacute;n</option>
+                  <option value="" disabled {% if user.id==null %}selected{% endif %} >Selecciona una opci&oacute;n</option>
                   <option value="1">Administraci&oacute;n</option>
                   <option value="2">Gesti&oacute;n</option>
                   <option value="3">Consulta</option>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2015 a las 01:52:24
+-- Tiempo de generación: 09-10-2015 a las 01:10:50
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -71,7 +71,7 @@ INSERT INTO `configuration` (`id`, `name`, `value`) VALUES
 (2, 'siteEnabled', '1'),
 (3, 'disabledSiteMessage', 'El sitio se encuentra en mantenimiento'),
 (4, 'title', 'AdministrAnexa'),
-(5, 'description', 'Sitio de gestion de alumnos'),
+(5, 'description', 'Sitio de gestion de alumnos2'),
 (6, 'email', 'soporte@graduada.unlp.edu.ar'),
 (12, 'paginationNumber', '20');
 
@@ -90,25 +90,28 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `kind` int(11) NOT NULL,
   `collectorPayment` decimal(10,0) NOT NULL,
   `createDate` date DEFAULT NULL,
-  `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `deleted` tinyint(1) NOT NULL,
+  `expirationDate` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `fee`
 --
 
-INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collectorPayment`, `createDate`, `deleted`) VALUES
-(1, 1, 1, 1, '200', 1, '200', '2015-10-04', 1),
-(2, 111111, 2017, 4, '1111', 1, '222', '2015-10-04', 1),
-(4, 2, 1111111, 2, '500', 2, '500', '2015-10-04', 1),
-(5, 3333333, 33333333, 3, '33333333', 2, '333333333', '2015-10-04', 1),
-(7, 2, 3, 4, '3', 1, '12', '2015-10-05', 1),
-(8, 2, 2, 5, '2', 2, '2', '2015-10-05', 1),
-(9, 1, 2, 4, '123', 1, '12', '2015-10-05', 1),
-(10, 2011, 12, 4, '200', 2, '300', '2015-10-05', 1),
-(11, 21, 21, 1, '121', 1, '12', '2015-10-05', 1),
-(12, 1, 1, 1, '1', 1, '1', '2015-10-07', 0),
-(13, 2444, 1, 3, '321', 2, '123', '2015-10-08', 0);
+INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collectorPayment`, `createDate`, `deleted`, `expirationDate`) VALUES
+(1, 1, 1, 1, '200', 1, '200', '2015-10-04', 1, '0000-00-00'),
+(2, 111111, 2017, 4, '1111', 1, '222', '2015-10-04', 1, '0000-00-00'),
+(4, 2, 1111111, 2, '500', 2, '500', '2015-10-04', 1, '0000-00-00'),
+(5, 3333333, 33333333, 3, '33333333', 2, '333333333', '2015-10-04', 1, '0000-00-00'),
+(7, 2, 3, 4, '3', 1, '12', '2015-10-05', 1, '0000-00-00'),
+(8, 2, 2, 5, '2', 2, '2', '2015-10-05', 1, '0000-00-00'),
+(9, 1, 2, 4, '123', 1, '12', '2015-10-05', 1, '0000-00-00'),
+(10, 2011, 12, 4, '200', 2, '300', '2015-10-05', 1, '0000-00-00'),
+(11, 21, 21, 1, '121', 1, '12', '2015-10-05', 1, '0000-00-00'),
+(12, 1, 1, 1, '1', 1, '1', '2015-10-07', 0, '2016-05-14'),
+(13, 2444, 1, 3, '321', 2, '123', '2015-06-15', 0, '2014-12-15'),
+(14, 2010, 5, 1, '500', 2, '200', '2015-10-08', 1, '0000-00-00'),
+(15, 2016, 1, 1, '6666', 2, '66', '2015-10-08', 0, '2015-11-20');
 
 -- --------------------------------------------------------
 
@@ -135,9 +138,9 @@ CREATE TABLE IF NOT EXISTS `guardian` (
 --
 
 INSERT INTO `guardian` (`id`, `userId`, `kind`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `phone`, `address`, `deleted`) VALUES
-(59, NULL, 1, 'Gratti', 'Oscar', '1965-08-14', 0, 'oscargratti@gmail.com', 2147483647, '13 55 y 56 1139', 0),
-(60, 37, 0, 'Lopez', 'Maria', '1965-12-12', 0, 'marialopez@gmail.com', 2147483647, '5 y 45', 0),
-(61, 38, 0, 'VuanMadre', 'JuliMadre', '1890-04-12', 1, 'mamadejuli@gmail.com', 2346534, 'citi bell 2', 0),
+(59, 37, 1, 'Gratti', 'Oscar', '1965-08-14', 0, 'oscargratti@gmail.com', 2147483647, '13 55 y 56 1139', 0),
+(60, 42, 0, 'Lopez', 'Maria', '1965-12-12', 0, 'marialopez@gmail.com', 2147483647, '5 y 45', 0),
+(61, 43, 0, 'VuanMadre', 'JuliMadre', '1890-04-12', 1, 'mamadejuli@gmail.com', 2346534, 'citi bell 2', 0),
 (62, 22, 0, '123123', '123123', '2000-02-02', 0, 'a@a', 1231231, 'sasdasd', 0);
 
 -- --------------------------------------------------------
@@ -151,17 +154,18 @@ CREATE TABLE IF NOT EXISTS `guardian_student_relationship` (
   `studentId` int(11) NOT NULL,
   `guardianId` int(11) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `guardian_student_relationship`
 --
 
 INSERT INTO `guardian_student_relationship` (`id`, `studentId`, `guardianId`, `deleted`) VALUES
-(10, 9, 59, 0),
-(11, 0, 60, 0),
 (12, 12, 62, 0),
-(14, 15, 62, 0);
+(14, 15, 62, 0),
+(15, 16, 59, 0),
+(16, 17, 62, 0),
+(17, 9, 59, 0);
 
 -- --------------------------------------------------------
 
@@ -177,23 +181,14 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `createDate` date NOT NULL,
   `updatedDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `payment`
 --
 
 INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`, `updatedDate`, `deleted`) VALUES
-(1, 1, 1, 0, '2015-10-13', '2015-10-14', 0),
-(3, 1, 6, 0, '2015-10-04', NULL, 0),
-(4, 1, 4, 1, '2015-10-04', NULL, 0),
-(5, 1, 3, 1, '2015-10-04', NULL, 0),
-(6, 1, 2, 0, '2015-10-04', NULL, 0),
-(7, 1, 9, 1, '2015-10-06', NULL, 0),
-(8, 1, 8, 0, '2015-10-06', NULL, 0),
-(9, 1, 7, 0, '2015-10-06', NULL, 0),
-(10, 1, 11, 0, '2015-10-06', NULL, 0),
-(11, 12, 13, 0, '2015-10-08', NULL, 0);
+(20, 21, 15, 0, '2015-10-09', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -294,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `student` (
   `graduationDate` date DEFAULT NULL,
   `createDate` date NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `student`
@@ -305,7 +300,14 @@ INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firs
 (10, 0, 24542748, 'Gomez', 'Adrian', '1995-08-17', 0, 'adriangomez@hotmail.com', '3 y 65 n 1456', '2015-01-01', '0000-00-00', '2015-10-07', 0),
 (11, 0, 123456789, 'Santo Domingo', 'Academia', '2000-10-19', 0, 'asd@gmail.com', '1231231', NULL, NULL, '2015-10-07', 1),
 (14, 0, 123, '123', '123', '2000-10-19', 1, 's@a', 'asdasd', NULL, NULL, '2015-10-08', 1),
-(15, 0, 123, '123', '123', '2000-10-19', 1, 's@a', 'asdasd', NULL, NULL, '2015-10-08', 0);
+(15, 0, 123, '123', '123', '2000-10-19', 1, 's@a', 'asdasd', NULL, NULL, '2015-10-08', 0),
+(16, 0, 12543542, 'Sole', 'Eugenia', '1991-02-13', 1, 'eugeacdc@gmail.com', '133 y 40', NULL, NULL, '2015-10-08', 0),
+(17, 0, 123123123, '123', 'asd', '3123-12-12', 0, 'asd@asd', 'aasd', NULL, NULL, '2015-10-08', 0),
+(18, 0, 123, '12123', '213', '0000-00-00', 1, 'asd@asd', '1', NULL, NULL, '2015-10-08', 0),
+(19, 0, 123, 'asd', 'saqe', '0123-03-12', 0, 'asd@asd', 'aasd', NULL, NULL, '2015-10-08', 0),
+(20, 0, 321432, 'sdffd', 'sdfdsf', '4234-03-21', 1, 'support@graduada.unlp.edu.ar', '36 N 1004 e/ 15 y 16', NULL, NULL, '2015-10-08', 0),
+(21, 1, 123, 'python', 'python', '2000-02-02', 0, 'a@a', 'sasdasd', '2015-01-01', '0000-00-00', '2015-10-08', 0),
+(22, 0, 123, 'python', 'python', '2000-02-02', 0, 'a@a', 'asd', NULL, NULL, '2015-10-08', 1);
 
 -- --------------------------------------------------------
 
@@ -321,7 +323,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `enabled` tinyint(1) NOT NULL,
   `roleId` int(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `user`
@@ -331,11 +333,16 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, 
 (21, 'admin', 'support@graduada.unlp.edu.ar', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 1, 0),
 (22, 'consulta', 'consulta@graduada.unlp.edu.ar', 'b71deb9fd5e102295b64777fc8806019b9965813', 1, 3, 0),
 (23, 'gestion', 'gestion@graduada.unlp.edu.ar', 'e66bb2fabbe7b86def4cb857aa62748ce7880394', 1, 2, 0),
-(36, 'roberto', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 0, 1, 0),
+(36, 'roberto', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 0, 1, 1),
 (37, 'robert', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 0, 2, 0),
 (38, 'julijuli', 'julietavuan@hotmail.com', 'a6463b105fa5c97ebb5ff2d149d05a9ba36229ab', 1, 3, 0),
-(39, 'jose', 'asd@asd', '4a3487e57d90e2084654b6d23937e75af5c8ee55', 1, 3, 0),
-(40, 'cc', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 1, 2, 0);
+(39, 'jose', 'asd@asd', '4a3487e57d90e2084654b6d23937e75af5c8ee55', 1, 3, 1),
+(40, 'cc', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 1, 2, 1),
+(41, 'Python', 'python@gmail.com', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 1, 3, 1),
+(42, 'asd', 'asd@asd', 'f10e2821bbbea527ea02200352313bc059445190', 1, 3, 0),
+(43, 'ramona', 'asd@asd', '85136c79cbf9fe36bb9d05d0639c70c265c18d37', 0, 3, 0),
+(45, 'ruby', 'ruby@ruby.gmail', 'f10e2821bbbea527ea02200352313bc059445190', 0, 2, 1),
+(46, 'asdasdas', 'a@a', '8ecd6dbce7b43ea44efa845b50072f23ad621e78', 1, 3, 0);
 
 --
 -- Índices para tablas volcadas
@@ -419,7 +426,7 @@ ALTER TABLE `configuration`
 -- AUTO_INCREMENT de la tabla `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `guardian`
 --
@@ -429,12 +436,12 @@ ALTER TABLE `guardian`
 -- AUTO_INCREMENT de la tabla `guardian_student_relationship`
 --
 ALTER TABLE `guardian_student_relationship`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT de la tabla `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `resource`
 --
@@ -449,12 +456,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT de la tabla `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
