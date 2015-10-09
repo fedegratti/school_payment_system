@@ -2,11 +2,13 @@
 
 class GuardianController
 {
-    public static function addGuardianView($student = null)
+    public static function addGuardianView($studentId = null)
     {
+        $student = (new StudentModel())->getStudent($studentId);
         $view = new AddGuardianView();
         $view->show($student);
     }
+
     public static function addGuardianForUserView($userId)
     {
         $user = (new UserModel())->getUser($userId);
@@ -26,10 +28,11 @@ class GuardianController
 
     public static function listGuardiansView($index = 0,$studentID = null)
     {
-
         $guardianModel=new GuardianModel();
 
         $paginationNumber = (new ConfigurationModel())->getPaginationNumber();
+
+        //echo $paginationNumber;
 
         $guardians = $guardianModel->listGuardians($index,$paginationNumber);
 
@@ -38,13 +41,11 @@ class GuardianController
 
         $view = new ListGuardiansView();
 
-        $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
+        $view->show($guardians, $guardiansAmount,$paginationNumber);
     }
 
     public  static function deleteGuardianAction($guardianID)
     {
-
-
         $guardianModel=new GuardianModel();
         $guardianModel->deleteGuardian($guardianID);
 
@@ -53,7 +54,6 @@ class GuardianController
 
     public  static function updateGuardianView($guardianID)
     {
-
         $guardianModel=new GuardianModel();
         (new UpdateGuardianView())->show(($guardianModel->getGuardian($guardianID)));
     }
@@ -65,7 +65,7 @@ class GuardianController
         header('Location: /ListGuardians');
     }
 
-    public static function associateWithStudentView ($index = 0,$studentID)
+    public static function associateWithStudentView ($studentID,$index = 0)
     {
         $guardianModel=new GuardianModel();
 

@@ -4,7 +4,6 @@ class ConfigurationModel extends PDORepository
 {
     public function createConfiguration($configuration)
     {
-
         if( !$this->ConfigurationAlreadyExists($configuration["name"]))
         {
             $query="INSERT INTO configuration (name,value) VALUES (?,?)";
@@ -24,6 +23,7 @@ class ConfigurationModel extends PDORepository
 
             $this->executeQuery($query,array($config["value"],$config["name"]));
 
+            $_SESSION[$config["name"]] = $config["value"];
             return "SUCCESS";
         }
         return "ERROR";
@@ -68,7 +68,6 @@ class ConfigurationModel extends PDORepository
 
     public function deleteConfiguration($configurationName)
     {
-
         if($this->ConfigurationAlreadyExists($configurationName))
         {
             $query= "DELETE FROM configuration where name=?";

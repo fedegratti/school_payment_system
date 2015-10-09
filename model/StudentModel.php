@@ -20,12 +20,9 @@ class StudentModel extends PDORepository
         $query="UPDATE student SET documentType=?,documentNumber=?,lastName=?,firstName=?,birthDate=?,sex=?,
                                       email=?,address=?,admissionDate=?,graduationDate=? WHERE id=?";
 
-
         $this->executeQuery($query,array($studentData["documentType"],$studentData["documentNumber"],
             $studentData["lastName"],$studentData["firstName"],$studentData["birthDate"],$studentData["sex"],
             $studentData["email"],$studentData["address"],$studentData["admissionDate"], $studentData["graduationDate"], $studentID));
-
-
     }
 
     public  function getStudentsByName($studentName)
@@ -62,7 +59,6 @@ class StudentModel extends PDORepository
 
     public function getStudentsWithPayedEnrolment($fromIndex = 0)
     {
-
         $query= "SELECT s.id ,s.firstName, s.lastName, s.email, s.sex FROM student as s
                                 inner join payment as p on (s.id = p.idStudent)
                                 inner join fee as f on (p.idFee = f.id)
@@ -70,15 +66,12 @@ class StudentModel extends PDORepository
                                ";
 
         return $this->executeQuery($query,array( $fromIndex))->fetchAll();
-
     }
-
 
     public  function deleteStudent($studentID)
     {
         $query= "UPDATE student set deleted=true where id=?";
 
         $stmnt = $this->executeQuery($query,array($studentID));
-
     }
 }

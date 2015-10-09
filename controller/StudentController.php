@@ -11,15 +11,17 @@ class StudentController
     public static function addStudentAction()
     {
         $studentRepository = new StudentModel();
-        $studentID = $studentRepository->createStudent($_POST);
+        $studentId = $studentRepository->createStudent($_POST);
 
-        $student["id"] = $studentID;
-        $student["firstName"] = $_POST["firstName"];
-        $student["lastName"] = $_POST["lastName"];
+//        $student["id"] = $studentID;
+//        $student["firstName"] = $_POST["firstName"];
+//        $student["lastName"] = $_POST["lastName"];
+//
+//       	if($_POST['guardianType'] == 'createGuardian') header("Location: /AddGuardian/".$student);
+//
+//        header("Location: /AssociateGuardianWithStudent/0/$studentID");
 
-       	if($_POST['guardianType'] == 'createGuardian') header("Location: /AddGuardian/".$student);
-
-        header("Location: /associateWithStudentView/0/.$studentID");
+        header('Location: '.$_POST['associationAction']."/".$studentId);
     }
 
     public static function listStudentsView()
@@ -35,7 +37,6 @@ class StudentController
         }
 
         $view ->show($students);
-
     }
 
     public static function listStudentGuardiansView($studentId)
@@ -94,22 +95,18 @@ class StudentController
         // mostramos unicamente los alumnos que tiene asociado ese responsable.
         if($_SESSION["role"] == 3 and $responsibleAssociated != "ERROR")
         {
-
             $students = (new GuardianOfStudentModel())->getStudentsOfGuardian($responsibleAssociated["id"]);
         }
         else
         {
-
             $students = $StudentModel->getAdmittedStudents($startingIndex);
         }
-
 
         (new ListAdmittedStudentsView())->show($students);
     }
 
     public  static function deleteStudentAction($studentID)
     {
-
         (new StudentModel())->deleteStudent($studentID);
         header("Location: /ListStudents");
     }

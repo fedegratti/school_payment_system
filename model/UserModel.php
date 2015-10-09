@@ -123,7 +123,4 @@ class UserModel extends PDORepository
 		$stmnt = $this->executeQuery($query,array($username));
 		return $stmnt->fetch()["id"];
 	}
-
-
-
 }

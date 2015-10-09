@@ -4,14 +4,12 @@ class FeeController
 {
     public static function addFeeView()
     {
-
         $view = new AddFeeView();
         $view->show();
     }
 
     public static function addFeeAction()
     {
-
         $feeRepository = new FeeModel();
         $feeRepository->createFee($_POST);
         header("Location: /ListFees");
@@ -19,7 +17,6 @@ class FeeController
 
     public static function payOrGrantFeeView($feeId,$studentId,$grant)
     {
-
         $feeRepository = new FeeModel();
         $feeRepository->payOrGrantFee($feeId,$studentId,$grant);
         header("Location: /ListFees/".$studentId);
@@ -27,7 +24,6 @@ class FeeController
 
     public static function listStudentFeesView($studentId)
     {
-
         $feeModel = new FeeModel();
         $studentModel = new StudentModel();
 
@@ -41,7 +37,6 @@ class FeeController
     }
     public static function listFeesView()
     {
-
         $feeModel = new FeeModel();
 
         $fees = $feeModel->listFees();
@@ -51,7 +46,6 @@ class FeeController
     }
     public  static function deleteFeeAction($feeID)
     {
-
         $feeModel = new FeeModel();
         $feeModel->deleteFee($feeID);
         header("Location: /ListFees");
@@ -59,7 +53,6 @@ class FeeController
 
     public static function updateFeeView($feeID)
     {
-
         $feeModel = new FeeModel();
         $fee = $feeModel->getFee($feeID);
         $view = new UpdateFeeView();
@@ -67,7 +60,6 @@ class FeeController
     }
     public static function updateFeeAction()
     {
-
         $feeRepository = new FeeModel();
 
         $feeRepository->updateFee($_POST);

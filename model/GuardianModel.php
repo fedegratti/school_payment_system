@@ -15,23 +15,6 @@ class GuardianModel extends PDORepository
         return $this->getLastInsertedID();
     }
 
-//    public function cargarDB()
-//    {
-//        //Mock data
-//        $guardianData["kind"] = 0;
-//        $guardianData["firstName"] = "nombre";
-//        $guardianData["lastName"] = "apellido";
-//        $guardianData["sex"] = 0;
-//        $guardianData["email"] = "asd@asd.com";
-//        $guardianData["phone"] = 1234567;
-//        $guardianData["address"] = "direcion re loca";
-//
-//        $i = 0;
-//        for ($i; $i < 50; $i++) {
-//            $this->createGuardian($guardianData);
-//        }
-//    }
-
     public function listGuardians($index,$paginationNumber)
     {
         $indexSanitized = filter_var($index, FILTER_SANITIZE_NUMBER_INT);

@@ -17,11 +17,6 @@ class ConfigurationController
         }
     }
 
-    public static function actionNotFound()
-    {
-        echo "rescatate wachin";
-    }
-
     public static function listConfigurationsView()
     {
         $configModel = new ConfigurationModel();
@@ -69,4 +64,10 @@ class ConfigurationController
         }
 
     }
+
+    public static function actionNotFound()
+    {
+        echo "rescatate wachin";
+    }
+
 }

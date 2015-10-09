@@ -2,7 +2,6 @@
 
 class FeeModel extends PDORepository
 {
-
 	public function createFee($feeData)
 	{
 		$query="INSERT INTO fee (year,month,number,amount,kind,collectorPayment,createDate) VALUES (?,?,?,?,?,?,CURRENT_DATE)";

@@ -58,7 +58,7 @@ class UserController
         }
         else
         {
-            echo "fallo el delete, usuario no existe para borrar o no se, exploto todo";
+            echo "No se ha podido borrar el usuario";
         }
 
     }

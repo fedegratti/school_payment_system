@@ -46,11 +46,6 @@
         'methods' => 'POST'
     )));
 
-    $collection->attachRoute(new Route('/backend/', array(
-        '_controller' => 'BackendController::showView',
-        'methods' => 'GET'
-    )));
-
 	$collection->attachRoute(new Route('/AddUser/', array(
 		'_controller' => 'UserController::addUserView',
 		'methods' => 'GET'
@@ -286,7 +281,12 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/AssociateGuardianWithStudent/:pagination/:studentId', array(
+    $collection->attachRoute(new Route('/AssociateGuardianWithStudent/:studentId', array(
+        '_controller' => 'GuardianController::associateWithStudentView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/AssociateGuardianWithStudent/:studentId/:pagination', array(
         '_controller' => 'GuardianController::associateWithStudentView',
         'methods' => 'GET'
     )));

@@ -17,10 +17,10 @@ abstract class TwigView {
 
             if (isset($_SESSION['role']))
                 self::$twig->addGlobal('role', $_SESSION['role']);
-            if (isset($_SESSION['siteTitle']))
-                self::$twig->addGlobal('siteTitle', $_SESSION['siteTitle']);
-            if (isset($_SESSION['siteDescription']))
-                self::$twig->addGlobal('siteDescription', $_SESSION['siteDescription']);
+            if (isset($_SESSION['title']))
+                self::$twig->addGlobal('siteTitle', $_SESSION['title']);
+            if (isset($_SESSION['description']))
+                self::$twig->addGlobal('siteDescription', $_SESSION['description']);
         }
         return self::$twig;
     }

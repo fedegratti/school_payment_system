@@ -11,8 +11,6 @@
 			$('#documentType').val({{ student.documentType }});
             $('#sex').val({{ student.sex }});
 
-
-
 		});
 	</script>
 {% endblock %}
@@ -68,10 +66,10 @@
                     </div>
 
                     <label>Acci&oacute;n del responsable:</label>
-                    <select id="guardianType" name="guardianType" class="form-control">
+                    <select id="associationAction" name="associationAction" class="form-control">
                         {% if student.firstName!=null %}<option value="" disabled selected>No modificar responsable</option>{% endif %}
-                        <option value="createGuardian">Crear Responsable</option>
-                        <option value="chooseGuardian">Elegir Responsable </option>
+                        <option value="AddGuardian">Crear Responsable</option>
+                        <option value="AssociateGuardianWithStudent">Elegir Responsable </option>
                     </select>
 
                     <input type="hidden" name="id" value="{{ student.id }}">

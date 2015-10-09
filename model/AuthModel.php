@@ -15,8 +15,6 @@ class AuthModel extends PDORepository
 		return ($stmnt->rowCount() > 0);
 	}
 
-
-
 	public  function getAuthorizedResourcesOf($role)
 	{
 		$query = "SELECT r.description
