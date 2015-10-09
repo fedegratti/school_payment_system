@@ -24,7 +24,6 @@ class ConfigurationController
 
     public static function listConfigurationsView()
     {
-
         $configModel = new ConfigurationModel();
 
         (new ListConfigurationView())->show($configModel->getConfigurations());
@@ -43,7 +42,6 @@ class ConfigurationController
 
         $result = (new ConfigurationModel()) ->updateConfiguration($_POST);
         header('Location: /ListConfigurations');
-
     }
 
     public static function isSiteEnabled()

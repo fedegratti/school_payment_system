@@ -29,6 +29,5 @@ class AuthController
         {
             header("Location: /login/0");
         }
-
     }
 }

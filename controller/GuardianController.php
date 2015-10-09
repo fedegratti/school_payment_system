@@ -7,8 +7,9 @@ class GuardianController
         $view = new AddGuardianView();
         $view->show($student);
     }
-    public static function addGuardianForUserView($user)
+    public static function addGuardianForUserView($userId)
     {
+        $user = (new UserModel())->getUser($userId);
         $view = new AddGuardianForUserView();
         $view->show($user);
     }
@@ -80,7 +81,7 @@ class GuardianController
         $view->show($guardians, $guardiansAmount, $studentID,$paginationNumber);
     }
 
-    public static function associateWithUserView ($index = 0,$userID)
+    public static function associateWithUserView ($userID,$index = 0)
     {
         $guardianModel=new GuardianModel();
 

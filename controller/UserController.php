@@ -12,19 +12,9 @@ class UserController
     {
         $userId = (new UserModel()) ->createUser($_POST);
 
-        if ($userId == "ERROR")  header('Location: /error');
+        if ($userId == "ERROR") header('Location: /error');
 
-        $user["id"] = $userId;
-        $user["username"] = $_POST["username"];
-
-        if($_POST['guardianType'] == 'createGuardian')
-        {
-            GuardianController::addGuardianForUserView($user);
-        }
-        else
-        {
-            GuardianController::associateWithUserView(0,$userId);
-        }
+        header('Location: '.$_POST['associationAction']."/".$userId);
     }
 
     public static function listUsersView()
