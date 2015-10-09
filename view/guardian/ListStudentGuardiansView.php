@@ -9,7 +9,7 @@ class ListStudentGuardiansView extends TwigView
                                                                             "student" => $student,
                                                                             "paginationNumber" => $paginationNumber,
                                                                             "association" => true,
-                                                                            "addAction" => "AssociateGuardianWithStudent/0/".$student["id"],
+                                                                            "addAction" => "AssociateGuardianWithStudent/".$student["id"]."/0",
                                                                             "deleteAction" => "breakGuardianStudentRelationship"));
     }
 }

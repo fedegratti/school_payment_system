@@ -13,14 +13,6 @@ class StudentController
         $studentRepository = new StudentModel();
         $studentId = $studentRepository->createStudent($_POST);
 
-//        $student["id"] = $studentID;
-//        $student["firstName"] = $_POST["firstName"];
-//        $student["lastName"] = $_POST["lastName"];
-//
-//       	if($_POST['guardianType'] == 'createGuardian') header("Location: /AddGuardian/".$student);
-//
-//        header("Location: /AssociateGuardianWithStudent/0/$studentID");
-
         header('Location: '.$_POST['associationAction']."/".$studentId);
     }
 
@@ -28,15 +20,8 @@ class StudentController
     {
         $view = new ListStudentsView();
         $studentData = (new StudentModel())->getStudents();
-        $students = array();
 
-        foreach ($studentData as $student)
-        {
-            $student["guardiansAmount"] = (new GuardianOfStudentModel())->getGuardiansOfStudentAmount($student["id"]);
-            $students[$student["id"]] = $student;
-        }
-
-        $view ->show($students);
+        $view ->show(static::getGuardiansAmount($studentData));
     }
 
     public static function listStudentGuardiansView($studentId)
@@ -102,12 +87,23 @@ class StudentController
             $students = $StudentModel->getAdmittedStudents($startingIndex);
         }
 
-        (new ListAdmittedStudentsView())->show($students);
+        (new ListAdmittedStudentsView())->show(static::getGuardiansAmount($students));
     }
 
-    public  static function deleteStudentAction($studentID)
+    public static function deleteStudentAction($studentID)
     {
         (new StudentModel())->deleteStudent($studentID);
         header("Location: /ListStudents");
+    }
+
+    private static function getGuardiansAmount ($studentData)
+    {
+        $students = array();
+        foreach ($studentData as $student)
+        {
+            $student["guardiansAmount"] = (new GuardianOfStudentModel())->getGuardiansOfStudentAmount($student["id"]);
+            $students[$student["id"]] = $student;
+        }
+        return $students;
     }
 }
