@@ -120,6 +120,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/AddGuardian/:studentId', array(
+        '_controller' => 'GuardianController::addGuardianView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/AddGuardianAction/', array(
         '_controller' => 'GuardianController::addGuardianAction',
         'methods' => 'POST'
@@ -263,6 +268,11 @@
 
     $collection->attachRoute(new Route('/BreakGuardianStudentRelationship/:guardianId/:studentId', array(
         '_controller' => 'StudentController::breakGuardianStudentRelationshipAction',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/AssociateGuardianWithStudent/:pagination/:studentId', array(
+        '_controller' => 'GuardianController::associateWithStudentView',
         'methods' => 'GET'
     )));
 

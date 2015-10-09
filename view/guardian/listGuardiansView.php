@@ -8,6 +8,7 @@ class ListGuardiansView extends TwigView
                                                                             "guardiansAmount" => $guardiansAmount,
                                                                             "paginationNumber" => $paginationNumber,
                                                                             "association" => false,
+                                                                            "addAction" => "addGuardian",
                                                                             "deleteAction" => "deleteGuardian"));
     }
 }

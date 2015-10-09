@@ -17,14 +17,9 @@ class StudentController
         $student["firstName"] = $_POST["firstName"];
         $student["lastName"] = $_POST["lastName"];
 
-       	if($_POST['guardianType'] == 'createGuardian')
-       	{
-    		GuardianController::addGuardianView($student);
-       	}
-       	else
-       	{
-            GuardianController::associateWithStudentView(0,$studentID);
-       	}
+       	if($_POST['guardianType'] == 'createGuardian') header("Location: /AddGuardian/".$student);
+
+        header("Location: /associateWithStudentView/0/.$studentID");
     }
 
     public static function listStudentsView()

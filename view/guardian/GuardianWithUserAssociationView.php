@@ -9,7 +9,9 @@ class GuardianWithUserAssociationView extends TwigView
                                                                             "associationAction" => 'AssociateGuardianWithUserAction',
                                                                             "personID" => $userID,
                                                                             "association" => true,
-                                                                            "paginationNumber" => $paginationNumber));
+                                                                            "paginationNumber" => $paginationNumber,
+                                                                            "addAction" => "addGuardian",
+                                                                            "deleteAction" => "deleteGuardian"));
 
     }
 }
