@@ -66,6 +66,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/ListUsers/:index/:userId', array(
+        '_controller' => 'UserController::listUsersView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/ListUsers/', array(
         '_controller' => 'UserController::listUsersView',
         'methods' => 'GET'
@@ -122,6 +127,11 @@
 
     $collection->attachRoute(new Route('/AddGuardian/:studentId', array(
         '_controller' => 'GuardianController::addGuardianView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/AddGuardianForUser/:userId', array(
+        '_controller' => 'GuardianController::addGuardianForUserView',
         'methods' => 'GET'
     )));
 
@@ -202,6 +212,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/AssociateGuardianWithUser/:userID', array(
+        '_controller' => 'GuardianController::associateWithUserView',
+        'methods' => 'GET'
+    )));
+
     $collection->attachRoute(new Route('/AssociateGuardianWithUserAction/:guardianID/:userID', array(
         '_controller' => 'GuardianController::associateWithUserAction',
         'methods' => 'GET'
@@ -276,20 +291,15 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/actionNotFound/', array(
-        '_controller' => 'ConfigurationController::actionNotFound',
-        'methods' => 'GET'
-    )));
-
 	$router = new Router($collection);
 	$router->setBasePath('/');
 
 	$route = $router->matchCurrentRequest();
 
-    if ($route == false) header("Location: /actionNotFound");
-
-    AuthController::checkPermission($route->getAction());
-
-    $route->dispatch();
-
-
+    if (!$route)
+        ConfigurationController::actionNotFound();
+    else
+    {
+        AuthController::checkPermission($route->getAction());
+        $route->dispatch();
+    }

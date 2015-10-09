@@ -10,6 +10,7 @@
         {
             $('#role').val({{ user.roleid }});
             $('#enabled').val({{ user.enabled }});
+
             $('#guardian').css('display', 'none');
 
             {% if user.enabled == 1 %}
@@ -71,10 +72,11 @@
 
             <div id="guardian">
                 <label>Acci&oacute;n del responsable:</label>
-                <select id="guardianType" name="guardianType" class="form-control">
+                <select id="associationAction" name="associationAction" class="form-control">
                     {% if user.id!=null %}<option value="" disabled selected>No modificar responsable</option>{% endif %}
-                    <option value="createGuardian">Crear Responsable</option>
-                    <option value="chooseGuardian">Elegir Responsable </option>
+                    {% if user.id ==null %}<option value="/ListUsers/0"  selected>No asociar responsable</option>{% endif %}
+                    <option value="/AddGuardianForUser">Crear Responsable</option>
+                    <option value="/AssociateGuardianWithUser">Elegir Responsable </option>
                 </select>
             </div>
 
