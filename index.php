@@ -296,10 +296,29 @@
 
 	$route = $router->matchCurrentRequest();
 
-    if (!$route)
-        ConfigurationController::actionNotFound();
-    else
+    // Vamos a usar el PHPRouter para todas las rutas relacionadas a la pagina de la escuela,
+    // y Slim para todas las rutas de la api REST.
+    // Asique si al llegar una ruta vemos que no pertenece al mapeo de PHPRouter, usamos slim.
+    if ($route)
     {
         AuthController::checkPermission($route->getAction());
         $route->dispatch();
     }
+    else
+    {
+
+        $app = new \Slim\Slim();
+
+        $app->get('/API/1.0/hello/:name', function ($name) use($app)
+        {
+
+            $app->response->headers['Access-Control-Allow-Origin'] = "*";
+
+            echo "Hello, $name";
+        });
+
+        // Si slim detecta q la ruta no existe, se va a encargar de retornar el codigo de error y lo q necesite.
+        $app->run();
+    }
+
+
