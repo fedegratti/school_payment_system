@@ -22,13 +22,15 @@ class FeeController
         header("Location: /ListFees/".$studentId);
     }
 
+
+
     public static function listStudentFeesView($studentId)
     {
         $feeModel = new FeeModel();
         $studentModel = new StudentModel();
 
-        $payedFees = $feeModel->getPayedFeesOfStudent($studentId);
-        $unPayedFees = $feeModel->getUnPayedFeesOfStudent($studentId);
+        $payedFees = $feeModel->getPaidFeesOfStudent($studentId);
+        $unPayedFees = $feeModel->getUnPaidFeesOfStudent($studentId);
         $student = $studentModel->getStudent($studentId);
         $expiredFees = $feeModel->getExpiredFeesOfStudent($studentId);
 

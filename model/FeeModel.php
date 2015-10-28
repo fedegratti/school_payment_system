@@ -39,7 +39,7 @@ class FeeModel extends PDORepository
         $stmnt = $this->executeQuery($query,array($studentId,$feeId,$grant));
     }
 
-	public function getPayedFeesOfStudent($studentID)
+	public function getPaidFeesOfStudent($studentID)
 	{
 
 		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.createDate,f.expirationDate
@@ -51,23 +51,23 @@ class FeeModel extends PDORepository
 		return $this->executeQuery($query,array($studentID))->fetchAll();
 	}
 
-	public function getPayedFeesOfStudentInYear($studentID, $year)
+	public function getPaidFeesOfStudentInYear($studentID, $year)
 	{
 
-		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, p.createDate
+		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, p.createDate as 'fechaDePago'
                  FROM payment as p
                          inner join fee as f on (p.feeId = f.id)
                   WHERE p.studentId = ?
                   		and f.deleted=false
                   		and f.year = ?
-                  order f.month";
+                  order by f.month";
 
-		return $this->executeQuery($query,array($studentID, $year))->fetchAll();
+		return $this->executeQuery($query,array($studentID, $year))->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 
 	// devuelve las cuotas que no fueron pagadas y excluye las cuotas vencidas, para que no puedas pagar algo que se te vencio.
-	public function getUnPayedFeesOfStudent($studentID)
+	public function getUnPaidFeesOfStudent($studentID)
 	{
 
 		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.createDate, f.expirationDate
@@ -82,8 +82,8 @@ class FeeModel extends PDORepository
 		return $this->executeQuery($query,array($studentID))->fetchAll();
 	}
 
-	// incluye las cuotas vencidas
-	public function getUnPayedFeesOfStudentInYear($studentID, $year)
+
+	public function getToBePaidFeesOfStudentInYear($studentID, $year)
 	{
 
 		$query= "SELECT f.id,f.number, f.year, f.month, f.amount, f.kind, f.collectorPayment, f.expirationDate
@@ -95,9 +95,10 @@ class FeeModel extends PDORepository
                   	   and f.deleted=false
                   	   and f.kind = 2
                   	   and f.year = ?
+
                   order by f.year, f.month";
 
-		return $this->executeQuery($query,array($studentID, $year))->fetchAll();
+		return $this->executeQuery($query,array($studentID, $year))->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	public function getExpiredFeesOfStudent($studentID)
@@ -119,5 +120,19 @@ class FeeModel extends PDORepository
 		$query = "select * from fee where deleted=false";
 		$stmnt = $this->executeQuery($query,array());
 		return $stmnt ->fetchAll();
+	}
+
+	public function getTotalRevenueByMonthInYear($year)
+	{
+		$query= "select f.month as 'mes', sum(f.amount) as 'cantidad'
+                 FROM payment as p
+                   	  inner join fee as f on (p.feeId = f.id)
+                 WHERE f.year = ?
+                  	   and f.deleted=false
+                  	   and f.kind = 2
+				 group by f.month
+                  ";
+
+		return $this->executeQuery($query,array($year))->fetchAll(PDO::FETCH_ASSOC);
 	}
 }

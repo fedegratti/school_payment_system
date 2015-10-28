@@ -306,19 +306,22 @@
     }
     else
     {
+        $slimApp = new \Slim\Slim();
 
-        $app = new \Slim\Slim();
-
-        $app->get('/API/1.0/hello/:name', function ($name) use($app)
+        $slimApp->get('/cuotasImpagasYPorPagarDe/:studentID/year/:year', function ($studentID,$year) use($slimApp)
         {
+            $slimApp->response->headers['Access-Control-Allow-Origin'] = "*";
+            FeeService::listPaidAndToBePaidFeesOfStudentInYear($slimApp,$studentID,$year);
+        });
 
-            $app->response->headers['Access-Control-Allow-Origin'] = "*";
-
-            echo "Hello, $name";
+        $slimApp->get('/ingresosTotalesEn/:year', function ($year) use($slimApp)
+        {
+            $slimApp->response->headers['Access-Control-Allow-Origin'] = "*";
+            FeeService::totalRevenueByMonthInYear($slimApp,$year);
         });
 
         // Si slim detecta q la ruta no existe, se va a encargar de retornar el codigo de error y lo q necesite.
-        $app->run();
+        $slimApp->run();
     }
 
 

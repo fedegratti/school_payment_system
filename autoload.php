@@ -5,6 +5,7 @@ function __autoload($classname)
 
     $fileName= $classname . ".php";
 
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'services');
     set_include_path(get_include_path() . PATH_SEPARATOR . 'model');
     set_include_path(get_include_path() . PATH_SEPARATOR . 'controller');
 
