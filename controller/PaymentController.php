@@ -14,7 +14,13 @@ class PaymentController
             (new ListRevenueInYearView())->show();
         else
         {
-            $response = file_get_contents("http://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
+            // una cagada...
+            if($_SERVER['HTTP_HOST'] == "localhost" )
+                $response = file_get_contents("http://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
+            else
+                $response = file_get_contents("https://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
+
+
             $data = json_decode($response,true);
             $montlyRevenue = array(0,0,0,0,0,0,0,0,0,0,0,0);
             $maxValue=0;
