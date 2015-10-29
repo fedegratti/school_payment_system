@@ -14,7 +14,7 @@ class PaymentController
             (new ListRevenueInYearView())->show();
         else
         {
-            $response = file_get_contents('http://localhost/ingresosTotalesEn/'.$year);
+            $response = file_get_contents("http://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
             $data = json_decode($response,true);
             $montlyRevenue = array(0,0,0,0,0,0,0,0,0,0,0,0);
             $maxValue=0;
