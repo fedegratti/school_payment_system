@@ -31,7 +31,7 @@ class FeeService
 
 
         $feeModel = new FeeModel();
-        $totalRevenue = $feeModel->getTotalRevenueByMonthInYear($year);
+        $totalRevenue = $feeModel->getMontlyRevenueByYear($year);
 
         // vardump formateado super cheto
         //echo '<pre>'; print_r($feeModel->getToBePayedFeesOfStudentInYear($studentID,$year)); echo '</pre>'; die;

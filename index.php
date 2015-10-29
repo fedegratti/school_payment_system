@@ -323,12 +323,18 @@
     {
         $slimApp = new \Slim\Slim();
 
+        // Retorna un arreglo asociativo con las claves "por_pagar" y "pagas".
+        // Cada arreglo dentro de esas 2 cosas contiene los datos de un alumno
+        // http://localhost/cuotasImpagasYPorPagarDe/21/year/2016   << este tiene datos cargados para ver
         $slimApp->get('/cuotasImpagasYPorPagarDe/:studentID/year/:year', function ($studentID,$year) use($slimApp)
         {
             $slimApp->response->headers['Access-Control-Allow-Origin'] = "*";
             FeeService::listPaidAndToBePaidFeesOfStudentInYear($slimApp,$studentID,$year);
         });
 
+
+        // Devuelve un arreglo de 12 posiciones, cada posicion representa un mes, y contiene la cantidad de ingresos
+        // en ese mes.
         $slimApp->get('/ingresosTotalesEn/:year', function ($year) use($slimApp)
         {
             $slimApp->response->headers['Access-Control-Allow-Origin'] = "*";

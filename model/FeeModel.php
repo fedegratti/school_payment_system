@@ -122,7 +122,7 @@ class FeeModel extends PDORepository
 		return $stmnt ->fetchAll();
 	}
 
-	public function getTotalRevenueByMonthInYear($year)
+	public function getMontlyRevenueByYear($year)
 	{
 		$query= "select f.month as 'mes', sum(f.amount) as 'cantidad'
                  FROM payment as p
@@ -133,6 +133,15 @@ class FeeModel extends PDORepository
 				 group by f.month
                   ";
 
-		return $this->executeQuery($query,array($year))->fetchAll(PDO::FETCH_ASSOC);
+		$queryResult = $this->executeQuery($query,array($year))->fetchAll(PDO::FETCH_ASSOC);
+
+        $montlyRevenue = array(0,0,0,0,0,0,0,0,0,0,0,0);
+		// Con esto creamos un nuevo arreglo que posee todos los meses con sus valores setteados, dado que
+		// puede pasar que la consulta sql no devuelva todos los meses.
+		foreach($queryResult as $month)
+		{
+			$montlyRevenue[$month["mes"]-1] = $month["cantidad"]; // El -1 es porq en nuestra db los meses arrancan del 1
+		}
+        return $montlyRevenue;
 	}
 }

@@ -15,16 +15,13 @@ class PaymentController
         else
         {
             $response = file_get_contents('http://localhost/ingresosTotalesEn/'.$year);
-            $data = json_decode($response,true);
-            $montlyRevenue = array(0,0,0,0,0,0,0,0,0,0,0,0);
+            $montlyRevenue = json_decode($response,true);
             $maxValue=0;
-            foreach($data as $month)
+
+            foreach($montlyRevenue as $amount)
             {
-                $montlyRevenue[$month["mes"]-1] = $month["cantidad"];
-                if($maxValue<$month["cantidad"])
-                {
-                    $maxValue=$month["cantidad"];
-                }
+                if($maxValue<$amount)
+                    $maxValue=$amount;
             }
             (new ListRevenueInYearView())->show($montlyRevenue,$maxValue, $year);
         }
