@@ -291,6 +291,21 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/listRevenue', array(
+        '_controller' => 'PaymentController::listRevenueView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/listRevenue/:year', array(
+        '_controller' => 'PaymentController::listRevenueView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/listRevenueAction', array(
+        '_controller' => 'PaymentController::listRevenueAction',
+        'methods' => 'POST'
+    )));
+
 	$router = new Router($collection);
 	$router->setBasePath('/');
 

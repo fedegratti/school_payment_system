@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="/css/bootstrap.min.css">
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+			<link rel="stylesheet" href="/css/common.css">
+			<!-- Jquery -->
+			<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="/js/bootstrap.min.js"></script>
+
+			<script src="/js/Chart.js"></script>
+            {% if revenue != null %}
+                <script>
+                    var randomScalingFactor = function(){ return {{ maxValue }} };
+                    var barChartData = {
+                        labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+                        datasets : [
+                            {
+                                fillColor : "rgba(151,187,205,0.5)",
+                                strokeColor : "rgba(151,187,205,0.8)",
+                                highlightFill : "rgba(151,187,205,0.75)",
+                                highlightStroke : "rgba(151,187,205,1)",
+                                data : [
+                                        {% for cant in revenue %}
+                                            {{ cant }},
+                                        {% endfor %}
+                                        ]
+                            }
+                        ]
+                    }
+                    window.onload = function()
+                    {
+                        var ctx = document.getElementById("estadisticas").getContext("2d");
+                        window.myBar = new Chart(ctx).Bar(barChartData,
+                                {
+                                    responsive : true
+                                });
+                    }
+                </script>
+            {% endif %}
+			<title> listado </title>
+
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="page-header">
+                {% if year == null %}
+				    Ingresos por year
+                {% else %}
+                    Ingresos del year {{ year }}
+                {% endif %}
+			</h1>
+            <form method="POST" action="/listRevenueAction">
+                <label>Seleccione el year</label>
+                <input type="number" name="year" required >
+
+                <input type="submit" name="enviar" value="Enviar">
+            </form>
+
+
+			<canvas id="estadisticas" width="400" height="150"></canvas>
+
+
+		</div> <!-- /container -->
+	</body>
+</html>
+
+
