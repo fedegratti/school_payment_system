@@ -15,13 +15,27 @@ class PaymentController
         else
         {
             // una cagada...
+            /*
             if($_SERVER['HTTP_HOST'] == "localhost" )
                 $response = file_get_contents("http://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
             else
+
                 $response = file_get_contents("https://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
+            */
 
+            $curlSession = curl_init();
+            if($_SERVER['HTTP_HOST'] == "localhost" )
+                curl_setopt($curlSession, CURLOPT_URL, "http://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
+            else
+                curl_setopt($curlSession, CURLOPT_URL, "https://". $_SERVER['HTTP_HOST']."/ingresosTotalesEn/".$year);
+            
+            curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
 
-            $data = json_decode($response,true);
+            $data = json_decode(curl_exec($curlSession),true);
+            curl_close($curlSession);
+
+            //$data = json_decode($response,true);
             $montlyRevenue = array(0,0,0,0,0,0,0,0,0,0,0,0);
             $maxValue=0;
             foreach($data as $month)
