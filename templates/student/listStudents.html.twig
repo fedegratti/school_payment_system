@@ -11,7 +11,7 @@
 
 {% block body %}
   {{ parent() }}
-  <div class="container">
+  <div class="container" id="container">
       <h2 class="page-header">
           {{ title }}
       </h2>
@@ -53,7 +53,7 @@
         </table>
       </div>
         <nav>
-            <ul class="pagination">
+            <ul class="pagination" id="bypass_pdf">
                 <li>
                     <a href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
@@ -74,4 +74,7 @@
     <a href="/addStudent" class="btn btn-lg btn-success pull-right">Add</a>
     {% endif %}
   </div>
+    {% if admitted == true %}
+        <button onclick="javascript:saveAsPDF('container');">Save as PDF</button>
+    {% endif %}
 {% endblock %}

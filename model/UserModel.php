@@ -116,7 +116,7 @@ class UserModel extends PDORepository
 		return "ERROR";
 	}
 
-	private function getUserID($username)
+	public function getUserID($username)
 	{
 		$query="SELECT id FROM user WHERE username = ? ";
 

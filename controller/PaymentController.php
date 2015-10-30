@@ -14,13 +14,26 @@ class PaymentController
             (new ListRevenueInYearView())->show();
         else
         {
-            $response = file_get_contents('http://localhost/ingresosTotalesEn/'.$year);
+            // no fucks given, desactivamos el checkeo de seguridad
+            $arrContextOptions=array(
+                "ssl"=>array(
+                    "verify_peer"=>false,
+                    "verify_peer_name"=>false,
+                ),
+            );
+
+            //guarda con esto xD si el server muere o quieren probar algo en la db local, cambienlo.
+            // Si tuviesemos configurado el apache para aceptar https, podriamos dejar localhost y funciona siempre.
+            $restURL='https://grupo_2.proyecto2015.linti.unlp.edu.ar/ingresosTotalesEn/'.$year;
+
+            $response = file_get_contents($restURL, false,  stream_context_create($arrContextOptions));
             $montlyRevenue = json_decode($response,true);
+
             $maxValue=0;
 
             foreach($montlyRevenue as $amount)
             {
-                if($maxValue<$amount)
+                if($amount>$maxValue)
                     $maxValue=$amount;
             }
             (new ListRevenueInYearView())->show($montlyRevenue,$maxValue, $year);
@@ -31,5 +44,15 @@ class PaymentController
     public static function listRevenueAction()
     {
         header("Location: /listRevenue/".$_POST["year"]);
+    }
+
+    public static function payOrGrantFeeView($feeId,$studentId,$grant)
+    {
+        $paymentModel = new PaymentModel();
+
+        $paymentId = $paymentModel->payOrGrantFee($feeId,$studentId,$grant);
+        $paymentModel->generateUserPayment($_SESSION['userid'],$paymentId);
+
+        header("Location: /ListFees/".$studentId);
     }
 }

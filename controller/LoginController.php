@@ -28,6 +28,7 @@ class LoginController
 
         $_SESSION['role'] = $roleId;
         $_SESSION['username'] = $username;
+        $_SESSION['userid'] = $userModel->getUserID($username);
         $_SESSION['title'] = (new ConfigurationModel())->getConfiguration("title")["value"];
         $_SESSION['description'] = (new ConfigurationModel())->getConfiguration("description")["value"];
 

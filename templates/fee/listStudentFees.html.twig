@@ -11,7 +11,7 @@
 
 {% block body %}
   {{ parent() }}
-  <div class="container">
+  <div class="container" id="container">
 
     <h2 class="sub-header">Cuotas del alumno {{ student.firstName }} {{ student.lastName }}</h2>
 
@@ -118,8 +118,10 @@
               {% endfor %}
           </table>
       </div>
+
     {% endif %}
 
-    {#<a href="/addFee" class="btn btn-lg btn-success pull-right">Add</a>#}
+
   </div>
+  <button onclick="javascript:saveAsPDF('container');">Save as PDF</button>
 {% endblock %}

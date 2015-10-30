@@ -33,12 +33,6 @@ class FeeModel extends PDORepository
 		return $stmnt ->fetch();
 	}
 
-    public function payOrGrantFee($feeId,$studentId,$grant)
-    {
-        $query = "INSERT INTO payment (studentId,feeId,grantholding,createDate) VALUES (?,?,?,CURRENT_DATE)";
-        $stmnt = $this->executeQuery($query,array($studentId,$feeId,$grant));
-    }
-
 	public function getPaidFeesOfStudent($studentID)
 	{
 

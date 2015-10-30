@@ -176,7 +176,7 @@
     )));
 
     $collection->attachRoute(new Route('/PayOrGrantFee/:feeId/:studentID/:grant', array(
-        '_controller' => 'FeeController::payOrGrantFeeView',
+        '_controller' => 'PaymentController::payOrGrantFeeView',
         'methods' => 'GET'
     )));
 
@@ -338,7 +338,7 @@
         $slimApp->get('/ingresosTotalesEn/:year', function ($year) use($slimApp)
         {
             $slimApp->response->headers['Access-Control-Allow-Origin'] = "*";
-            FeeService::totalRevenueByMonthInYear($slimApp,$year);
+            RevenueService::totalRevenueByMonthInYear($slimApp,$year);
         });
 
         // Si slim detecta q la ruta no existe, se va a encargar de retornar el codigo de error y lo q necesite.

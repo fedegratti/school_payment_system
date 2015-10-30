@@ -17,7 +17,7 @@ function saveAsPDF(domElementToExport)
     // (class, of compound) at this time.
     specialElementHandlers = {
         // element with id of "bypass" - jQuery style selector
-        '#bypassme': function (element, renderer) {
+        '#bypass_pdf': function (element, renderer) {
             // true = "handled elsewhere, bypass text extraction"
             return true
         }

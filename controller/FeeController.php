@@ -15,15 +15,6 @@ class FeeController
         header("Location: /ListFees");
     }
 
-    public static function payOrGrantFeeView($feeId,$studentId,$grant)
-    {
-        $feeRepository = new FeeModel();
-        $feeRepository->payOrGrantFee($feeId,$studentId,$grant);
-        header("Location: /ListFees/".$studentId);
-    }
-
-
-
     public static function listStudentFeesView($studentId)
     {
         $feeModel = new FeeModel();
