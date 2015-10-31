@@ -311,6 +311,11 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/openMaps', array(
+        '_controller' => 'MapsController::openMapsView',
+        'methods' => 'GET'
+    )));
+
 	$router = new Router($collection);
 	$router->setBasePath('/');
 

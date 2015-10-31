@@ -52,7 +52,8 @@ class PaymentController
         $paymentModel = new PaymentModel();
 
         $paymentId = $paymentModel->payOrGrantFee($feeId,$studentId,$grant);
-        $paymentModel->generateUserPayment($_SESSION['userid'],$paymentId);
+        if($_SESSION["role"]==2)
+            $paymentModel->generateUserPayment($_SESSION['userid'],$paymentId);
 
         header("Location: /ListFees/".$studentId);
     }
