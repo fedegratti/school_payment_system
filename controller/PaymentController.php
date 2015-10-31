@@ -10,6 +10,7 @@ class PaymentController
 {
     public static function listRevenueView($year = null)
     {
+
         if($year == null)
             (new ListRevenueInYearView())->show();
         else
@@ -54,5 +55,11 @@ class PaymentController
         $paymentModel->generateUserPayment($_SESSION['userid'],$paymentId);
 
         header("Location: /ListFees/".$studentId);
+    }
+
+    public static function listCollectorPaymentRevenueView()
+    {
+        $years = (new PaymentModel())->getYearlyCollectorPaymentRevenueOfUser($_SESSION["userid"]);
+        (new ListCollectorPaymentRevenueView())->show($years);
     }
 }

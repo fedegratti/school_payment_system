@@ -24,6 +24,7 @@ insert into resource (description) values ('deleteFeeAction');
 insert into resource (description) values ('listFeesView');
 insert into resource (description) values ('listStudentFeesView');
 insert into resource (description) values ('payOrGrantFeeView');
+insert into resource (description) values ('listCollectorPaymentRevenueView');
 insert into resource (description) values ('listGuardiansView');
 
 insert into resource (description) values ('deleteGuardianAction');
@@ -43,6 +44,8 @@ insert into resource (description) values ('updateConfigurationView');
 insert into resource (description) values ('updateConfigurationAction');
 insert into resource (description) values ('deleteConfigurationAction');
 insert into resource (description) values ('siteUnavailableView');
+
+
 
 
 

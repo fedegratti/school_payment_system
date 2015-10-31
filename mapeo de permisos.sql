@@ -35,6 +35,9 @@ WHERE role.description='management' and resource.description='listStudentFeesVie
 INSERT into auth_mapper (roleid, resourceid) SELECT role.id,resource.id FROM role,resource 
 WHERE role.description='management' and resource.description='payOrGrantFeeView';
 
+INSERT into auth_mapper (roleid, resourceid) SELECT role.id,resource.id FROM role,resource 
+WHERE role.description='management' and resource.description='listCollectorPaymentRevenueView';
+
 
 
 

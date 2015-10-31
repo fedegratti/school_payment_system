@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2015 a las 22:04:20
+-- Tiempo de generación: 31-10-2015 a las 01:24:41
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `auth_mapper` (
   `id` int(11) NOT NULL,
   `roleId` int(11) NOT NULL,
   `resourceId` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `auth_mapper`
@@ -49,7 +49,8 @@ INSERT INTO `auth_mapper` (`id`, `roleId`, `resourceId`) VALUES
 (21, 2, 70),
 (22, 2, 71),
 (23, 2, 72),
-(24, 3, 71);
+(24, 3, 71),
+(25, 2, 90);
 
 -- --------------------------------------------------------
 
@@ -92,15 +93,15 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `createDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL,
   `expirationDate` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `fee`
 --
 
 INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collectorPayment`, `createDate`, `deleted`, `expirationDate`) VALUES
-(1, 1, 1, 1, '200', 1, '200', '2015-10-04', 1, '0000-00-00'),
-(2, 111111, 2017, 4, '1111', 1, '222', '2015-10-04', 1, '0000-00-00'),
+(1, 1, 1, 1, '200', 1, '23', '2015-10-04', 1, '0000-00-00'),
+(2, 111111, 2017, 4, '1111', 1, '22', '2015-10-04', 1, '0000-00-00'),
 (4, 2, 1111111, 2, '500', 2, '500', '2015-10-04', 1, '0000-00-00'),
 (5, 3333333, 33333333, 3, '33333333', 2, '333333333', '2015-10-04', 1, '0000-00-00'),
 (7, 2, 3, 4, '3', 1, '12', '2015-10-05', 1, '0000-00-00'),
@@ -109,12 +110,14 @@ INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collector
 (10, 2011, 12, 4, '200', 2, '300', '2015-10-05', 1, '0000-00-00'),
 (11, 21, 21, 1, '121', 1, '12', '2015-10-05', 1, '0000-00-00'),
 (12, 1, 1, 1, '1', 1, '1', '2015-10-07', 0, '2016-05-14'),
-(13, 2444, 1, 3, '321', 2, '123', '2015-06-15', 0, '2014-12-15'),
-(14, 2010, 5, 1, '500', 2, '200', '2015-10-08', 1, '0000-00-00'),
-(15, 2016, 1, 1, '5500', 2, '66', '2015-10-08', 0, '2015-11-20'),
+(13, 2444, 1, 3, '321', 2, '12', '2015-06-15', 0, '2014-12-15'),
+(14, 2010, 5, 1, '500', 2, '23', '2015-10-08', 1, '0000-00-00'),
+(15, 2016, 1, 1, '5500', 2, '50', '2015-10-08', 0, '2015-11-20'),
 (16, 2016, 2, 3, '550', 2, '20', '2015-10-28', 0, '2015-12-18'),
 (17, 2016, 2, 3, '333', 2, '30', '2015-10-28', 0, '2015-11-20'),
-(18, 2016, 3, 1, '789', 2, '1', '2015-10-28', 0, '2015-11-14');
+(18, 2016, 3, 1, '789', 2, '1', '2015-10-28', 0, '2015-11-14'),
+(19, 2016, 4, 5, '350', 2, '5', '2015-10-30', 0, '2015-11-28'),
+(20, 2017, 4, 5, '850', 2, '6', '2015-10-30', 0, '2015-12-12');
 
 -- --------------------------------------------------------
 
@@ -184,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `createDate` date NOT NULL,
   `updatedDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `payment`
@@ -194,7 +197,9 @@ INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`,
 (20, 21, 15, 0, '2015-10-09', NULL, 0),
 (21, 21, 16, 0, '2015-10-28', NULL, 0),
 (22, 21, 17, 0, '2015-10-28', NULL, 0),
-(23, 21, 18, 0, '2015-10-28', NULL, 0);
+(23, 21, 18, 0, '2015-10-28', NULL, 0),
+(29, 21, 19, 0, '2015-10-30', NULL, 0),
+(30, 21, 20, 0, '2015-10-30', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -205,7 +210,7 @@ INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`,
 CREATE TABLE IF NOT EXISTS `resource` (
   `id` int(11) NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `resource`
@@ -253,7 +258,8 @@ INSERT INTO `resource` (`id`, `description`) VALUES
 (86, 'updateConfigurationView'),
 (87, 'updateConfigurationAction'),
 (88, 'deleteConfigurationAction'),
-(89, 'siteUnavailableView');
+(89, 'siteUnavailableView'),
+(90, 'listCollectorPaymentRevenueView');
 
 -- --------------------------------------------------------
 
@@ -350,6 +356,29 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`, `enabled`, `roleId`, 
 (45, 'ruby', 'ruby@ruby.gmail', 'f10e2821bbbea527ea02200352313bc059445190', 0, 2, 1),
 (46, 'asdasdas', 'a@a', '8ecd6dbce7b43ea44efa845b50072f23ad621e78', 1, 3, 0);
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user_payments`
+--
+
+CREATE TABLE IF NOT EXISTS `user_payments` (
+  `id` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `paymentid` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `user_payments`
+--
+
+INSERT INTO `user_payments` (`id`, `userid`, `paymentid`) VALUES
+(4, 23, 29),
+(5, 23, 30),
+(6, 23, 20),
+(7, 23, 21),
+(8, 23, 22);
+
 --
 -- Índices para tablas volcadas
 --
@@ -415,6 +444,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `user_payments`
+--
+ALTER TABLE `user_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -422,7 +457,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `auth_mapper`
 --
 ALTER TABLE `auth_mapper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `configuration`
 --
@@ -432,7 +467,7 @@ ALTER TABLE `configuration`
 -- AUTO_INCREMENT de la tabla `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `guardian`
 --
@@ -447,12 +482,12 @@ ALTER TABLE `guardian_student_relationship`
 -- AUTO_INCREMENT de la tabla `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT de la tabla `resource`
 --
 ALTER TABLE `resource`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=90;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT de la tabla `role`
 --
@@ -468,6 +503,11 @@ ALTER TABLE `student`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+--
+-- AUTO_INCREMENT de la tabla `user_payments`
+--
+ALTER TABLE `user_payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

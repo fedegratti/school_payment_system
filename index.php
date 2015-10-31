@@ -306,6 +306,11 @@
         'methods' => 'POST'
     )));
 
+    $collection->attachRoute(new Route('/listCollectorPaymentRevenue', array(
+        '_controller' => 'PaymentController::listCollectorPaymentRevenueView',
+        'methods' => 'GET'
+    )));
+
 	$router = new Router($collection);
 	$router->setBasePath('/');
 

@@ -1,0 +1,36 @@
+{% extends '/common/base.html.twig' %}
+
+{% block title %}Ganancias por comision{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container" id="container">
+        <h2 class="page-header">
+            Ganancias anuales de comision
+        </h2>
+        <div class="table-responsive" >
+            {% for year in years %}
+                <h2>Year {{ year.year }}</h2>
+                <table class="table table-striped">
+                    <tr class="even">
+                        <th>Mes</th>
+                        <th>Monto</th>
+                    </tr>
+                    {% for month in year.months %}
+                        <tr class="odd">
+                            <td>{{ month.month }}</td>
+                            <td>{{ month.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        </div>
+    </div>
+    <button onclick="javascript:saveAsPDF('container');">Save as PDF</button>
+{% endblock %}

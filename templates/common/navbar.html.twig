@@ -8,7 +8,9 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
 
-
+                {% if role == 2 %}
+                    <li><a href="/listCollectorPaymentRevenue">Ganancias por comision</a></li>
+                {% endif %}
                 {% if role == 1 or role == 2 %}
                     <li><a href="/listFees">Cuotas</a></li>
                 {% endif %}
@@ -26,7 +28,6 @@
                 <li><a href="/Logout">Cerrar sesi&oacute;n</a></li>
 
             </ul>
-
         </div>
     </div>
 </nav>
