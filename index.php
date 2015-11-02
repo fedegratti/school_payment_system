@@ -6,6 +6,7 @@
 	use PHPRouter\Router;
 	use PHPRouter\Route;
 
+    echo "asd1";
     // Carga las cosas q esten en la carpeta model, view, controller.
 
     require_once __DIR__.'/autoload.php';
@@ -326,11 +327,13 @@
     // Asique si al llegar una ruta vemos que no pertenece al mapeo de PHPRouter, usamos slim.
     if ($route)
     {
+        echo "asd2";
         AuthController::checkPermission($route->getAction());
         $route->dispatch();
     }
     else
     {
+        echo "asd3";
         $slimApp = new \Slim\Slim();
 
         // Retorna un arreglo asociativo con las claves "por_pagar" y "pagas".
