@@ -28,60 +28,28 @@
         </label>
         <script type="text/javascript">
 
-            var vectorSource = new ol.source.Vector({
-                //create empty vector
-            });
+
 
             var view = new ol.View({
                 center: ol.proj.transform([-57.9749, -34.9205], 'EPSG:4326', 'EPSG:3857'),
                 zoom: 13
 
             });
-            //create a bunch of icons and add to source vector//-6451361.423378526, -4153081.947043341
-            var iconFeature = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.transform([-57.9749, -34.9205], 'EPSG:4326',   'EPSG:3857')),
-                name: 'Alumno '
-            });
 
-
-            vectorSource.addFeature(iconFeature);
-
-
-
-            //create the style
-            var iconStyle = new ol.style.Style({
-                image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                    anchor: [0.5, 46],
-                    anchorXUnits: 'fraction',
-                    anchorYUnits: 'pixels',
-                    opacity: 0.75,
-                    src: '/dot.png'
-                }))
-            });
-
-
-
-            //add the feature vector to the layer vector, and apply a style to whole layer
-            var vectorLayer = new ol.layer.Vector({
-                source: vectorSource,
-                style: iconStyle
-            });
 
             var map = new ol.Map({
                 target: 'map',
                 layers: [
                     new ol.layer.Tile({
                         source: new ol.source.MapQuest({layer: 'osm'})
-                    }), vectorLayer
+                    })
                 ],
                 view: view
             });
 
-            function el(id) {
-                return document.getElementById(id);
-            }
 
-            el('track').addEventListener('change', function() {
+
+            document.getElementById('track').addEventListener('change', function() {
                 geolocation.setTracking(this.checked);
             });
 
@@ -104,18 +72,35 @@
                 })
             }));
 
+            var positionFeatureX = new ol.Feature();
+
+            positionFeatureX.setStyle(new ol.style.Style({
+                image: new ol.style.Circle({
+                    radius: 6,
+                    fill: new ol.style.Fill({
+                        color: '#3399CC'
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: '#fff',
+                        width: 2
+                    })
+                })
+            }));
+
             geolocation.on('change:position', function() {
                 var coordinates = geolocation.getPosition();
                 positionFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
+                positionFeatureX.setGeometry(new ol.geom.Point([-6455361.423378526, -4153081.947043341]))
             });
 
             geolocation.on('change', function(evt) {
                 window.console.log(geolocation.getPosition());
+                window.console.log(ol.proj.transform([-57.9749, -34.9205], 'EPSG:4326',   'EPSG:3857'));
             });
             var featuresOverlay = new ol.layer.Vector({
                 map: map,
                 source: new ol.source.Vector({
-                    features: [ positionFeature]
+                    features: [ positionFeature, positionFeatureX ]
                 })
             });
 
