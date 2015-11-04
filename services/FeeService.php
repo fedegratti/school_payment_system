@@ -8,7 +8,7 @@
  */
 class FeeService
 {
-    public  static function listPaidAndToBePaidFeesOfStudentInYear($slimApp,$studentID,$year)
+    public  static function listPaidAndToBePaidFeesOfStudentInYear($studentID,$year)
     {
         $feeModel = new FeeModel();
         $cuotasPagasYPorPagar["por_pagar"] = $feeModel->getToBePaidFeesOfStudentInYear($studentID,$year);
@@ -19,7 +19,7 @@ class FeeService
 
         $cuotasPagasYPorPagar["pagas"] = $feeModel->getPaidFeesOfStudentInYear($studentID,$year);
 
-        $slimApp->response->headers['Content-Type'] = "application/json";
+
         (new ServiceView())->showAsJSON($cuotasPagasYPorPagar);
     }
 }

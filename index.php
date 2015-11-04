@@ -5,7 +5,7 @@
 	use PHPRouter\RouteCollection;
 	use PHPRouter\Router;
 	use PHPRouter\Route;
-
+    use Slim\Slim;
     
     // Carga las cosas q esten en la carpeta model, view, controller.
 
@@ -339,25 +339,27 @@
         // Retorna un arreglo asociativo con las claves "por_pagar" y "pagas".
         // Cada arreglo dentro de esas 2 cosas contiene los datos de un alumno
         // http://localhost/cuotasImpagasYPorPagarDe/21/year/2016   << este tiene datos cargados para ver
-        $slimApp->get('/cuotasImpagasYPorPagarDe/:studentID/year/:year', function ($studentID,$year) use($slimApp)
+        $slimApp->get('/cuotasImpagasYPorPagarDe/:studentID/year/:year', function ($studentID,$year)
         {
-            $slimApp->response->headers['Access-Control-Allow-Origin'] = "*";
-            FeeService::listPaidAndToBePaidFeesOfStudentInYear($slimApp,$studentID,$year);
+            FeeService::listPaidAndToBePaidFeesOfStudentInYear($studentID,$year);
         });
 
 
         // Devuelve un arreglo de 12 posiciones, cada posicion representa un mes, y contiene la cantidad de ingresos
         // en ese mes.
-        $slimApp->get('/ingresosTotalesEn/:year', function ($year) use($slimApp)
+        $slimApp->get('/ingresosTotalesEn/:year', function ($year)
         {
-            $slimApp->response->headers['Access-Control-Allow-Origin'] = "*";
-            RevenueService::totalRevenueByMonthInYear($slimApp,$year);
+
+            RevenueService::totalRevenueByMonthInYear($year);
         });
 
         $slimApp->get('/getUsersPosition', function ()
         {
-            $positions = [[-57.9749, -34.9205], [-57.9799, -34.9305]];
-            echo json_encode($positions);
+
+            //$positions = [[-57.9749, -34.9205], [-57.9799, -34.9305]];
+            //echo json_encode($positions);
+
+            StudentService::getStudentsPositions();
         });
 
         // Si slim detecta q la ruta no existe, se va a encargar de retornar el codigo de error y lo q necesite.

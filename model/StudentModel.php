@@ -74,4 +74,13 @@ class StudentModel extends PDORepository
 
         $stmnt = $this->executeQuery($query,array($studentID));
     }
+
+    public  function getStudentsPositions()
+    {
+        $query= "select lon,lat from student where deleted=false";
+
+        $stmnt = $this->executeQuery($query,array());
+        return $stmnt->fetchAll();
+
+    }
 }

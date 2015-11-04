@@ -36,10 +36,6 @@
 
             });
 
-
-
-
-
             document.getElementById('track').addEventListener('change', function() {
                 geolocation.setTracking(this.checked);
             });
@@ -47,12 +43,20 @@
             var geolocation = new ol.Geolocation({
                 projection: view.getProjection()
             });
+
             var features = [];
 
-            // [-57.9749, -34.9205], [-57.9799, -34.9305]
-            var positions = [
+            var currentLocationFeature = getPrefabFeature('#3399CC');
+            features.push(currentLocationFeature);
 
-            ];
+            geolocation.on('change:position', function() {
+                var coordinates = geolocation.getPosition();
+                currentLocationFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
+            });
+
+
+            // [-57.9749, -34.9205], [-57.9799, -34.9305]
+            var positions = [ ];
 
             $.ajax({url: "/getUsersPosition", type: 'GET', success: function(result)
             {
@@ -62,36 +66,31 @@
                 {
                     positions.push( [ posiciones[i][0],posiciones[i][1] ] );
                 }
+
+                for (i = 0; i < positions.length; i++)
+                {
+                    var studentFeature = getPrefabFeature('#FF6036');
+                    studentFeature.setGeometry(new ol.geom.Point(ol.proj.transform(positions[i], 'EPSG:4326',   'EPSG:3857')));
+                    features.push(studentFeature);
+                }
+
+                var map = new ol.Map({
+                    target: 'map',
+                    layers: [
+                        new ol.layer.Tile({
+                            source: new ol.source.MapQuest({layer: 'osm'})
+                        }),
+                        new ol.layer.Vector({
+                            map: map,
+                            source: new ol.source.Vector({
+                                features: features})
+                        })
+                    ],
+                    view: view
+                });
             }});
 
-            var currentLocationFeature = getPrefabFeature('#3399CC');
-            features.push(currentLocationFeature);
-            for (i = 0; i < positions.length; i++)
-            {
-                var studentFeature = getPrefabFeature('#FF6036');
-                studentFeature.setGeometry(new ol.geom.Point(ol.proj.transform(positions[i], 'EPSG:4326',   'EPSG:3857')));
-                features.push(studentFeature);
-            }
 
-            geolocation.on('change:position', function() {
-                var coordinates = geolocation.getPosition();
-                currentLocationFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
-            });
-
-            var map = new ol.Map({
-                target: 'map',
-                layers: [
-                    new ol.layer.Tile({
-                        source: new ol.source.MapQuest({layer: 'osm'})
-                    }),
-                    new ol.layer.Vector({
-                        map: map,
-                        source: new ol.source.Vector({
-                            features: features})
-                        })
-                ],
-                view: view
-            });
 
 
 

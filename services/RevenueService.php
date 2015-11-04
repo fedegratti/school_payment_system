@@ -8,19 +8,14 @@
  */
 class RevenueService
 {
-    public  static function totalRevenueByMonthInYear($slimApp,$year)
+    public  static function totalRevenueByMonthInYear($year)
     {
-
-
         $feeModel = new FeeModel();
         $totalRevenue = $feeModel->getMontlyRevenueByYear($year);
 
         // vardump formateado super cheto
         //echo '<pre>'; print_r($feeModel->getToBePayedFeesOfStudentInYear($studentID,$year)); echo '</pre>'; die;
 
-
-
-        $slimApp->response->headers['Content-Type'] = "application/json";
         (new ServiceView())->showAsJSON($totalRevenue);
     }
 }
