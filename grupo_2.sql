@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2015 a las 01:24:41
+-- Tiempo de generación: 04-11-2015 a las 00:08:17
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -300,26 +300,28 @@ CREATE TABLE IF NOT EXISTS `student` (
   `admissionDate` date DEFAULT NULL,
   `graduationDate` date DEFAULT NULL,
   `createDate` date NOT NULL,
-  `deleted` tinyint(1) NOT NULL
+  `deleted` tinyint(1) NOT NULL,
+  `lon` double NOT NULL,
+  `lat` double NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `student`
 --
 
-INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `address`, `admissionDate`, `graduationDate`, `createDate`, `deleted`) VALUES
-(9, 0, 35610136, 'Gratti', 'Federico', '1990-09-20', 0, 'federicogratti@gmail.com', '13 55 y 56 1139', NULL, NULL, '2015-10-07', 0),
-(10, 0, 24542748, 'Gomez', 'Adrian', '1995-08-17', 0, 'adriangomez@hotmail.com', '3 y 65 n 1456', '2015-01-01', '0000-00-00', '2015-10-07', 0),
-(11, 0, 123456789, 'Santo Domingo', 'Academia', '2000-10-19', 0, 'asd@gmail.com', '1231231', NULL, NULL, '2015-10-07', 1),
-(14, 0, 123, '123', '123', '2000-10-19', 1, 's@a', 'asdasd', NULL, NULL, '2015-10-08', 1),
-(15, 0, 123, '123', '123', '2000-10-19', 1, 's@a', 'asdasd', NULL, NULL, '2015-10-08', 0),
-(16, 0, 12543542, 'Sole', 'Eugenia', '1991-02-13', 1, 'eugeacdc@gmail.com', '133 y 40', NULL, NULL, '2015-10-08', 0),
-(17, 0, 123123123, '123', 'asd', '3123-12-12', 0, 'asd@asd', 'aasd', NULL, NULL, '2015-10-08', 0),
-(18, 0, 123, '12123', '213', '0000-00-00', 1, 'asd@asd', '1', NULL, NULL, '2015-10-08', 0),
-(19, 0, 123, 'asd', 'saqe', '0123-03-12', 0, 'asd@asd', 'aasd', NULL, NULL, '2015-10-08', 0),
-(20, 0, 321432, 'sdffd', 'sdfdsf', '4234-03-21', 1, 'support@graduada.unlp.edu.ar', '36 N 1004 e/ 15 y 16', NULL, NULL, '2015-10-08', 0),
-(21, 1, 123, 'python', 'python', '2000-02-02', 0, 'a@a', 'sasdasd', '2015-01-01', '0000-00-00', '2015-10-08', 0),
-(22, 0, 123, 'python', 'python', '2000-02-02', 0, 'a@a', 'asd', NULL, NULL, '2015-10-08', 1);
+INSERT INTO `student` (`id`, `documentType`, `documentNumber`, `lastName`, `firstName`, `birthDate`, `sex`, `email`, `address`, `admissionDate`, `graduationDate`, `createDate`, `deleted`, `lon`, `lat`) VALUES
+(9, 0, 35610136, 'Gratti', 'Federico', '1990-09-20', 0, 'federicogratti@gmail.com', '13 55 y 56 1139', NULL, NULL, '2015-10-07', 0, -57.9749, -34.9205),
+(10, 0, 24542748, 'Gomez', 'Adrian', '1995-08-17', 0, 'adriangomez@hotmail.com', '3 y 65 n 1456', '2015-01-01', '0000-00-00', '2015-10-07', 0, -57.9449, -34.9215),
+(11, 0, 123456789, 'Santo Domingo', 'Academia', '2000-10-19', 0, 'asd@gmail.com', '1231231', NULL, NULL, '2015-10-07', 1, 0, 0),
+(14, 0, 123, '123', '123', '2000-10-19', 1, 's@a', 'asdasd', NULL, NULL, '2015-10-08', 1, 0, 0),
+(15, 0, 123, '123', '123', '2000-10-19', 1, 's@a', 'asdasd', NULL, NULL, '2015-10-08', 0, -57.9719, -34.9005),
+(16, 0, 12543542, 'Sole', 'Eugenia', '1991-02-13', 1, 'eugeacdc@gmail.com', '133 y 40', NULL, NULL, '2015-10-08', 0, -57.9049, -34.9401),
+(17, 0, 123123123, '123', 'asd', '3123-12-12', 0, 'asd@asd', 'aasd', NULL, NULL, '2015-10-08', 0, -57.9649, -34.935),
+(18, 0, 123, '12123', '213', '0000-00-00', 1, 'asd@asd', '1', NULL, NULL, '2015-10-08', 0, -57.9949, -34.9101),
+(19, 0, 123, 'asd', 'saqe', '0123-03-12', 0, 'asd@asd', 'aasd', NULL, NULL, '2015-10-08', 0, -57.9249, -34.9201),
+(20, 0, 321432, 'sdffd', 'sdfdsf', '4234-03-21', 1, 'support@graduada.unlp.edu.ar', '36 N 1004 e/ 15 y 16', NULL, NULL, '2015-10-08', 0, -57.9349, -34.9463),
+(21, 1, 123, 'python', 'python', '2000-02-02', 0, 'a@a', 'sasdasd', '2015-01-01', '0000-00-00', '2015-10-08', 0, -57.9405, -34.9367),
+(22, 0, 123, 'python', 'python', '2000-02-02', 0, 'a@a', 'asd', NULL, NULL, '2015-10-08', 1, 0, 0);
 
 -- --------------------------------------------------------
 
