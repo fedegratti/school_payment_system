@@ -354,6 +354,12 @@
             RevenueService::totalRevenueByMonthInYear($slimApp,$year);
         });
 
+        $slimApp->get('/getUsersPosition', function ()
+        {
+            $positions = [[-57.9749, -34.9205], [-57.9799, -34.9305]];
+            echo json_encode($positions);
+        });
+
         // Si slim detecta q la ruta no existe, se va a encargar de retornar el codigo de error y lo q necesite.
         $slimApp->run();
     }

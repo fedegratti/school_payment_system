@@ -37,15 +37,6 @@
             });
 
 
-            var map = new ol.Map({
-                target: 'map',
-                layers: [
-                    new ol.layer.Tile({
-                        source: new ol.source.MapQuest({layer: 'osm'})
-                    })
-                ],
-                view: view
-            });
 
 
 
@@ -56,54 +47,95 @@
             var geolocation = new ol.Geolocation({
                 projection: view.getProjection()
             });
+            var features = [];
 
-            var positionFeature = new ol.Feature();
+            // [-57.9749, -34.9205], [-57.9799, -34.9305]
+            var positions = [
 
-            positionFeature.setStyle(new ol.style.Style({
-                image: new ol.style.Circle({
-                    radius: 6,
-                    fill: new ol.style.Fill({
-                        color: '#3399CC'
-                    }),
-                    stroke: new ol.style.Stroke({
-                        color: '#fff',
-                        width: 2
-                    })
-                })
-            }));
+            ];
 
-            var positionFeatureX = new ol.Feature();
+            $.ajax({url: "/getUsersPosition", type: 'GET', success: function(result)
+            {
+                posiciones = JSON.parse(result);
 
-            positionFeatureX.setStyle(new ol.style.Style({
-                image: new ol.style.Circle({
-                    radius: 6,
-                    fill: new ol.style.Fill({
-                        color: '#3399CC'
-                    }),
-                    stroke: new ol.style.Stroke({
-                        color: '#fff',
-                        width: 2
-                    })
-                })
-            }));
+                for ( i= 0; i< posiciones.length; i++)
+                {
+                    positions.push( [ posiciones[i][0],posiciones[i][1] ] );
+                }
+            }});
+
+            var currentLocationFeature = getPrefabFeature('#3399CC');
+            features.push(currentLocationFeature);
+            for (i = 0; i < positions.length; i++)
+            {
+                var studentFeature = getPrefabFeature('#FF6036');
+                studentFeature.setGeometry(new ol.geom.Point(ol.proj.transform(positions[i], 'EPSG:4326',   'EPSG:3857')));
+                features.push(studentFeature);
+            }
 
             geolocation.on('change:position', function() {
                 var coordinates = geolocation.getPosition();
-                positionFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
-                positionFeatureX.setGeometry(new ol.geom.Point([-6455361.423378526, -4153081.947043341]))
+                currentLocationFeature.setGeometry(coordinates ? new ol.geom.Point(coordinates) : null);
             });
 
-            geolocation.on('change', function(evt) {
-                window.console.log(geolocation.getPosition());
-                window.console.log(ol.proj.transform([-57.9749, -34.9205], 'EPSG:4326',   'EPSG:3857'));
-            });
-            var featuresOverlay = new ol.layer.Vector({
-                map: map,
-                source: new ol.source.Vector({
-                    features: [ positionFeature, positionFeatureX ]
-                })
+            var map = new ol.Map({
+                target: 'map',
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.MapQuest({layer: 'osm'})
+                    }),
+                    new ol.layer.Vector({
+                        map: map,
+                        source: new ol.source.Vector({
+                            features: features})
+                        })
+                ],
+                view: view
             });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // retorna un circulo prefabricado para usar de marcador.
+            function getPrefabFeature(color)
+            {
+                var prefabFeature = new ol.Feature();
+
+                prefabFeature.setStyle(new ol.style.Style({
+                    image: new ol.style.Circle({
+                        radius: 6,
+                        fill: new ol.style.Fill({
+                            color: color
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: '#fff',
+                            width: 2
+                        })
+                    })
+                }));
+
+                return prefabFeature;
+            }
 
         </script>
     </div>

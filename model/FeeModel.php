@@ -124,7 +124,7 @@ class FeeModel extends PDORepository
                  WHERE f.year = ?
                   	   and f.deleted=false
                   	   and f.kind = 2
-				 order by f.month
+				 group by f.month
                   ";
 
 		$queryResult = $this->executeQuery($query,array($year))->fetchAll(PDO::FETCH_ASSOC);
