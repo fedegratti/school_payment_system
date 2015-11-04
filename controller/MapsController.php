@@ -10,6 +10,12 @@ class MapsController
 {
     public static function openMapsView()
     {
-        (new OpenMapView())->show();
+
+        $studentModel = new StudentModel();
+
+
+
+
+        (new OpenMapView())->show($studentModel->getStudentsPositions());
     }
 }

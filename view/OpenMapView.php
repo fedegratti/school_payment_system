@@ -8,8 +8,8 @@
  */
 class OpenMapView extends TwigView
 {
-    public function show()
+    public function show($students)
     {
-        $this->getTwig()->display("openMapsView.html.twig");
+        $this->getTwig()->display("openMapsView.html.twig",array( "students" => $students));
     }
 }

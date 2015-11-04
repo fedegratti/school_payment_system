@@ -26,7 +26,62 @@
         <label class="checkbox" for="track">
             <input id="track" type="checkbox">track position </input>
         </label>
+
+        <table class="table table-striped" id="table">
+            <tr class="even">
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Apellido
+                </th>
+                <th>
+                    Longitude
+                </th>
+                <th>
+                    Latitude
+                </th>
+
+            </tr>
+            {% for student in students %}
+            <tr class="odd">
+                <td>
+                    {{ student.firstName }}
+                </td>
+                <td>
+                    {{ student.lastName }}
+                </td>
+                <td>
+                    {{ student.lon }}
+                </td>
+                <td>
+                    {{ student.lat }}
+                </td>
+            </tr>
+            {% endfor %}
+
+
+
+
+        </table>
         <script type="text/javascript">
+
+
+            var positions = [ ];
+
+            var table = document.getElementById('table'),
+                    rows = table.getElementsByTagName('tr'),
+                    i, j, cells;
+
+            for (i = 0, j = rows.length; i < j; ++i) {
+                cells = rows[i].getElementsByTagName('td');
+                if (cells.length > 0)
+                {
+                    positions.push([parseFloat(cells[2].innerHTML),parseFloat(cells[3].innerHTML)]);
+                }
+
+            }
+
 
 
 
@@ -56,62 +111,29 @@
 
 
             // [-57.9749, -34.9205], [-57.9799, -34.9305]
-            var positions = [ ];
 
-            $.ajax({url: "https://grupo_2.proyecto2015.linti.unlp.edu.ar/getUsersPosition", type: 'GET', success: function(result)
+
+            for (i = 0; i < positions.length; i++)
             {
-                posiciones = JSON.parse(result);
+                var studentFeature = getPrefabFeature('#FF6036');
+                studentFeature.setGeometry(new ol.geom.Point(ol.proj.transform(positions[i], 'EPSG:4326',   'EPSG:3857')));
+                features.push(studentFeature);
+            }
 
-                for ( i= 0; i< posiciones.length; i++)
-                {
-                    positions.push( [ posiciones[i][0],posiciones[i][1] ] );
-                }
-
-                for (i = 0; i < positions.length; i++)
-                {
-                    var studentFeature = getPrefabFeature('#FF6036');
-                    studentFeature.setGeometry(new ol.geom.Point(ol.proj.transform(positions[i], 'EPSG:4326',   'EPSG:3857')));
-                    features.push(studentFeature);
-                }
-
-                var map = new ol.Map({
-                    target: 'map',
-                    layers: [
-                        new ol.layer.Tile({
-                            source: new ol.source.MapQuest({layer: 'osm'})
-                        }),
-                        new ol.layer.Vector({
-                            map: map,
-                            source: new ol.source.Vector({
-                                features: features})
-                        })
-                    ],
-                    view: view
-                });
-            }});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            var map = new ol.Map({
+                target: 'map',
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.MapQuest({layer: 'osm'})
+                    }),
+                    new ol.layer.Vector({
+                        map: map,
+                        source: new ol.source.Vector({
+                            features: features})
+                    })
+                ],
+                view: view
+            });
 
 
 
