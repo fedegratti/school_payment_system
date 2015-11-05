@@ -11,9 +11,10 @@
 			<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="/js/bootstrap.min.js"></script>
-            <script src="/js/jsPDF.js"></script>
+
             <script src="/js/exportToPDF.js"></script>
 			<script src="/js/Chart.js"></script>
+            <script src="/js/jsPDF.js"></script>
             {% if revenue != null %}
                 <script>
                     var randomScalingFactor = function(){ return {{ maxValue }} };
@@ -60,6 +61,7 @@
                     Ingresos del year {{ year }}
                 {% endif %}
 			</h1>
+            <p>Los years 2016 y 2017 tienen datos</p>
             <form method="POST" action="/listRevenueAction">
                 <label id="bypassme">Seleccione el year</label>
                 <input type="number" name="year" required >
