@@ -10,8 +10,8 @@ class RevenueService
 {
     public  static function totalRevenueByMonthInYear($year)
     {
-        $feeModel = new FeeModel();
-        $totalRevenue = $feeModel->getMontlyRevenueByYear($year);
+        $paymentModel = new PaymentModel();
+        $totalRevenue = $paymentModel->getMontlyRevenueByYear($year);
 
         // vardump formateado super cheto
         //echo '<pre>'; print_r($feeModel->getToBePayedFeesOfStudentInYear($studentID,$year)); echo '</pre>'; die;

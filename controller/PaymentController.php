@@ -8,7 +8,7 @@
  */
 class PaymentController
 {
-    public static function listRevenueView($year = null)
+    public static function listRevenueByYearView($year = null)
     {
 
         if($year == null)
@@ -42,9 +42,9 @@ class PaymentController
 
     }
 
-    public static function listRevenueAction()
+    public static function listRevenueByYearAction()
     {
-        header("Location: /listRevenue/".$_POST["year"]);
+        header("Location: /listRevenueByYear/".$_POST["year"]);
     }
 
     public static function payOrGrantFeeView($feeId,$studentId,$grant)
@@ -62,5 +62,13 @@ class PaymentController
     {
         $years = (new PaymentModel())->getYearlyCollectorPaymentRevenueOfUser($_SESSION["userid"]);
         (new ListCollectorPaymentRevenueView())->show($years);
+    }
+
+    public static function listTotalRevenueView()
+    {
+        $paymentModel = new PaymentModel();
+        $totalRevenue = $paymentModel->getTotalRevenue();
+        (new ListTotalRevenue())->show($totalRevenue);
+
     }
 }

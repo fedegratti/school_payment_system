@@ -1,0 +1,83 @@
+{% extends '/common/base.html.twig' %}
+
+{% block title %}Ganancias por comision{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script>
+       
+        var barChartData =
+        [
+            {% for year in years %}
+                {
+                    labels : ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+                    datasets : [
+
+
+                        {
+                            label: "Mensual",
+                            fillColor: "rgba(170,57,57,0.5)",
+                            strokeColor: "rgba(170,57,57,0.8)",
+                            highlightFill: "rgba(170,57,57,0.75)",
+                            highlightStroke: "rgba(170,57,57,1)",
+                            data : [
+                                {% for amount in year.monthlyFees %}
+                                    {{ amount }},
+                                {% endfor %}
+                            ]
+                        },
+                        {
+                            label: "Matricula",
+                            fillColor: "rgba(151,187,205,0.5)",
+                            strokeColor: "rgba(151,187,205,0.8)",
+                            highlightFill: "rgba(151,187,205,0.75)",
+                            highlightStroke: "rgba(151,187,205,1)",
+
+                            data : [
+                                {% for amount in year.entryFees %}
+                                {{ amount }},
+                                {% endfor %}
+                            ]
+                        }
+
+                    ]
+                },
+
+            {% endfor %}
+        ]
+        window.onload = function()
+        {
+
+            var canvases = document.getElementsByTagName("canvas");
+
+            for(var i =0; i< canvases.length; i++)
+            {
+                new Chart(canvases[i].getContext("2d")).Bar(barChartData[i],
+                        {
+                            responsive : true,
+                            multiTooltipTemplate: "<%= datasetLabel %> <%= value %>",
+
+                        });
+            }
+
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container" id="container">
+        <h1 class="page-header">
+            Holis
+        </h1>
+        {% for year in years %}
+            <h3 class="page-header">
+                Year {{ year.year }}
+            </h3>
+        <canvas id="estadisticas" width="400" height="150"></canvas>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

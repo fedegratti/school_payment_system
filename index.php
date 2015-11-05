@@ -292,18 +292,18 @@
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/listRevenue', array(
-        '_controller' => 'PaymentController::listRevenueView',
+    $collection->attachRoute(new Route('/listRevenueByYear', array(
+        '_controller' => 'PaymentController::listRevenueByYearView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/listRevenue/:year', array(
-        '_controller' => 'PaymentController::listRevenueView',
+    $collection->attachRoute(new Route('/listRevenueByYear/:year', array(
+        '_controller' => 'PaymentController::listRevenueByYearView',
         'methods' => 'GET'
     )));
 
-    $collection->attachRoute(new Route('/listRevenueAction', array(
-        '_controller' => 'PaymentController::listRevenueAction',
+    $collection->attachRoute(new Route('/listRevenueByYearAction', array(
+        '_controller' => 'PaymentController::listRevenueByYearAction',
         'methods' => 'POST'
     )));
 
@@ -314,6 +314,11 @@
 
     $collection->attachRoute(new Route('/openMaps', array(
         '_controller' => 'MapsController::openMapsView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/listTotalRevenue', array(
+        '_controller' => 'PaymentController::listTotalRevenueView',
         'methods' => 'GET'
     )));
 
