@@ -74,14 +74,35 @@ class PaymentController
 
     public static function listPaymentsOnCalendarView($dni = null, $year = null)
     {
-        if($dni== null)
+        if($dni== null )
         {
             (new ListPaymentsOnCalendarView())->show();
         }
         else
         {
-            $datos = "datos...";
-            (new ListPaymentsOnCalendarView())->show($datos);
+
+            $arrContextOptions=array(
+                "ssl"=>array(
+                    "verify_peer"=>false,
+                    "verify_peer_name"=>false,
+                ),
+            );
+
+            //guarda con esto xD si el server muere o quieren probar algo en la db local, cambienlo.
+            // Si tuviesemos configurado el apache para aceptar https, podriamos dejar localhost y funciona siempre.
+            $restURL="http://localhost/cuotasImpagasYPorPagarDe/{$dni}/year/{$year}";
+
+            $response = file_get_contents($restURL, false,  stream_context_create($arrContextOptions));
+            $cuotasPagasEImpagas = json_decode($response,true);
+
+
+            // le agrego la key porq php tiene problemitas   http://stackoverflow.com/questions/10121483/php-modify-current-object-in-foreach-loop
+            foreach($cuotasPagasEImpagas["pagas"] as $key =>$cuota)
+            {
+                $cuotasPagasEImpagas["pagas"][$key]["fechaDePago"] = date("m/d/Y", strtotime($cuota["fechaDePago"]));
+            }
+
+            (new ListPaymentsOnCalendarView())->show($cuotasPagasEImpagas);
 
         }
 

@@ -10,7 +10,9 @@ class ListPaymentsOnCalendarView extends TwigView
 {
     public function show($data = null)
     {
-        $this->getTwig()->display("calendar.html.twig", array( "data" => $data));
+
+        $this->getTwig()->display("calendar.html.twig", array( "cuotasPagas" => $data["pagas"],
+                                                                "cuotasPorPagar" => $data["por_pagar"]));
     }
 
 }

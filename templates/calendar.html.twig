@@ -14,35 +14,82 @@
     {{ parent() }}
 
     <div class="container">
+
+        <h1 class="page-header">
+            Pagos del alumno
+        </h1>
         <h2 class="sub-header">Cuotas pagas</h2>
-        <div class="calendar-container">
-            <div class="form-group">
-                <div class="row">
-                    <div class="calendar">
-                        <div id="datetimepicker12"></div>
+        <form method="POST" action="/calendarAction">
+
+            <label >Seleccione el DNI</label>
+            <input type="number" name="dni" value="21" required >
+
+            <label >Seleccione el year</label>
+            <input type="number" name="year" value="2016" required >
+
+            <input type="submit" name="enviar" value="Enviar">
+        </form>
+        {% if cuotasPagas!=null %}
+            <div class="calendar-container">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="calendar">
+                            <div id="datetimepicker12"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <script type="text/javascript">
-                $(function () {
-                    $('#datetimepicker12').datetimepicker({
-                        inline: true,
-                        sideBySide: false
-                    });
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datetimepicker12').datetimepicker({
+                            inline: true,
+                            sideBySide: false
+                        });
 
-                    function wait(){
-                        if (true){
+                        function wait(){
                             $('.day').removeClass('active');
-                            $('.day[data-day="11/18/2015"]').addClass('active');
+
+                            {% for pago in cuotasPagas %}
+                                $('.day[data-day="{{ pago.fechaDePago }}"]').addClass('active');
+                            {% endfor %}
                             setTimeout(wait,100);
                         }
-                    }
-                    wait ();
-                });
-            </script>
-        </div>
+                        wait ();
+                    });
+                </script>
+            </div>
+            <h1 class="page-header">
+                Cuotas por pagar
+            </h1>
+            <table class="table table-striped" id="table">
+                <tr class="even">
+                    <th> id </th>
+                    <th> month </th>
+                    <th> year </th>
+                    <th> amount </th>
+                </tr>
+                {% for cuota in cuotasPorPagar %}
+                    <tr class="odd">
+                        <td>
+                            {{ cuota.id }}
+                        </td>
+                        <td>
+                            {{ cuota.month }}
+                        </td>
+                        <td>
+                            {{ cuota.year }}
+                        </td>
+                        <td>
+                            {{ cuota.amount }}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+
+
+
+            </table>
+
+        {% endif %}
     </div>
 
 {% endblock %}
-
-
