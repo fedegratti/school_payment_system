@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2015 a las 00:08:17
+-- Tiempo de generación: 05-11-2015 a las 01:40:50
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `fee` (
   `createDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL,
   `expirationDate` date NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `fee`
@@ -117,7 +117,9 @@ INSERT INTO `fee` (`id`, `year`, `month`, `number`, `amount`, `kind`, `collector
 (17, 2016, 2, 3, '333', 2, '30', '2015-10-28', 0, '2015-11-20'),
 (18, 2016, 3, 1, '789', 2, '1', '2015-10-28', 0, '2015-11-14'),
 (19, 2016, 4, 5, '350', 2, '5', '2015-10-30', 0, '2015-11-28'),
-(20, 2017, 4, 5, '850', 2, '6', '2015-10-30', 0, '2015-12-12');
+(20, 2017, 4, 5, '850', 2, '6', '2015-10-30', 0, '2015-12-12'),
+(21, 2016, 1, 1, '2000', 1, '5', '2015-11-05', 0, '2015-12-29'),
+(22, 2016, 2, 1, '6000', 1, '30', '2015-11-05', 0, '2015-12-27');
 
 -- --------------------------------------------------------
 
@@ -187,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   `createDate` date NOT NULL,
   `updatedDate` date DEFAULT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `payment`
@@ -199,7 +201,11 @@ INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`,
 (22, 21, 17, 0, '2015-10-28', NULL, 0),
 (23, 21, 18, 0, '2015-10-28', NULL, 0),
 (29, 21, 19, 0, '2015-10-30', NULL, 0),
-(30, 21, 20, 0, '2015-10-30', NULL, 0);
+(30, 21, 20, 0, '2015-10-30', NULL, 0),
+(31, 10, 22, 0, '2015-11-05', NULL, 0),
+(32, 10, 21, 0, '2015-11-05', NULL, 0),
+(33, 21, 21, 0, '2015-11-05', NULL, 0),
+(34, 21, 22, 0, '2015-11-05', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -368,7 +374,7 @@ CREATE TABLE IF NOT EXISTS `user_payments` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `paymentid` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `user_payments`
@@ -379,7 +385,10 @@ INSERT INTO `user_payments` (`id`, `userid`, `paymentid`) VALUES
 (5, 23, 30),
 (6, 23, 20),
 (7, 23, 21),
-(8, 23, 22);
+(8, 23, 22),
+(9, 23, 31),
+(10, 23, 32),
+(11, 23, 33);
 
 --
 -- Índices para tablas volcadas
@@ -469,7 +478,7 @@ ALTER TABLE `configuration`
 -- AUTO_INCREMENT de la tabla `fee`
 --
 ALTER TABLE `fee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `guardian`
 --
@@ -484,7 +493,7 @@ ALTER TABLE `guardian_student_relationship`
 -- AUTO_INCREMENT de la tabla `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT de la tabla `resource`
 --
@@ -509,7 +518,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `user_payments`
 --
 ALTER TABLE `user_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

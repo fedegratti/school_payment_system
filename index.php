@@ -322,6 +322,22 @@
         'methods' => 'GET'
     )));
 
+    $collection->attachRoute(new Route('/calendar', array(
+        '_controller' => 'PaymentController::listPaymentsOnCalendarView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/calendar/:dni/:year', array(
+        '_controller' => 'PaymentController::listPaymentsOnCalendarView',
+        'methods' => 'GET'
+    )));
+
+    $collection->attachRoute(new Route('/calendarAction', array(
+        '_controller' => 'PaymentController::listPaymentsOnCalendarAction',
+        'methods' => 'POST'
+    )));
+
+
 	$router = new Router($collection);
 	$router->setBasePath('/');
 

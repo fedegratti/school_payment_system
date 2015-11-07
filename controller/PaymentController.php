@@ -15,7 +15,7 @@ class PaymentController
             (new ListRevenueInYearView())->show();
         else
         {
-            // no fucks given, desactivamos el checkeo de seguridad
+
             $arrContextOptions=array(
                 "ssl"=>array(
                     "verify_peer"=>false,
@@ -70,5 +70,25 @@ class PaymentController
         $totalRevenue = $paymentModel->getTotalRevenue();
         (new ListTotalRevenue())->show($totalRevenue);
 
+    }
+
+    public static function listPaymentsOnCalendarView($dni = null, $year = null)
+    {
+        if($dni== null)
+        {
+            (new ListPaymentsOnCalendarView())->show();
+        }
+        else
+        {
+            $datos = "datos...";
+            (new ListPaymentsOnCalendarView())->show($datos);
+
+        }
+
+    }
+
+    public static function listPaymentsOnCalendarAction()
+    {
+        header("Location: /calendar/".$_POST["dni"]."/".$_POST["year"]);
     }
 }

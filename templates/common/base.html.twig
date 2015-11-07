@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-	{% block head %}
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="/css/common.css">
-		<!-- Jquery -->
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="/js/bootstrap.min.js"></script>
+    <head>
+        {% block head %}
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <!-- Optional theme -->
+            <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" href="/css/common.css">
+            <!-- Jquery -->
+            <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="/js/bootstrap.min.js"></script>
 
-		<script src="/js/Chart.js"></script>
-		<script src="/js/jsPDF.js"></script>
-		<script src="/js/exportToPDF.js"></script>
+            <script src="/js/Chart.js"></script>
+            <script src="/js/jsPDF.js"></script>
+            <script src="/js/exportToPDF.js"></script>
 
-		<title>{% block title %}{% endblock %}</title>
+            <title>{% block title %}{% endblock %}</title>
 
-	{% endblock %}
-</head>
+        {% endblock %}
+    </head>
 <body>
 {% block body %}
     {% include '/common/navbar.html.twig' %}

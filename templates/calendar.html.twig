@@ -1,0 +1,65 @@
+{% extends '/common/base.html.twig' %}
+
+{% block title %}Calendario de cuotas pagas{% endblock %}
+
+{% block head %}
+
+    {{ parent() }}
+
+
+
+    <link rel='stylesheet' href='/css/fullcalendar.min.css' />
+
+
+
+
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+
+
+    <div id='calendar'>
+
+
+    </div>
+
+    <div class="container" id="container">
+        <h1 class="page-header">
+            Pagos del alumno
+        </h1>
+
+        <form method="POST" action="/calendarAction">
+
+            <label >Seleccione el DNI</label>
+            <input type="number" name="dni" required >
+
+            <label >Seleccione el year</label>
+            <input type="number" name="year" required >
+
+            <input type="submit" name="enviar" value="Enviar">
+        </form>
+
+
+
+    </div> <!-- /container -->
+
+    <script>
+
+
+        $(document).ready(function() {
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+            })
+
+        });
+
+    </script>
+
+{% endblock %}
+
+
