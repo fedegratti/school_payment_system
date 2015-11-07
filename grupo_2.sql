@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2015 a las 01:40:50
+-- Tiempo de generación: 07-11-2015 a las 01:41:23
 -- Versión del servidor: 5.6.26-log
 -- Versión de PHP: 5.6.12
 
@@ -198,14 +198,12 @@ CREATE TABLE IF NOT EXISTS `payment` (
 INSERT INTO `payment` (`id`, `studentId`, `feeId`, `grantholding`, `createDate`, `updatedDate`, `deleted`) VALUES
 (20, 21, 15, 0, '2015-10-09', NULL, 0),
 (21, 21, 16, 0, '2015-10-28', NULL, 0),
-(22, 21, 17, 0, '2015-10-28', NULL, 0),
 (23, 21, 18, 0, '2015-10-28', NULL, 0),
 (29, 21, 19, 0, '2015-10-30', NULL, 0),
 (30, 21, 20, 0, '2015-10-30', NULL, 0),
 (31, 10, 22, 0, '2015-11-05', NULL, 0),
 (32, 10, 21, 0, '2015-11-05', NULL, 0),
-(33, 21, 21, 0, '2015-11-05', NULL, 0),
-(34, 21, 22, 0, '2015-11-05', NULL, 0);
+(33, 21, 21, 0, '2015-11-05', NULL, 0);
 
 -- --------------------------------------------------------
 

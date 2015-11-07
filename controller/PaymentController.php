@@ -90,7 +90,7 @@ class PaymentController
 
             //guarda con esto xD si el server muere o quieren probar algo en la db local, cambienlo.
             // Si tuviesemos configurado el apache para aceptar https, podriamos dejar localhost y funciona siempre.
-            $restURL="http://localhost/cuotasImpagasYPorPagarDe/{$dni}/year/{$year}";
+            $restURL="https://grupo_2.proyecto2015.linti.unlp.edu.ar/cuotasImpagasYPorPagarDe/{$dni}/year/{$year}";
 
             $response = file_get_contents($restURL, false,  stream_context_create($arrContextOptions));
             $cuotasPagasEImpagas = json_decode($response,true);
