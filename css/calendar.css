@@ -1,0 +1,16 @@
+.calendar {
+  width: 50%;
+  background-color: white;
+  margin: 5px auto auto auto;
+  box-shadow: 0px 0px 10px #888888;
+  overflow: hidden;
+  height: 360px;
+}
+.bootstrap-datetimepicker-widget table td.day {
+  line-height: 40px;
+}
+.calendar-container {
+    overflow:hidden;
+    position: relative;
+    top: 20px;
+}

@@ -3,62 +3,45 @@
 {% block title %}Calendario de cuotas pagas{% endblock %}
 
 {% block head %}
-
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/css/calendar.css">
     {{ parent() }}
 
-
-
-    <link rel='stylesheet' href='/css/fullcalendar.min.css' />
-
-
-
-
+    <script src="/js/bootstrap-datetimepicker.min.js"></script>
 {% endblock %}
 
 {% block body %}
     {{ parent() }}
 
+    <div class="container">
+        <h2 class="sub-header">Cuotas pagas</h2>
+        <div class="calendar-container">
+            <div class="form-group">
+                <div class="row">
+                    <div class="calendar">
+                        <div id="datetimepicker12"></div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker12').datetimepicker({
+                        inline: true,
+                        sideBySide: false
+                    });
 
-
-    <div id='calendar'>
-
-
+                    function wait(){
+                        if (true){
+                            $('.day').removeClass('active');
+                            $('.day[data-day="11/18/2015"]').addClass('active');
+                            setTimeout(wait,100);
+                        }
+                    }
+                    wait ();
+                });
+            </script>
+        </div>
     </div>
-
-    <div class="container" id="container">
-        <h1 class="page-header">
-            Pagos del alumno
-        </h1>
-
-        <form method="POST" action="/calendarAction">
-
-            <label >Seleccione el DNI</label>
-            <input type="number" name="dni" required >
-
-            <label >Seleccione el year</label>
-            <input type="number" name="year" required >
-
-            <input type="submit" name="enviar" value="Enviar">
-        </form>
-
-
-
-    </div> <!-- /container -->
-
-    <script>
-
-
-        $(document).ready(function() {
-
-            // page is now ready, initialize the calendar...
-
-            $('#calendar').fullCalendar({
-                // put your options and callbacks here
-            })
-
-        });
-
-    </script>
 
 {% endblock %}
 
