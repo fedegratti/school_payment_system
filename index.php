@@ -337,8 +337,6 @@
         'methods' => 'POST'
     )));
 
-    //asd
-
 	$router = new Router($collection);
 	$router->setBasePath('/');
 
